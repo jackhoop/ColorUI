@@ -3,18 +3,39 @@
     <view class='content'>ColorUI 空白模板</view>
   </bar>
 </custom>
-<view class="margin-xl padding-xl bg-white radius shadow-lg">
-  <view class="flex justify-center">
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo" class='round bg-green shadow'> 获取头像昵称 </button>
-    <block wx:else>
-      <view class='text-center'>
-        <avatar class="xl round solids" style="background-image:url({{userInfo.avatarUrl}})"></avatar>
-        <view class="padding">{{userInfo.nickName}}</view>
-      </view>
-    </block>
+<bar class="search fixed " style="top:{{CustomBar}}px;background-color:rgba(0,0,0,0.2);">
+ <view class='serach-form round'>
+    <icon class="icon-search" />
+    <input type="text" placeholder="搜索水站" confirm-type="search" />
   </view>
-</view>
-
-<view class="text-center margin-top">
-  <text class="text-grey text-xl">{{motto}}</text>
-</view>
+  <view class='action'>
+    <button class='bg-green shadow-blur round'>搜索</button>
+  </view>
+</bar>
+<swiper class="screen-swiper square-dot" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500">
+  <swiper-item wx:for="{{4}}" wx:key>
+    <image src="https://image.weilanwl.com/img/4x3-{{index+1}}.jpg" mode='aspectFill' />
+  </swiper-item>
+</swiper>
+<scroll-view scroll-x class="bg-white nav">
+  <view class='flex text-center'>
+    <item class="flex-sub {{index==TabCur?'text-orange cur':''}}" wx:for="{{tabs}}" wx:key bindtap='tabSelect' data-id="{{index}}" wx:for-item="item">
+      {{item.name}}
+    </item>
+  </view>
+</scroll-view>
+<card class="article {{isCard?'no-card':''}}">
+  <item wx:for="1" wx:key class="shadow">
+    <view class="content">
+      <image src="https://image.weilanwl.com/img/4x3-3.jpg" mode="aspectFill"></image>
+      <view class="desc">
+        <view class='text-content'> 这是一个伪铲屎官为了给自己的程序凑字数瞎几把乱写的一堆文字，了解一下就OK！ヾ(=･ω･=)o</view>
+        <view>
+          <tag class='bg-red light sm round'>假装有猫系列</tag>
+          <tag class='bg-green light sm round'>戏精系列</tag>
+        </view>
+      </view>
+    </view>
+     <view class="title">这里有个戏精铲屎官，主子了解一下？</view>
+  </item>
+</card>

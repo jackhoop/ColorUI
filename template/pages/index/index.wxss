@@ -1,0 +1,21 @@
+.screen-swiper {
+  min-height: 450rpx;
+}
+card > item {
+  display: block;
+  background: #fff;
+  overflow: hidden;
+  border-radius: 10rpx;
+  margin: 10rpx;
+}
+card.article>item .content {
+  display: flex;
+  padding: 0 30rpx;
+  margin-top:30rpx;
+}
+card.article>item .content > image {
+  width: 200rpx;
+  height: 6.4em;
+  margin-right: 20rpx;
+  border-radius: 6rpx;
+}
