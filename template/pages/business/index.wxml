@@ -1,0 +1,39 @@
+<card style=" display: block;overflow: hidden;">
+   <item class="gradual-blue shadow-blur" style="height:100%;">
+    <view>
+     您还没有入驻
+    </view>
+    <view class='animation-wave' style='margin-top:350rpx'>
+      <view class='wave'></view>
+    </view>
+  </item>
+</card>
+<view class="page">
+  <view class="padding-xl radius shadow-warp bg-white"></view>
+</view>
+<view class="page {{skin?' invert ':' '}}" style='margin-top:20rpx'>
+   <list class="grid col-3">
+    <item>
+      <icon class='icon-cardboardfill text-red'/>
+      <text>添加店铺</text>
+    </item>
+    <item>
+      <icon class='icon-recordfill text-orange'/>
+      <text>查看店铺</text>
+    </item>
+    <item>
+      <icon class='icon-picfill text-yellow'/>
+      <text>添加商品</text>
+    </item>
+    <item>
+      <icon class='icon-noticefill text-olive'>
+        <tag class="badge">99+</tag>
+      </icon>
+      <text>店铺二维码</text>
+    </item>
+    <item>
+      <icon class='icon-servicefill text-pink'/>
+      <text>反馈</text>
+    </item>
+  </list>
+</view>
