@@ -29,13 +29,53 @@
     <view class="content">
       <image src="https://image.weilanwl.com/img/4x3-3.jpg" mode="aspectFill"></image>
       <view class="desc">
-        <view class='text-content'> 这是一个伪铲屎官为了给自己的程序凑字数瞎几把乱写的一堆文字，了解一下就OK！ヾ(=･ω･=)o</view>
-        <view>
-          <tag class='bg-red light sm round'>假装有猫系列</tag>
-          <tag class='bg-green light sm round'>戏精系列</tag>
-        </view>
+         <view>喵星人互动群</view>
+         <view class='text-gray text-sm'><icon class='icon-mobilefill lg text-gray'/> 18656543545</view>
+         <view class='text-gray text-sm'><icon class='icon-attention lg text-gray'/>132</view>
+      </view >
+       <view class='action' style='margin-top: 10rpx;'>
+           <i class="icon iconfont icon-dianhua5" catchtap="callTel" style="font-size:90rpx;margin-left:80rpx;color:#00e560"></i>
       </view>
     </view>
-     <view class="title">这里有个戏精铲屎官，主子了解一下？</view>
+    <view class='nav'>
+         <view class='item'>
+              <view class="weui-media-box__desc" style='margin-left:20rpx;'>
+                <view class='text-gray text-sm'><i class="icon iconfont icon-dizhi1"></i>齐耳短发克格勃基材厅</view> 
+              </view>
+              </view>
+              <view class='item'>
+                   <view style='text-align:right;margin-right:30rpx;'>
+                    <view class='text-gray text-sm'><i class="icon iconfont icon-emizhifeiji" style="font-size:20rpx;"></i> 23m</view> 
+                   </view>
+              </view>
+    </view>   
   </item>
 </card>
+<card class="article {{isCard?'no-card':''}}">
+  <item wx:for="1" wx:key class="shadow">
+    <view class="content">
+      <image src="https://image.weilanwl.com/img/4x3-3.jpg" mode="aspectFill"></image>
+      <view class="desc">
+         <view>喵星人互动群</view>
+         <view class='text-gray text-sm'><icon class='icon-mobilefill lg text-gray'/> 18656543545</view>
+         <view class='text-gray text-sm'><icon class='icon-attention lg text-gray'/>132</view>
+      </view >
+       <view class='action' style='margin-top: 10rpx;'>
+           <i class="icon iconfont icon-dianhua5" catchtap="callTel" style="font-size:90rpx;margin-left:80rpx;color:#00e560"></i>
+      </view>
+    </view>
+    <view class='nav'>
+         <view class='item'>
+              <view class="weui-media-box__desc" style='margin-left:20rpx;'>
+                <view class='text-gray text-sm'><i class="icon iconfont icon-dizhi1"></i>齐耳短发克格勃基材厅</view> 
+              </view>
+              </view>
+              <view class='item'>
+                   <view style='text-align:right;margin-right:30rpx;'>
+                    <view class='text-gray text-sm'><i class="icon iconfont icon-emizhifeiji" style="font-size:20rpx;"></i> 23m</view> 
+                   </view>
+              </view>
+    </view>   
+  </item>
+</card>
+

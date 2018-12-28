@@ -1,6 +1,6 @@
-.screen-swiper {
+/* .screen-swiper {
   min-height: 450rpx;
-}
+} */
 card > item {
   display: block;
   background: #fff;
@@ -14,8 +14,29 @@ card.article>item .content {
   margin-top:30rpx;
 }
 card.article>item .content > image {
-  width: 200rpx;
-  height: 6.4em;
+  width: 120rpx;
+  height: 120rpx;
   margin-right: 20rpx;
   border-radius: 6rpx;
 }
+card.article>item .loacthon {
+  display: flex;
+  padding: 0 30rpx;
+  margin-top:20rpx;
+}
+card.article>item {
+  padding-bottom: 20rpx;
+}
+.nav{
+  width:100%;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content:space-between;
+  margin-top:20rpx;
+  /* margin-bottom: 20rpx; */
+}
+.nav_item{
+  width:750rpx;
+  height: 10rpx;
+  justify-content:space-around;
+  }

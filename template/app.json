@@ -1,8 +1,8 @@
 {
   "pages": [
+    "pages/business/index",
     "pages/index/index",
     "pages/authentication/index"
-   
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -22,19 +22,19 @@
         "pagePath": "pages/index/index",
         "iconPath": "/images/tabbar/basics.png",
         "selectedIconPath": "/images/tabbar/basics_cur.png",
-        "text": "基础"
+        "text": "附近送水"
       },
       {
-        "pagePath": "pages/index/index",
+        "pagePath": "pages/business/index",
         "iconPath": "/images/tabbar/component.png",
         "selectedIconPath": "/images/tabbar/component_cur.png",
-        "text": "组件"
+        "text": "商户入驻"
       },
       {
         "pagePath": "pages/index/index",
         "iconPath": "/images/tabbar/plugin.png",
         "selectedIconPath": "/images/tabbar/plugin_cur.png",
-        "text": "扩展"
+        "text": "个人中心"
       }
     ]
   }

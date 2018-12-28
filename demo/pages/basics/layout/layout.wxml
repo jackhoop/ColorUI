@@ -45,6 +45,7 @@
       <view class='flex-sub bg-grey padding-sm margin-xs radius'>1</view>
       <view class='flex-twice bg-grey padding-sm margin-xs radius'>2</view>
       <view class='flex-treble bg-grey padding-sm margin-xs radius'>3</view>
+       <view class='flex-sub bg-grey padding-sm margin-xs radius'>1</view>
     </view>
   </view>
   <bar class="margin-top solid-bottom">
@@ -84,9 +85,17 @@
       <view class='bg-grey padding-lg margin-xs radius'>ColorUi</view>
       <view class='bg-grey padding-sm margin-xs radius'>start</view>
     </view>
+    <view class="flex solid-bottom padding align-start">
+      <view class='bg-grey padding-lg margin-xs radius'>
+        <view class='bg-grey padding-sm margin-xs radius'>start</view>
+        <view class='bg-grey padding-sm margin-xs radius'>start</view>
+      </view>
+      
+    </view>
     <view class="flex solid-bottom padding align-end">
       <view class='bg-grey padding-lg margin-xs radius'>ColorUi</view>
       <view class='bg-grey padding-sm margin-xs radius'>end</view>
+       <view class='bg-grey padding-sm margin-xs radius'>end</view>
     </view>
     <view class="flex solid-bottom padding align-center">
       <view class='bg-grey padding-lg margin-xs radius'>ColorUi</view>
