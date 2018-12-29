@@ -50,6 +50,8 @@ App({
     })
   },
   globalData: {
-    userInfo: null
+    userInfo: null,
+    serverUrl: "http://192.168.31.84:8080",
+    appid: "wx36b803b7c835dc44",
   }
 })

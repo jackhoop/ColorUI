@@ -1,4 +1,6 @@
 import WxValidate from '../../utils/WxValidate.js'
+var QQMapWX = require('../../utils/qqmap-wx-jssdk');
+var qqmapsdk;
 const app = getApp();
 Page({
   data: {
@@ -10,6 +12,11 @@ Page({
   onLoad: function (options) {
     // 校验规则 -rules
     this.initValidate();
+
+    // 实例化API核心类
+    qqmapsdk = new QQMapWX({
+      key: '6CXBZ-QNVRU-ITIVQ-4ALSI-WV7QQ-KHFNQ' // 必填
+    });
   },
   /**
  * 表单-提交前的(校验)
@@ -70,19 +77,15 @@ Page({
       },
       contacts: {
         required: true,
-        rangelength: [2, 4]
       },
       contactsTel: {
-        required: true,
-        tel: true,
+        // required: true,
+        // tel: true,
       },
       city: {
         required: false,
-      },
-      assistance: {
-        required: true,
-        assistance: true,
-      },
+        hiddenv:true
+      }
     }
     // 验证字段的提示信息，若不传则调用默认的信息
     const messages = {
@@ -93,18 +96,115 @@ Page({
         required: '请输入联系人',
       },
       contactsTel: {
-        required: '请输入11位手机号码',
-        tel: '请输入联系电话',
+        required: '请输入手机号码',
+        tel: '请输入正确的手机号',
       },
       city: {
         required: '请选择地址',
-      },
-      assistance: {
-        required: '请勾选 《顺风男服务协议》'
-      },
+        hiddenv:"请选择地址"
+      }
     }
     // 创建实例对象
     this.WxValidate = new WxValidate(rules, messages)
+    this.WxValidate.addMethod('hiddenv', (value, param) => {
+      console.log(value, param)
+      return false
+    },)
+  },
+  //地址选择
+  chooseLocation: function (e) {
+    var that = this;
+    wx.chooseLocation({
+      success: function (res) {
+
+        that.setData({
+          latitude: res.latitude,
+          longitude: res.longitude,
+        });
+        // 调用接口
+        qqmapsdk.reverseGeocoder({
+          location: {
+            latitude: res.latitude,
+            longitude: res.longitude
+          },
+          success: function (res) {
+            that.setData({
+              ad_info: res.result.ad_info,
+              pcd: res.result.address_component.province + res.result.address_component.city + res.result.address_component.district,
+              city: res.result.ad_info.province + "-" + res.result.ad_info.city + "-" + res.result.ad_info.district,
+              cityCode: res.result.ad_info.adcode,
+              address: res.result.address_component.street + res.result.address_component.street_number.replace(res.result.address_component.street, "")
+            });
+          },
+          fail: function (res) {
+            console.log(res);
+          },
+          complete: function (res) {
+            console.log(res);
+          }
+        });
+      },
+    })
+  },
+  //门面图片上传
+  mmchooseImage: function (e) {
+    var that = this;
+    wx.chooseImage({
+      count: 1,
+      sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+      sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+      success: function (res) {
+        var formData = {
+          "dataType": "bus"
+        }
+        that.imgUpdate(res.tempFilePaths, formData, function (data) {
+          that.setData({
+            mmimg: data.path
+          });
+        });
+      }
+    })
+  },
+  //营业执照
+  yychooseImage: function () {
+    var that = this;
+    wx.chooseImage({
+      count: 1,
+      sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+      sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+      success: function (res) {
+
+        var formData = {
+          "dataType": "bus"
+        }
+        // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
+        that.imgUpdate(res.tempFilePaths, formData, function (data) {
+          that.setData({
+            yyimg: data.path
+          });
+        });
+      }
+    })
+  },
+  //图片上传
+  imgUpdate(tempFilePaths, formData, callBack) {
+    var that = this;
+    wx.showLoading({
+      title: '上传中...',
+    })
+
+    // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
+    wx.uploadFile({
+      url: app.globalData.serverUrl + "/wx/media/" + app.globalData.appid + "/uploadImg",
+      filePath: tempFilePaths[0],
+      name: 'img',
+      formData: formData,
+      success: function (res) {
+        var data = JSON.parse(res.data);
+        callBack(data);
+        wx.hideLoading();
+      }
+    })
   }
 })
 /**

@@ -79,11 +79,18 @@ button.lg_1 {
 .wran-tips {
   text-align: center;
   color: #fff;
-  padding: 2%;
+  padding: 3%;
   width: 100%;
-  background-color: #f00;
+  background-color: #ec4346;
   display: flex;
   justify-content: center;
   position: fixed;
+  z-index: 999;
   top: 0;
 }
+
+form-group .grid-square {
+  margin: 15rpx 0 0 !important;
+}
+
+

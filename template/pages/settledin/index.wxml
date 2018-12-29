@@ -13,40 +13,62 @@
   <input name="city" hidden class="省市区" value='{{city}}'/>
   <form-group class="margin-top-form">
     <view class='title'>门店名称</view>
-    <input name="name" placeholder="门店名称" class='radius' name='input'></input>
+    <input name="name" placeholder="门店名称" class='radius'></input>
   </form-group>
   <form-group>
     <view class='title'>联系人</view>
-    <input name ="contacts" placeholder="联系人" class='radius' name='input'></input>
+    <input name ="contacts" placeholder="联系人" class='radius'></input>
   </form-group>
   <form-group>
     <view class='title'>联系电话</view>
-    <input name ="contactsTel" placeholder="联系电话" class='radius' name='input'></input>
+    <input name ="contactsTel" placeholder="联系电话" class='radius'></input>
   </form-group>
   <form-group>
     <view class='title'>地址选择</view>
-    <view class='picker_1'>
+    <view class='picker_1' bindtap="chooseLocation">
         <view class="picker">
-          基材-槈-李斐莉雪
+          {{city}}<text decode="{{true}}">&nbsp;</text>
         </view>
     </view>
   </form-group>
   <form-group>
     <view class='title'>详细地址</view>
-    <input name ="address" placeholder="详细地址" class='radius' name='input'></input>
+    <input name ="address" placeholder="详细地址" class='radius' value='{{address}}'></input>
   </form-group>
 
   <form-group class="margin-top form-group-img">
     <view class='title'>门面头照</view>
-    <view class="padding-xs solids">
+    <block wx:if="{{mmimg}}">
+     <view class='grid col-3 grid-square flex-sub'>
+         <view ></view>
+         <view ></view>
+         <view bindtap="mmchooseImage" class="padding-xs bg-img" style="background-image:url({{mmimg}});">
+  
+         </view>
+     </view>
+    </block>
+    <block wx:else>
+      <view class="padding-xs solids" bindtap="mmchooseImage">
         <icon class='icon-cameraadd icon-img text-gray'></icon>
-    </view>
+      </view>
+    </block>
   </form-group>
-  <form-group class="form-group-img">
+   <form-group class="form-group-img">
     <view class='title'>营业执照</view>
-    <view class="padding-xs solids">
+    <block wx:if="{{yyimg}}">
+     <view class='grid col-3 grid-square flex-sub'>
+         <view ></view>
+         <view ></view>
+         <view bindtap="yychooseImage" class="padding-xs bg-img" style="background-image:url({{yyimg}});">
+  
+         </view>
+     </view>
+    </block>
+    <block wx:else>
+      <view class="padding-xs solids" bindtap="yychooseImage">
         <icon class='icon-cameraadd icon-img text-gray'></icon>
-    </view>
+      </view>
+    </block>
   </form-group>
   <form-group class="top" wx:hide="{{modalName==null}}">
     <view class='title'>门店介绍</view>
