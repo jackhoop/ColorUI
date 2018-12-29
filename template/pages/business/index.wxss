@@ -81,3 +81,20 @@ card > item {
   margin: 0rpx;
   height:100%
 }
+list.grid>.item_1 {
+  display: flex;
+  flex-direction: column;
+  border-right: 1rpx solid #eee;
+  border-bottom: 0rpx solid #eee;
+  padding: 0rpx;
+}
+.padding {
+  padding: 0rpx 140rpx;
+  margin-top:100rpx; 
+}
+list.card-menu_1 {
+  margin-left: 20rpx;
+  margin-right: 20rpx;
+  border-radius: 20rpx;
+  overflow: hidden;
+}

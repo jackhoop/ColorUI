@@ -1,0 +1,80 @@
+<custom style="height:{{CustomBar}}px;">
+  <bar class="fixed gradual-blue" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
+    <navigator class='action' open-type="navigateBack" delta="1" hover-class="none">
+      <icon class='icon-back' /> 表单
+    </navigator>
+  </bar>
+</custom>
+<form  bindsubmit='submitCheckInfo'>
+    <!-- 提示警告! -->
+    <view class='wran-tips' style='top:{{CustomBar}}px;{{displayWarn}};'>
+      <text>{{warnInfo}}</text>
+    </view>
+  <input name="city" hidden class="省市区" value='{{city}}'/>
+  <form-group class="margin-top-form">
+    <view class='title'>门店名称</view>
+    <input name="name" placeholder="门店名称" class='radius' name='input'></input>
+  </form-group>
+  <form-group>
+    <view class='title'>联系人</view>
+    <input name ="contacts" placeholder="联系人" class='radius' name='input'></input>
+  </form-group>
+  <form-group>
+    <view class='title'>联系电话</view>
+    <input name ="contactsTel" placeholder="联系电话" class='radius' name='input'></input>
+  </form-group>
+  <form-group>
+    <view class='title'>地址选择</view>
+    <view class='picker_1'>
+        <view class="picker">
+          基材-槈-李斐莉雪
+        </view>
+    </view>
+  </form-group>
+  <form-group>
+    <view class='title'>详细地址</view>
+    <input name ="address" placeholder="详细地址" class='radius' name='input'></input>
+  </form-group>
+
+  <form-group class="margin-top form-group-img">
+    <view class='title'>门面头照</view>
+    <view class="padding-xs solids">
+        <icon class='icon-cameraadd icon-img text-gray'></icon>
+    </view>
+  </form-group>
+  <form-group class="form-group-img">
+    <view class='title'>营业执照</view>
+    <view class="padding-xs solids">
+        <icon class='icon-cameraadd icon-img text-gray'></icon>
+    </view>
+  </form-group>
+  <form-group class="top" wx:hide="{{modalName==null}}">
+    <view class='title'>门店介绍</view>
+    <textarea placeholder="店介绍" maxlength="-1" disabled="{{modalName!=null}}" placeholder-class='placeholder'></textarea>
+  </form-group>
+  <form-group>
+    <view class='title'>头部轮播图片</view>
+    <view class="grid col-3 grid-square flex-sub">
+      <view class="padding-xs bg-img" style="background-image:url(https://image.weilanwl.com/img/square-1.jpg);">
+      </view>
+      <view class="padding-xs bg-img" style="background-image:url(https://image.weilanwl.com/img/square-2.jpg);">
+        <tag class="bg-red">
+          <icon class='icon-close'></icon>
+        </tag>
+      </view>
+      <view class="padding-xs solids">
+        <icon class='icon-cameraadd'></icon>
+      </view>
+    </view>
+  </form-group>
+  <bar class="margin-top ">
+  <view class='action'>
+    <icon class='icon-title text-blue' />无效状态
+  </view>
+</bar>
+<view class="footer-box"> 
+  <view  class="now-buy">
+        <button class='block lg_1 bg-green shadow-blur' form-type='submit'>提交申请</button>
+  </view>
+</view>
+</form>

@@ -1,18 +1,39 @@
-<card style=" display: block;overflow: hidden;">
-   <item class="gradual-blue shadow-blur" style="height:100%;">
-    <view>
-     您还没有入驻
+<card class="DhCard">
+   <item class="gradual-blue shadow-blur">
+    <view class="padding">
+     <view> 
+        您还没有入驻
+     </view>
+      <view style='margin-top:50rpx'> 
+          <button class='block margin-tb-sm lg bg-orange padding radius text-center shadow-blur'>申请入驻</button>
+     </view>
     </view>
-    <view class='animation-wave' style='margin-top:350rpx'>
+  
+    <view class='animation-wave'>
       <view class='wave'></view>
     </view>
   </item>
 </card>
 <view class="page">
-  <view class="padding-xl radius shadow-warp bg-white"></view>
+  <view class="padding-xl radius shadow-warp bg-white">
+      <list class="grid col-3">
+        <item class="item_1">
+           <view>12</view>
+          <text>访问量</text>
+        </item>
+        <item class="item_1">
+          <view>12</view>
+          <text>访客数</text>
+        </item>
+        <item class="item_1">
+          <view>12</view>
+          <text>收藏数</text>
+        </item>
+      </list>
+  </view>
 </view>
 <view class="page {{skin?' invert ':' '}}" style='margin-top:20rpx'>
-   <list class="grid col-3">
+   <list class="grid col-3 card-menu_1">
     <item>
       <icon class='icon-cardboardfill text-red'/>
       <text>添加店铺</text>

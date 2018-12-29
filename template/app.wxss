@@ -1,6 +1,6 @@
 @import "icon.wxss";
 @import "colorui-rpx.wxss";
-
+/* 
 
 @font-face {
     font-family: 'iconfont';
@@ -144,4 +144,4 @@
 
 .icon-dianhua11:before { content: "\e608"; }
 
-.icon-dizhi2:before { content: "\e625"; }
+.icon-dizhi2:before { content: "\e625"; } */

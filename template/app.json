@@ -1,8 +1,10 @@
 {
   "pages": [
+    "pages/settledin/index",
     "pages/business/index",
     "pages/index/index",
     "pages/authentication/index"
+   
   ],
   "window": {
     "backgroundTextStyle": "light",
