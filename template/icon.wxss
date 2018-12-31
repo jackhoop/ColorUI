@@ -651,4 +651,3 @@ icon[class*="icon-"]::before {
 .icon-loading2:before { content: "\e7f1"; }
 
 .icon-btn:before { content: "\e601"; }
-

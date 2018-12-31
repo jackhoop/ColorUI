@@ -92,5 +92,6 @@ button.lg_1 {
 form-group .grid-square {
   margin: 15rpx 0 0 !important;
 }
-
-
+.form-group_1 {
+  border-top: 1rpx solid #fff !important;
+}

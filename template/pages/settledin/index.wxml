@@ -10,7 +10,13 @@
     <view class='wran-tips' style='top:{{CustomBar}}px;{{displayWarn}};'>
       <text>{{warnInfo}}</text>
     </view>
-  <input name="city" hidden class="省市区" value='{{city}}'/>
+        <input name="cityCode" hidden class="所在城市code" value='{{cityCode}}'/>
+        <input name="city" hidden class="省市区" value='{{city}}'/>
+        <input name="licenseImage" hidden class="营业执照图片" value='{{yyimg}}'/> 
+        <input name="facadeImage" hidden class="门面图片" value='{{mmimg}}'/>
+        <input name="lon" hidden class="经度" value='{{latitude}}'/>
+        <input name="lat" hidden class="纬度" value='{{longitude}}'/>  <input name="city" hidden class="省市区" value='{{city}}'/>
+  
   <form-group class="margin-top-form">
     <view class='title'>门店名称</view>
     <input name="name" placeholder="门店名称" class='radius'></input>
@@ -36,57 +42,75 @@
     <input name ="address" placeholder="详细地址" class='radius' value='{{address}}'></input>
   </form-group>
 
-  <form-group class="margin-top form-group-img">
+  <form-group class="margin-top">
     <view class='title'>门面头照</view>
-    <block wx:if="{{mmimg}}">
-     <view class='grid col-3 grid-square flex-sub'>
-         <view ></view>
-         <view ></view>
-         <view bindtap="mmchooseImage" class="padding-xs bg-img" style="background-image:url({{mmimg}});">
-  
-         </view>
-     </view>
-    </block>
-    <block wx:else>
-      <view class="padding-xs solids" bindtap="mmchooseImage">
-        <icon class='icon-cameraadd icon-img text-gray'></icon>
-      </view>
-    </block>
+    <view class="grid col-4 grid-square flex-sub">
+      <view ></view>
+      <view ></view>
+      <view ></view>
+      <block wx:if="{{mmimg}}">
+        <view  bindtap="mmchooseImage" class="padding-xs bg-img" style="background-image:url({{mmimg}});"></view>
+       </block>
+       <block wx:else>
+          <view class=" solids" style='margin-right:-100rpx;'  bindtap="mmchooseImage">
+            <icon class='icon-cameraadd'></icon>
+          </view>
+       </block>
+    </view>
   </form-group>
-   <form-group class="form-group-img">
+
+    <form-group>
     <view class='title'>营业执照</view>
-    <block wx:if="{{yyimg}}">
-     <view class='grid col-3 grid-square flex-sub'>
-         <view ></view>
-         <view ></view>
-         <view bindtap="yychooseImage" class="padding-xs bg-img" style="background-image:url({{yyimg}});">
-  
-         </view>
-     </view>
-    </block>
-    <block wx:else>
-      <view class="padding-xs solids" bindtap="yychooseImage">
-        <icon class='icon-cameraadd icon-img text-gray'></icon>
-      </view>
-    </block>
+    <view class="grid col-4 grid-square flex-sub">
+      <view ></view>
+      <view ></view>
+      <view ></view>
+      <block wx:if="{{yyimg}}">
+        <view  bindtap="yychooseImage" class="padding-xs bg-img" style="background-image:url({{yyimg}});"></view>
+       </block>
+       <block wx:else>
+          <view class=" solids" style='margin-right:-100rpx;'  bindtap="yychooseImage">
+            <icon class='icon-cameraadd'></icon>
+          </view>
+       </block>
+    </view>
   </form-group>
-  <form-group class="top" wx:hide="{{modalName==null}}">
+  <form-group class="top">
     <view class='title'>门店介绍</view>
-    <textarea placeholder="店介绍" maxlength="-1" disabled="{{modalName!=null}}" placeholder-class='placeholder'></textarea>
+    <textarea placeholder="门店介绍" maxlength="-1" disabled="{{modalName!=null}}" placeholder-class='placeholder'></textarea>
+  </form-group>
+ <form-group style="border-top:1rpx solid #fff;">
+    <view class='title'></view>
+    <view class="grid col-3 grid-square flex-sub">
+      <block wx:for="{{jcfiles}}" wx:key="*this">
+        <view class="padding-xs bg-img" style="background-image:url({{item}});">
+          <tag class="bg-red" data-index="{{index}}" data-imgType="jcImages"  catchtap="deleteImg">
+           <icon class='icon-close'></icon>
+          </tag>
+       </view>
+      </block>
+       <block wx:if="{{jcfiles.length!=3}}">
+        <view class="padding-xs solids" bindtap="jcchooseImage">
+          <icon class='icon-cameraadd'></icon>
+        </view>
+       </block>
+    </view>
   </form-group>
   <form-group>
-    <view class='title'>头部轮播图片</view>
+    <view class='title'>轮播图片</view>
     <view class="grid col-3 grid-square flex-sub">
-      <view class="padding-xs bg-img" style="background-image:url(https://image.weilanwl.com/img/square-1.jpg);">
-      </view>
-      <view class="padding-xs bg-img" style="background-image:url(https://image.weilanwl.com/img/square-2.jpg);">
-        <tag class="bg-red">
-          <icon class='icon-close'></icon>
-        </tag>
-      </view>
-      <view class="padding-xs solids">
-        <icon class='icon-cameraadd'></icon>
-      </view>
+      <block wx:for="{{files}}" wx:key="*this">
+        <view class="padding-xs bg-img" style="background-image:url({{item}});" id="{{item}}">
+           <tag class="bg-red"  data-imgType="adImages"  data-index="{{index}}" catchtap="deleteImg">
+             <icon class='icon-close'></icon>
+           </tag>
+        </view>
+      </block>
+      <block wx:if="{{files.length!=3}}">
+        <view class="padding-xs solids" bindtap="chooseImage">
+          <icon class='icon-cameraadd'></icon>
+        </view>
+      </block>
     </view>
   </form-group>
   <bar class="margin-top ">

@@ -7,6 +7,8 @@ Page({
     StatusBar: app.globalData.StatusBar,
     CustomBar: app.globalData.CustomBar,
     index: null,
+    files: [],//轮播图片
+    jcfiles: [],//介绍图片
     displayWarn: 'display:none'
   },
   onLoad: function (options) {
@@ -79,12 +81,20 @@ Page({
         required: true,
       },
       contactsTel: {
-        // required: true,
-        // tel: true,
+        required: true,
+        tel: true,
       },
       city: {
         required: false,
         hiddenv:true
+      },
+      facadeImage: {
+        required: false,
+        hiddenv: true
+      },
+      licenseImage: {
+        required: false,
+        hiddenv: true
       }
     }
     // 验证字段的提示信息，若不传则调用默认的信息
@@ -102,13 +112,23 @@ Page({
       city: {
         required: '请选择地址',
         hiddenv:"请选择地址"
+      },
+      facadeImage: {
+        required: '请上传门面头照',
+        hiddenv: "请上传门面头照"
+      },
+      licenseImage: {
+        required: '请上传营业执照',
+        hiddenv: "请上传营业执照"
       }
     }
     // 创建实例对象
     this.WxValidate = new WxValidate(rules, messages)
     this.WxValidate.addMethod('hiddenv', (value, param) => {
-      console.log(value, param)
-      return false
+      if (!value){
+        return false
+      }
+        return true;
     },)
   },
   //地址选择
@@ -193,19 +213,99 @@ Page({
       title: '上传中...',
     })
 
-    // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
-    wx.uploadFile({
-      url: app.globalData.serverUrl + "/wx/media/" + app.globalData.appid + "/uploadImg",
-      filePath: tempFilePaths[0],
-      name: 'img',
-      formData: formData,
+    for (var i = 0; i < tempFilePaths.length; i++) {
+      // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
+      wx.uploadFile({
+        url: app.globalData.serverUrl + "/wx/media/" + app.globalData.appid + "/uploadImg",
+        filePath: tempFilePaths[i],
+        name: 'img',
+        formData: formData,
+        success: function (res) {
+          var data = JSON.parse(res.data);
+          callBack(data);
+          wx.hideLoading();
+        }
+      })                 
+    }
+  },
+  //轮播图片
+  chooseImage: function (e) {
+    var that = this;
+    wx.chooseImage({
+      sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+      sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+      count: 3,
       success: function (res) {
-        var data = JSON.parse(res.data);
-        callBack(data);
-        wx.hideLoading();
+        if (res.tempFilePaths.length + that.data.files.length>3){
+          var error={
+            msg:"只能上传3张图片"
+          }
+          that.showWarnInfo(error)
+          return false
+        }
+
+        var formData = {
+          "dataType": "bus"
+        }
+        // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
+        that.imgUpdate(res.tempFilePaths, formData, function (data) {
+          that.setData({
+            files: that.data.files.concat(data.path)
+          });
+        });
       }
     })
-  }
+  },
+  //介绍图片
+  jcchooseImage: function (e) {
+    var that = this;
+    wx.chooseImage({
+      sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+      sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+      count: 3,
+      success: function (res) {
+        if (res.tempFilePaths.length + that.data.jcfiles.length > 3) {
+          var error = {
+            msg: "只能上传3张图片"
+          }
+          that.showWarnInfo(error)
+          return false
+        }
+
+        var formData = {
+          "dataType": "bus"
+        }
+        // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
+        that.imgUpdate(res.tempFilePaths, formData, function (data) {
+          that.setData({
+            jcfiles: that.data.jcfiles.concat(data.path)
+          });
+        });
+      }
+    })
+  },
+    deleteImg: function (e){
+    console.log(e.currentTarget.dataset);
+    var index = e.currentTarget.dataset.index;
+   
+    if (e.currentTarget.dataset.imgtype =="adImages"){
+      var files = this.data.files;
+      files.splice(index, 1);
+      this.setData({
+        files: files
+      });
+    
+    }
+    if (e.currentTarget.dataset.imgtype == "jcImages") {
+      var jcfiles = this.data.jcfiles;
+  
+      jcfiles.splice(index, 1);
+      this.setData({
+        jcfiles: jcfiles
+      });
+
+    }
+  },
 })
 /**
  * 可加入工具集-减少代码量
