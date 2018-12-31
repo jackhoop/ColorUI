@@ -40,3 +40,4 @@ card.article>item {
   height: 10rpx;
   justify-content:space-around;
   }
+  

@@ -16,7 +16,7 @@
         <input name="facadeImage" hidden class="门面图片" value='{{mmimg}}'/>
         <input name="lon" hidden class="经度" value='{{latitude}}'/>
         <input name="lat" hidden class="纬度" value='{{longitude}}'/>  <input name="city" hidden class="省市区" value='{{city}}'/>
-  
+        <input name="content" hidden class="介绍" value='{{content}}'/>
   <form-group class="margin-top-form">
     <view class='title'>门店名称</view>
     <input name="name" placeholder="门店名称" class='radius'></input>
@@ -77,7 +77,7 @@
   </form-group>
   <form-group class="top">
     <view class='title'>门店介绍</view>
-    <textarea placeholder="门店介绍" maxlength="-1" disabled="{{modalName!=null}}" placeholder-class='placeholder'></textarea>
+    <textarea placeholder="门店介绍 " bindblur="bindTextAreaBlur" maxlength="-1" placeholder-class='placeholder'></textarea>
   </form-group>
  <form-group style="border-top:1rpx solid #fff;">
     <view class='title'></view>

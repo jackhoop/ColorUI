@@ -89,7 +89,7 @@ list.grid>.item_1 {
   padding: 0rpx;
 }
 .padding {
-  padding: 0rpx 140rpx;
+  /* padding: 0rpx 140rpx; */
   margin-top:100rpx; 
 }
 list.card-menu_1 {
@@ -97,4 +97,26 @@ list.card-menu_1 {
   margin-right: 20rpx;
   border-radius: 20rpx;
   overflow: hidden;
+}
+card.DhCard item{
+  position: relative;
+  padding: 90rpx 0 100rpx;
+  text-align: left;
+  font-size: 18px;
+}
+list.menu>item .content {
+  line-height: 1.6em;
+  flex: 1;
+  margin-left:80rpx;
+}
+.avatar {
+  padding: 0 0px!important;
+  background: rgba(51, 51, 51, 0)!important;
+  display: block;
+}
+.text-gray_1, .line-gray, .lines-gray {
+  color: #a5cded !important;
+}
+.padding-xl {
+  padding: 12px;
 }

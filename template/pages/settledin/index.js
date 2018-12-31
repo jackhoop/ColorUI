@@ -62,11 +62,31 @@ Page({
   /**
    * 表单-提交(到后端)
    */
-  submitForm(params) {
-    console.log(params);
+  submitForm(goods) {
+    var that = this;
+    goods.adImages = JSON.stringify(that.data.files);
+    goods.jcImages = JSON.stringify(that.data.jcfiles);
 
-    wx.showToast({
-      title: '提交吧~Q!',
+    var token = wx.getStorageSync('token')
+    wx.request({
+      url: app.globalData.serverUrl + "/wx/business/" + app.globalData.appid + "/register  ",
+      method: 'POST',
+      header: {
+        'Authorization': token
+      },
+      data: goods,
+      success: (res) => {
+        if (res.data.code=="0"){
+         
+        }else{
+          wx.showModal({
+            title: '提示',
+            content: '添加失败',
+            showCancel: false
+          })
+        }
+        
+      }
     })
   },
   /**
@@ -95,7 +115,15 @@ Page({
       licenseImage: {
         required: false,
         hiddenv: true
+      },
+      content: {
+        required: false,
+        hiddenv: true
+      }, 
+      lbimg: {
+        imgs: true
       }
+      
     }
     // 验证字段的提示信息，若不传则调用默认的信息
     const messages = {
@@ -120,6 +148,12 @@ Page({
       licenseImage: {
         required: '请上传营业执照',
         hiddenv: "请上传营业执照"
+      },
+      content: {
+        hiddenv: '请输入介绍信息',
+      },
+      lbimg: {
+        imgs: "请上传轮播图片"
       }
     }
     // 创建实例对象
@@ -130,6 +164,12 @@ Page({
       }
         return true;
     },)
+    this.WxValidate.addMethod('imgs', (value, param) => {
+      if(this.data.files.length==0){
+        return false
+      }
+      return true;
+    })
   },
   //地址选择
   chooseLocation: function (e) {
@@ -306,6 +346,12 @@ Page({
 
     }
   },
+  bindTextAreaBlur: function (e) {
+    var that = this;
+    that.setData({
+      content: e.detail.value
+    });
+  }
 })
 /**
  * 可加入工具集-减少代码量
