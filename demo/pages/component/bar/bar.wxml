@@ -164,7 +164,7 @@
 
 <bar class="margin-top shop">
   <view class="action">
-    <icon class='icon-service text-green'>
+    <icon class='icon-service '>
       <tag class='badge'></tag>
     </icon>
     客服

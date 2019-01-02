@@ -3,27 +3,24 @@ Page({
   data: {
     StatusBar: app.globalData.StatusBar,
     CustomBar: app.globalData.CustomBar,
+    business:null,
   },
 
   onLoad: function () {
-    // wx.request({
-    //   url: 'https://api.it120.cc/' + app.globalData.subDomain + '/banner/list',
-    //   data: {
-    //     key: 'mallName'
-    //   },
-    //   success: function(res) {
-    //     if (res.data.code == 404) {
-    //       wx.showModal({
-    //         title: '提示',
-    //         content: '请在后台添加 banner 轮播图片',
-    //         showCancel: false
-    //       })
-    //     } else {
-    //       that.setData({
-    //         banners: res.data.data
-    //       });
-    //     }
-    //   }
-    // })
+    var that = this;
+    var token = wx.getStorageSync('token')
+    wx.request({
+      url: app.globalData.serverUrl + "/wx/business/" + app.globalData.appid + "/getBusiness",
+      method: 'get',
+      header: {
+        'Authorization': token
+      },
+      success: function(res) {
+        that.setData({
+          business: res.data.business
+        });
+        console.log(that.data.business);
+      }
+    })
   }
 });

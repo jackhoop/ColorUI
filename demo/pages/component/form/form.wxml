@@ -143,14 +143,20 @@
     <checkbox class='round blue' checked></checkbox>
   </form-group>
   <form-group class="margin-top">
-    <view class="grid col-3 grid-square flex-sub">
+   <view class='title'>定义颜色</view>
+    <view class="grid col-4 grid-square flex-sub">
+      <!-- <view class="padding-xs bg-img" style="background-image:url(https://image.weilanwl.com/img/square-1.jpg);">
+      </view>
       <view class="padding-xs bg-img" style="background-image:url(https://image.weilanwl.com/img/square-1.jpg);">
       </view>
       <view class="padding-xs bg-img" style="background-image:url(https://image.weilanwl.com/img/square-2.jpg);">
         <tag class="bg-red">
           <icon class='icon-close'></icon>
         </tag>
-      </view>
+      </view> -->
+       <view ></view>
+        <view ></view>
+         <view ></view>
       <view class="padding-xs solids">
         <icon class='icon-cameraadd'></icon>
       </view>
