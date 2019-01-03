@@ -138,7 +138,7 @@ App({
   },
   globalData: {
     userInfo: null,
-    serverUrl: "http://192.168.31.91:8080",
+    serverUrl: "http://192.168.0.172:8080",
     appid: "wx36b803b7c835dc44",
   }
 })
