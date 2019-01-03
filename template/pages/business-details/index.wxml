@@ -71,7 +71,7 @@
                                   <view class="img-box">
                                       <image src="https://image.weilanwl.com/img/4x3-4.jpg"  class="image" mode="aspectFill" lazy-load="true"/>
                                   </view>
-                                  <view class="weui-media-box__title" style='margin-left: 10rpx;font-size:32rpx;text-align:left'>十桌</view>
+                                  <view class="weui-media-box__title" style='margin-left: 10rpx;font-size:32rpx;text-align:left'>十桌艰槈基材苦花木成畦手自栽 苦革</view>
                                    <view class="weui-media-box__desc" style='margin-left: 10rpx;text-align:left' >规格:4.6L</view>
                                   <view style='display:flex;'>
                                     <view class="goods-price" style='margin-left: 10rpx;text-align:left' >¥ 23.00</view>
