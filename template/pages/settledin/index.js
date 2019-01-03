@@ -77,11 +77,18 @@ Page({
       data: goods,
       success: (res) => {
         if (res.data.code=="0"){
-         
+          wx.showModal({
+            title: '提示',
+            content: res.data.msg,
+            showCancel: false
+          })
+          wx.navigateTo({
+            url: "/pages/business/index"
+          })
         }else{
           wx.showModal({
             title: '提示',
-            content: '添加失败',
+            content: res.data.msg,
             showCancel: false
           })
         }

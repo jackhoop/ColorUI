@@ -1,50 +1,78 @@
 <card class="DhCard">
 
-   <item class="gradual-blue shadow-blur" style="padding: 20px 15px 40px;">
-    <view class="padding">
-    <block wx:if="{{business}}">
-       <list class="menu menu-avatar no-padding avatar">
-        <item>
-          <avatar class="xl round margin-left" style="background-image:url(https://image.weilanwl.com/img/square-4.jpg);"></avatar>
-          <view class='content'>
-            <view>喵星人互动群</view>
-            <view class='text-gray_1 text-sm' style='color:#a5cded'>
-              喵星酱：喵喵喵！</view>
+  <block wx:if="{{business}}">
+    <item class="gradual-blue shadow-blur">
+          <view class="padding">
+            <list class="menu menu-avatar no-padding avatar">
+              <item>
+                <avatar class="xl round margin-left" style="background-image:url({{business.facadeImage}});"></avatar>
+                <view class='content'>
+                  <view>{{business.name}}</view>
+                  <view class='text-gray_1 text-sm' style='color:#a5cded'>
+                    {{business.contactsTel}}</view>
+                </view>
+                <view class='action'>
+                <block wx:if="{{business.useStatus=='审核中'}}">
+                    <tag class='bg-orange'>{{business.useStatus}}</tag>
+                  </block>
+                <block wx:else>
+                  <icon class='icon-qr_code lg lg text-gray_1' style='font-size:80rpx;'/>
+                </block> 
+                </view>
+              </item>
+            </list>
           </view>
-          <view class='action'>
-              <icon class='icon-qr_code lg lg text-gray_1' style='font-size:80rpx;'/>
+          <view class='animation-wave'>
+            <view class='wave'></view>
           </view>
         </item>
-      </list>
     </block>
     <block wx:else>
-            <view style='padding:60rpx 0 70rpx'> 
-                您还没有入驻
-            </view>
-              <view style='margin-top:50rpx'> 
-                  <button class='block margin-tb-sm lg bg-orange padding radius text-center shadow-blur'>申请入驻</button>
-            </view>
-      </block>
-    </view>
-  
-    <view class='animation-wave'>
-      <view class='wave'></view>
-    </view>
-  </item>
+      <item class="gradual-blue shadow-blur item_1">
+      <view class="padding padding_1">
+              <view> 
+                  您还没有入驻
+              </view>
+                <view> 
+                    <button bindtap="businessrz" class='block margin-tb-sm lg bg-orange padding radius text-center shadow-blur'>申请入驻</button>
+              </view>
+      </view>
+      <view class='animation-wave'>
+        <view class='wave'></view>
+      </view>
+    </item>
+  </block>
 </card>
 <view class="page">
   <view class="padding-xl radius shadow-warp bg-white">
       <list class="grid col-3">
         <item class="item_1">
-           <view>12</view>
+        <block wx:if="{{business.clickTotal}}">
+            <view>{{business.clickTotal}}</view>    
+        </block>
+         <block wx:else>
+            <view>0</view> 
+        </block>
+          <text>访问量</text>
+        </item>
+        <item class="item_1">
+          <block wx:if="{{business.fkTotal}}">
+                <view>{{business.fkTotal}}</view>
+          </block>
+          <block wx:else>
+              <view>0</view> 
+          </block>
+        
           <text>访客数</text>
         </item>
         <item class="item_1">
-          <view>12</view>
-          <text>访客数</text>
-        </item>
-        <item class="item_1">
-          <view>12</view>
+          <block wx:if="{{business.scTotal}}">
+               <view>{{business.scTotal}}</view>
+          </block>
+          <block wx:else>
+              <view>0</view> 
+          </block>
+          
           <text>收藏数</text>
         </item>
       </list>
@@ -52,27 +80,51 @@
 </view>
 <view class="page {{skin?' invert ':' '}}" style='margin-top:20rpx'>
    <list class="grid col-3 card-menu_1">
-    <item>
-      <icon class='icon-cardboardfill text-red'/>
-      <text>添加店铺</text>
-    </item>
-    <item>
-      <icon class='icon-recordfill text-orange'/>
+     <block wx:if="{{business}}">
+        <item bindtap="businessAdmin" data-target="DialogModal1">
+          <icon class='icon-edit text-red'/>
+          <text>编辑店铺</text>
+        </item>
+      </block>
+      <block wx:else>
+        <item bindtap="businessrz" data-target="DialogModal1">
+          <icon class='icon-dianputianjia text-red'/>
+          <text>店铺入驻</text>
+        </item>
+      </block>
+    
+
+    <item bindtap="ckAdmin" data-target="DialogModal1">
+      <icon class='icon-shopfill  text-orange'/>
       <text>查看店铺</text>
     </item>
-    <item>
-      <icon class='icon-picfill text-yellow'/>
-      <text>添加商品</text>
+    <item bindtap="spAdmin" data-target="DialogModal1">
+      <icon class='icon-shangpin text-yellow'/>
+      <text>商品管理</text>
     </item>
-    <item>
-      <icon class='icon-noticefill text-olive'>
-        <tag class="badge">99+</tag>
-      </icon>
+    <item bindtap="qrAdmin" data-target="DialogModal1">
+      <icon class='icon-qr_code text-olive'/>
       <text>店铺二维码</text>
-    </item>
-    <item>
-      <icon class='icon-servicefill text-pink'/>
-      <text>反馈</text>
     </item>
   </list>
 </view>
+<modal-box class="{{modalName=='DialogModal1'?'show':''}}">
+  <dialog>
+    <bar class="justify-end">
+      <view class='content'>{{modalTitle}}</view>
+      <view class='action' bindtap='hideModal'>
+        <icon class='icon-close text-red'></icon>
+      </view>
+    </bar>
+    <view class='padding-xl'>
+      {{modalMsg}}
+    </view>
+    <bar class="justify-end">
+      <view class='action'>
+        <button class='line-green text-green' bindtap='hideModal'>取消</button>
+        <button class='bg-green margin-left' bindtap='hideModal'>确定</button>
+
+      </view>
+    </bar>
+  </dialog>
+</modal-box>

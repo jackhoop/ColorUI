@@ -92,6 +92,10 @@ list.grid>.item_1 {
   /* padding: 0rpx 140rpx; */
   margin-top:100rpx; 
 }
+.padding_1 {
+  padding: 0rpx 140rpx;
+  margin-top:100rpx; 
+}
 list.card-menu_1 {
   margin-left: 20rpx;
   margin-right: 20rpx;
@@ -102,6 +106,12 @@ card.DhCard item{
   position: relative;
   padding: 90rpx 0 100rpx;
   text-align: left;
+  font-size: 18px;
+}
+card.DhCard item.item_1{
+  position: relative;
+  padding: 90rpx 0 100rpx;
+  text-align: center!important;
   font-size: 18px;
 }
 list.menu>item .content {
