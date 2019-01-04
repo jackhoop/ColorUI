@@ -1,130 +1,134 @@
 <custom style="height:{{CustomBar}}px;">
-   <bar class="fixed gradual-blue" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
+  <bar class="fixed gradual-blue" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
     <navigator class='action' open-type="navigateBack" delta="1" hover-class="none">
       <icon class='icon-back' /> 表单
     </navigator>
   </bar>
 </custom>
 <view style='margin-bottom:110rpx;'>
-<swiper class="screen-swiper square-dot" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500">
-  <swiper-item wx:for="{{4}}" wx:key>
-    <image src="https://image.weilanwl.com/img/4x3-{{index+1}}.jpg" mode='aspectFill' />
-  </swiper-item>
-</swiper>
+  <swiper class="screen-swiper square-dot" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500">
+    <swiper-item wx:for="{{tower}}" wx:for-index="index" wx:for-item="url">
+      <image src="{{url}}" mode='aspectFill' />
+    </swiper-item>
+  </swiper>
 
-    <view class="goods-des-info">
-        <view class="weui-panel">
-            <view class="weui-panel__bd">
-             <view class="weui-media-box weui-media-box_small-appmsg">
-                <view class="page__title" style='margin-top: 10rpx;margin-left: 15rpx;font-size:35rpx;'>
-                   <i class="icon-shopfill" style="font-size:43rpx;color:#00aae8;"></i>  测试水站
-                </view>
-                <view class="weui-cell__ft weui-media-box__desc" style='margin-right: 10rpx;'>
-                 <i class="icon iconfont icon-emizhifeiji"></i> 距离我123m
-                </view>
-             </view>
-               <view class="weui-cells weui-cells_in-small-appmsg">
-                        <view class="weui-cell weui-cell_access" hover-class="weui-cell_active">
-                            <view class="weui-cell__hd">
-                            </view>
-                            <view class="weui-cell__bd weui-media-box__desc">
-                                 <icon class='icon-time lg text-gray'/>营业时间: 00:00-12:00 12:00-23:59
-                            </view>
-                           
-                        </view>
-                </view>
-                <view class="weui-media-box weui-media-box_small-appmsg">
-                  <view class="weui-cells weui-cells_in-small-appmsg" bindtap="toAddress">
-                          <view class="weui-cell weui-cell_access" hover-class="weui-cell_active">
-                              <view class="weui-cell__bd weui-media-box__desc">
-                                  <icon class='icon-locationfill lg text-gray'/> 齐耳短发克格勃基材厅
-                                  
-                              </view>
-                              <view class="weui-cell__ft weui-cell__ft_in-access"><text decode="{{true}}">&ensp;</text></view>
-                          </view>
-                    </view>
-                    <view class="weui-cells weui-cells_in-small-appmsg" bindtap="callTel">
-                        <view class="weui-cell weui-cell_access" hover-class="weui-cell_active">
-                            <view class="weui-cell__bd weui-media-box__desc">
-                                 <icon class='icon-mobilefill lg text-gray'/>  12456789098
-                            </view>
-                            <view class="weui-cell__ft weui-cell__ft_in-access"><text decode="{{true}}">&ensp;</text></view>
-                        </view>
-                    </view>
-                </view>
-            </view>
+  <view class="goods-des-info">
+    <view class="weui-panel">
+      <view class="weui-panel__bd">
+        <view class="weui-media-box weui-media-box_small-appmsg">
+          <view class="page__title" style='margin-top: 10rpx;margin-left: 15rpx;font-size:35rpx;'>
+            <i class="icon-shopfill" style="font-size:43rpx;color:#00aae8;"></i> {{business.name}}
+          </view>
+          <view class="weui-cell__ft weui-media-box__desc" style='margin-right: 10rpx;'>
+            <i class="icon iconfont icon-emizhifeiji"></i> 距离我123m
+          </view>
         </view>
+        <view class="weui-cells weui-cells_in-small-appmsg">
+          <view class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+            <view class="weui-cell__hd">
+            </view>
+            <view class="weui-cell__bd weui-media-box__desc">
+              <icon class='icon-time lg text-gray' />营业时间: 00:00-12:00 12:00-23:59
+            </view>
+
+          </view>
+        </view>
+        <view class="weui-media-box weui-media-box_small-appmsg">
+          <view class="weui-cells weui-cells_in-small-appmsg" bindtap="toAddress">
+            <view class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+              <view class="weui-cell__bd weui-media-box__desc">
+                <icon class='icon-locationfill lg text-gray' /> {{business.city}}-{{business.address}}
+
+              </view>
+              <view class="weui-cell__ft weui-cell__ft_in-access">
+                <text decode="{{true}}">&ensp;</text>
+              </view>
+            </view>
+          </view>
+          <view class="weui-cells weui-cells_in-small-appmsg" bindtap="callTel">
+            <view class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+              <view class="weui-cell__bd weui-media-box__desc">
+                <icon class='icon-mobilefill lg text-gray' /> {{business.contactsTel}}
+              </view>
+              <view class="weui-cell__ft weui-cell__ft_in-access">
+                <text decode="{{true}}">&ensp;</text>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <scroll-view scroll-x class="bg-white nav " style='margin-top:10rpx;'>
+    <view class='flex text-center'>
+      <item class="flex-sub {{index==TabCur?'text-orange cur':''}}" wx:for="{{tabs}}" wx:key bindtap='tabSelect' data-id="{{index}}" wx:for-item="item">
+        {{item.name}}
+      </item>
+    </view>
+  </scroll-view>
+  <view class="weui-tab__content" style='background-color: #F8F8F8;padding-top:0px;'>
+    <view class="goods-container">
+
+
+      <view class="goods-box radius shadow bg-white" bindtap="toDetailsTap" data-id="{{item.id}}">
+        <view class="img-box">
+          <image src="https://image.weilanwl.com/img/4x3-4.jpg" class="image" mode="aspectFill" lazy-load="true" />
+        </view>
+        <view class="weui-media-box__title" style='margin-left: 10rpx;font-size:32rpx;text-align:left'>十桌艰槈基材苦花木成畦手自栽 苦革</view>
+        <view class="weui-media-box__desc" style='margin-left: 10rpx;text-align:left'>规格:4.6L</view>
+        <view style='display:flex;'>
+          <view class="goods-price" style='margin-left: 10rpx;text-align:left'>¥ 23.00</view>
+        </view>
+      </view>
+
+
+      <view class="goods-box radius shadow bg-white" bindtap="toDetailsTap" data-id="{{item.id}}">
+        <view class="img-box">
+          <image src="https://image.weilanwl.com/img/4x3-2.jpg" class="image" mode="aspectFill" lazy-load="true" />
+        </view>
+        <view class="weui-media-box__title" style='margin-left: 10rpx;font-size:32rpx;text-align:left'>在二</view>
+        <view class="weui-media-box__desc" style='margin-left: 10rpx;text-align:left'>规格:4.6L</view>
+        <view style='display:flex;'>
+          <view class="goods-price" style='margin-left: 10rpx;text-align:left'>¥434.00</view>
+        </view>
+      </view>
+
+
+      <view class="goods-box" bindtap="toDetailsTap" data-id="{{item.id}}">
+        <view class="img-box">
+          <image src="{{item.pic}}_m" style='border-radius: 5px' class="image" mode="aspectFill" lazy-load="true" />
+        </view>
+        <view class="weui-media-box__title" style='margin-left: 10rpx;font-size:32rpx;text-align:left'>{{item.name}}</view>
+        <view class="weui-media-box__desc" style='margin-left: 10rpx;text-align:left'>规格:4.6L</view>
+        <view style='display:flex;'>
+          <view class="goods-price" style='margin-left: 10rpx;text-align:left'>¥ {{item.minPrice}}.00</view>
+        </view>
+      </view>
+
+
+
     </view>
 
-<scroll-view scroll-x class="bg-white nav "style='margin-top:10rpx;'>
-  <view class='flex text-center'>
-    <item class="flex-sub {{index==TabCur?'text-orange cur':''}}" wx:for="{{tabs}}" wx:key bindtap='tabSelect' data-id="{{index}}" wx:for-item="item">
-      {{item.name}}
-    </item>
+
+
+
   </view>
- </scroll-view>
- <view class="weui-tab__content" style='background-color: #F8F8F8;padding-top:0px;'>
-                             <view class="goods-container" >
 
+  <view class="weui-footer weui-footer_fixed-bottom">
+    <bar class="shop">
+      <view class="action">
+        <icon class='icon-forward lg text-gray' /> 分享
+      </view>
+      <view class="action" bindtap="toAddress">
+        <icon class='icon-favorfill' /> 导航
+      </view>
+      <view class="action text-orange">
+        <icon class='icon-favorfill' /> 已收藏
+      </view>
 
-                                <view class="goods-box radius shadow bg-white" bindtap="toDetailsTap" data-id="{{item.id}}">
-                                  <view class="img-box">
-                                      <image src="https://image.weilanwl.com/img/4x3-4.jpg"  class="image" mode="aspectFill" lazy-load="true"/>
-                                  </view>
-                                  <view class="weui-media-box__title" style='margin-left: 10rpx;font-size:32rpx;text-align:left'>十桌艰槈基材苦花木成畦手自栽 苦革</view>
-                                   <view class="weui-media-box__desc" style='margin-left: 10rpx;text-align:left' >规格:4.6L</view>
-                                  <view style='display:flex;'>
-                                    <view class="goods-price" style='margin-left: 10rpx;text-align:left' >¥ 23.00</view>
-                                  </view>           
-                                </view>
+      <view class='bg-red submit' bindtap="callTel">电话联系</view>
+    </bar>
 
-
-<view class="goods-box radius shadow bg-white" bindtap="toDetailsTap" data-id="{{item.id}}">
-                                  <view class="img-box">
-                                      <image src="https://image.weilanwl.com/img/4x3-2.jpg"  class="image" mode="aspectFill" lazy-load="true"/>
-                                  </view>
-                                  <view class="weui-media-box__title" style='margin-left: 10rpx;font-size:32rpx;text-align:left'>在二</view>
-                                   <view class="weui-media-box__desc" style='margin-left: 10rpx;text-align:left' >规格:4.6L</view>
-                                  <view style='display:flex;'>
-                                    <view class="goods-price" style='margin-left: 10rpx;text-align:left' >¥434.00</view>
-                                  </view>           
-                                </view>
-
-
-<view class="goods-box" bindtap="toDetailsTap" data-id="{{item.id}}">
-                                  <view class="img-box">
-                                      <image src="{{item.pic}}_m" style='border-radius: 5px' class="image" mode="aspectFill" lazy-load="true"/>
-                                  </view>
-                                  <view class="weui-media-box__title" style='margin-left: 10rpx;font-size:32rpx;text-align:left'>{{item.name}}</view>
-                                   <view class="weui-media-box__desc" style='margin-left: 10rpx;text-align:left' >规格:4.6L</view>
-                                  <view style='display:flex;'>
-                                    <view class="goods-price" style='margin-left: 10rpx;text-align:left' >¥ {{item.minPrice}}.00</view>
-                                  </view>           
-                                </view>
-
-
-
-                            </view>
-
-
-
-                            
-                        </view>
-
-<view class="weui-footer weui-footer_fixed-bottom">  
-<bar class="shop">
-  <view class="action">
-    <icon class='icon-forward lg text-gray' /> 分享
   </view>
-   <view class="action" bindtap="toAddress">
-    <icon class='icon-favorfill' /> 导航
-  </view>
-  <view class="action text-orange">
-    <icon class='icon-favorfill' /> 已收藏
-  </view>
-  
-  <view class='bg-red submit' bindtap="callTel">电话联系</view>
-</bar>
-
-</view>
 </view>

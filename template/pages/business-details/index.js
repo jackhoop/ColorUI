@@ -13,32 +13,35 @@ Page({
       id: 1,
       name: '店铺介绍'
     }],
-    tower: [{
-      id: 0,
-      url: 'https://image.weilanwl.com/img/4x3-1.jpg'
-    }, {
-      id: 1,
-      url: 'https://image.weilanwl.com/img/4x3-2.jpg'
-    }, {
-      id: 2,
-      url: 'https://image.weilanwl.com/img/4x3-3.jpg'
-    }, {
-      id: 3,
-      url: 'https://image.weilanwl.com/img/4x3-4.jpg'
-    }, {
-      id: 4,
-      url: 'https://image.weilanwl.com/img/4x3-2.jpg'
-    }, {
-      id: 5,
-      url: 'https://image.weilanwl.com/img/4x3-4.jpg'
-    }, {
-      id: 6,
-      url: 'https://image.weilanwl.com/img/4x3-2.jpg'
-    }]
+    tower: []
   },
   onLoad() {
     this.towerSwiper('tower');
     // 初始化towerSwiper 传已有的数组名即可
+
+
+    var that = this;
+    var token = wx.getStorageSync('token')
+    wx.request({
+      url: app.globalData.serverUrl + "/wx/business/" + app.globalData.appid + "/getBusiness",
+      method: 'get',
+      header: {
+        'Authorization': token
+      },
+      success: function (res) {
+        if (res.data.business&&res.data.business.adImages){
+          var arr = JSON.parse(res.data.business.adImages)
+          that.setData({
+            tower: arr
+          });
+        }
+
+        that.setData({
+          business: res.data.business
+        });
+        console.log(that.data.tower);
+      }
+    })
   },
   DotStyle(e) {
     this.setData({
@@ -117,12 +120,13 @@ Page({
   },
   //导航
   toAddress: function (e) {
+    
     wx.openLocation({
       latitude: 23.362490,
       longitude: 116.715790,
       scale: 18,
-      name: '华乾大厦',
-      address: '金平区长平路93号'
+      //name: '华乾大厦',
+     // address: '金平区长平路93号'
     })
   },
   //电话

@@ -181,6 +181,7 @@ Page({
   //地址选择
   chooseLocation: function (e) {
     var that = this;
+    app.getPermission(that);
     wx.chooseLocation({
       success: function (res) {
 
