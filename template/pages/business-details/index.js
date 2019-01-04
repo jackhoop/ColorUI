@@ -1,4 +1,6 @@
+var QQMapWX = require('../../utils/qqmap-wx-jssdk');
 const app = getApp();
+var qqmapsdk;
 Page({
   data: {
     StatusBar: app.globalData.StatusBar,
@@ -19,6 +21,12 @@ Page({
     this.towerSwiper('tower');
     // 初始化towerSwiper 传已有的数组名即可
 
+    // 实例化API核心类
+    qqmapsdk = new QQMapWX({
+      key: '6CXBZ-QNVRU-ITIVQ-4ALSI-WV7QQ-KHFNQ' // 必填
+    });
+
+
 
     var that = this;
     var token = wx.getStorageSync('token')
@@ -35,10 +43,26 @@ Page({
             tower: arr
           });
         }
-
         that.setData({
           business: res.data.business
         });
+
+        app.getPermissionLocation(that, function (res) {
+          console.log(res);
+          var from = {
+            latitude: res.latitude,
+            longitude: res.longitude
+          }
+          var to = [{
+            latitude: that.data.business.lat,
+            longitude: that.data.business.lon
+          }]
+          console.log(to)
+
+          that.calculateDistance(from, to);
+         });
+          
+     
         console.log(that.data.tower);
       }
     })
@@ -120,10 +144,10 @@ Page({
   },
   //导航
   toAddress: function (e) {
-    
+    var that = this;
     wx.openLocation({
-      latitude: 23.362490,
-      longitude: 116.715790,
+      latitude: that.data.business.lat,
+      longitude: that.data.business.lon,
       scale: 18,
       //name: '华乾大厦',
      // address: '金平区长平路93号'
@@ -135,4 +159,37 @@ Page({
       phoneNumber: '18285053934' //仅为示例，并非真实的电话号码
     })
   },
+  //距离计算
+  calculateDistance: function (fromd,tod) {
+    var that = this;
+     qqmapsdk.calculateDistance({
+              //mode: 'driving',//可选值：'driving'（驾车）、'walking'（步行），不填默认：'walking',可不填
+              //from参数不填默认当前地址
+              //获取表单提交的经纬度并设置from和to参数（示例为string格式）
+              from: fromd, //若起点有数据则采用起点坐标，若为空默认当前地址
+              to: tod, //终点坐标
+              success: function (res) {//成功后的回调
+                  console.log(res);
+                  var res = res.result;
+                  var distance = res.elements[0].distance;
+                  var jl = '';
+                  if (distance < 1000)
+                    jl = distance + "米"
+                   
+                  else if (distance > 1000)
+                    jl = (Math.round(distance / 100) / 10).toFixed(1) + "公里"
+                   
+                 
+                 that.setData({ //设置并更新distance数据
+                   distance: jl
+                  });
+              },
+              fail: function (error) {
+                  console.error(error);
+              },
+              complete: function (res) {
+                  console.log(res);
+              }
+        });
+  }
 });

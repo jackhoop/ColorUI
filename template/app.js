@@ -138,15 +138,77 @@ App({
   },
   globalData: {
     userInfo: null,
-    serverUrl: "http://192.168.0.172:8080",
+    serverUrl: "http://192.168.31.91:8080",
     appid: "wx36b803b7c835dc44",
   },
   //获取用户地理位置权限
   getPermission: function (obj) {
     wx.chooseLocation({
       success: function (res) {
+        obj.setData({
+          addr: res.address      //调用成功直接设置地址
+        })
+      },
+      fail: function () {
+        wx.getSetting({
+          success: function (res) {
+            var statu = res.authSetting;
+            if (!statu['scope.userLocation']) {
+              wx.showModal({
+                title: '是否授权当前位置',
+                content: '需要获取您的地理位置，请确认授权，否则地图功能将无法使用',
+                success: function (tip) {
+                  if (tip.confirm) {
+                    wx.openSetting({
+                      success: function (data) {
+                        if (data.authSetting["scope.userLocation"] === true) {
+                          wx.showToast({
+                            title: '授权成功',
+                            icon: 'success',
+                            duration: 1000
+                          })
+                          //授权成功之后，再调用chooseLocation选择地方
+                          wx.chooseLocation({
+                            success: function (res) {
+                              obj.setData({
+                                addr: res.address
+                              })
+                            },
+                          })
+                        } else {
+                          wx.showToast({
+                            title: '授权失败',
+                            icon: 'success',
+                            duration: 1000
+                          })
+                        }
+                      }
+                    })
+                  }
+                }
+              })
+            }
+          },
+          fail: function (res) {
+            wx.showToast({
+              title: '调用授权窗口失败',
+              icon: 'success',
+              duration: 1000
+            })
+          }
+        })
+      }
+    })
+  },
+  //获取用户地理位置权限
+  getPermissionLocation: function (obj,back) {
+    wx.getLocation({
+      type: 'gcj02',//默认为 wgs84 返回 gps 坐标，gcj02 返回可用于wx.openLocation的坐标
+      success: function (res) {
+        back(res)
         // obj.setData({
-        //   addr: res.address      //调用成功直接设置地址
+        //   lat: res.latitude,
+        //   lon: res.longitude,
         // })
       },
       fail: function () {

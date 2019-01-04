@@ -1,7 +1,7 @@
 <custom style="height:{{CustomBar}}px;">
   <bar class="fixed gradual-blue" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
     <navigator class='action' open-type="navigateBack" delta="1" hover-class="none">
-      <icon class='icon-back' /> 表单
+      <icon class='icon-back' /> {{business.name}}
     </navigator>
   </bar>
 </custom>
@@ -20,7 +20,7 @@
             <i class="icon-shopfill" style="font-size:43rpx;color:#00aae8;"></i> {{business.name}}
           </view>
           <view class="weui-cell__ft weui-media-box__desc" style='margin-right: 10rpx;'>
-            <i class="icon iconfont icon-emizhifeiji"></i> 距离我123m
+            <i class="icon iconfont icon-emizhifeiji"></i> 距离我 {{distance}}
           </view>
         </view>
         <view class="weui-cells weui-cells_in-small-appmsg">

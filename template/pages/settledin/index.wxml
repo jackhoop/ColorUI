@@ -14,8 +14,8 @@
         <input name="city" hidden class="省市区" value='{{city}}'/>
         <input name="licenseImage" hidden class="营业执照图片" value='{{yyimg}}'/> 
         <input name="facadeImage" hidden class="门面图片" value='{{mmimg}}'/>
-        <input name="lon" hidden class="经度" value='{{latitude}}'/>
-        <input name="lat" hidden class="纬度" value='{{longitude}}'/>  <input name="city" hidden class="省市区" value='{{city}}'/>
+        <input name="lon" hidden class="经度" value='{{longitude}}'/>
+        <input name="lat" hidden class="纬度" value='{{latitude}}'/>  <input name="city" hidden class="省市区" value='{{city}}'/>
         <input name="content" hidden class="介绍" value='{{content}}'/>
   <form-group class="margin-top-form">
     <view class='title'>门店名称</view>
