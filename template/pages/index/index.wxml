@@ -25,7 +25,7 @@
   </view>
 </scroll-view>
 <block wx:for="{{content}}">
-  <card class="article">
+  <card class="article" bindtap="toDetailsTap" data-id="{{item.id}}">
       <item class="shadow">
         <view class="content">
           <image src="https://image.weilanwl.com/img/4x3-3.jpg" mode="aspectFill"></image>

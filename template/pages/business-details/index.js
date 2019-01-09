@@ -17,7 +17,7 @@ Page({
     }],
     tower: []
   },
-  onLoad() {
+  onLoad(e) {
     this.towerSwiper('tower');
     // 初始化towerSwiper 传已有的数组名即可
 
@@ -26,18 +26,24 @@ Page({
       key: '6CXBZ-QNVRU-ITIVQ-4ALSI-WV7QQ-KHFNQ' // 必填
     });
 
-
-
+    var that = this;
+    that.getBusinessInfo(e.id)
+   
+  },
+  getBusinessInfo:function(id){
     var that = this;
     var token = wx.getStorageSync('token')
     wx.request({
-      url: app.globalData.serverUrl + "/wx/business/" + app.globalData.appid + "/getBusiness",
+      url: app.globalData.serverUrl + "/wx/business/" + app.globalData.appid + "/getBusinessById",
       method: 'get',
       header: {
         'Authorization': token
       },
+      data:{
+        id: id
+      },
       success: function (res) {
-        if (res.data.business&&res.data.business.adImages){
+        if (res.data.business && res.data.business.adImages) {
           var arr = JSON.parse(res.data.business.adImages)
           that.setData({
             tower: arr
@@ -60,9 +66,9 @@ Page({
           console.log(to)
 
           that.calculateDistance(from, to);
-         });
-          
-     
+        });
+
+
         console.log(that.data.tower);
       }
     })
