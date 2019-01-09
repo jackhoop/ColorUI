@@ -5,8 +5,7 @@
     "pages/business/index",
     "pages/settledin/index",
     "pages/authentication/index"
- 
-  ],
+   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",

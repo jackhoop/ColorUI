@@ -19,7 +19,7 @@
 </swiper>
 <scroll-view scroll-x class="bg-white nav">
   <view class='flex text-center'>
-    <item class="flex-sub {{index==TabCur?'text-orange cur':''}}" wx:for="{{tabs}}" wx:key bindtap='tabSelect' data-id="{{index}}" wx:for-item="item">
+    <item class="flex-sub {{index==TabCur?'text-orange cur':''}}" wx:for="{{tabs}}" wx:key bindtap='tabSelect' data-type="{{item.type}}"   data-id="{{index}}" wx:for-item="item">
       {{item.name}}
     </item>
   </view>
@@ -28,29 +28,30 @@
   <card class="article" bindtap="toDetailsTap" data-id="{{item.id}}">
       <item class="shadow">
         <view class="content">
-          <image src="https://image.weilanwl.com/img/4x3-3.jpg" mode="aspectFill"></image>
+          <image src="{{item.facadeImage}}" mode="aspectFill"></image>
           <view class="desc">
             <view>{{item.name}}</view>
             <view class='text-gray text-sm'>
               <icon class='icon-mobilefill lg text-gray' /> {{item.contactsTel}}</view>
             <view class='text-gray text-sm'>
-              <icon class='icon-attention lg text-gray' />132</view>
+              <icon class='icon-attention lg text-gray' />{{item.clickTotal}}</view>
           </view>
           <view class='action' style='margin-top: 10rpx;'>
-            <i class="icon iconfont icon-dianhua5" catchtap="callTel" style="font-size:90rpx;margin-left:80rpx;color:#00e560"></i>
+            <i class="icon iconfont icon-dianhua5" catchtap="callTel" data-tel="{{item.contactsTel}}" style="font-size:90rpx;margin-left:80rpx;color:#00e560"></i>
           </view>
         </view>
         <view class='nav'>
           <view class='item'>
-            <view class="weui-media-box__desc" style='margin-left:20rpx;'>
-              <view class='text-gray text-sm'>
-                <i class="icon iconfont icon-dizhi"></i> {{item.city}}{{item.address}}</view>
+            <view class="weui-media-box__desc " >
+            <view class='text-gray text-sm addr'>
+                <i class="icon iconfont icon-dizhi" style="font-size:25rpx;"></i>{{item.addr}}
+            </view>
             </view>
           </view>
           <view class='item'>
-            <view style='text-align:right;margin-right:30rpx;'>
-              <view class='text-gray text-sm'>
-                <i class="icon iconfont icon-emizhifeiji" style="font-size:20rpx;"></i>{{item.distance}}m</view>
+            <view style='text-align:right;'>
+              <view class='text-gray text-sm jl'>
+                <i class="icon iconfont icon-emizhifeiji" style="font-size:20rpx;"></i> {{item.jl}}</view>
             </view>
           </view>
         </view>

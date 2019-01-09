@@ -39,5 +39,22 @@ card.article>item {
   width:750rpx;
   height: 10rpx;
   justify-content:space-around;
+}
+/* .item{
+  width:40rpx;
+  height: 30rpx;
+} */
+.addr{
+  width:550rpx;
+  margin-left:20rpx;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+  word-wrap:normal;
+  word-wrap:break-word;
+  word-break:break-all;
   }
-  
+.jl{
+  margin-right:15rpx;
+
+}

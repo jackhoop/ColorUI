@@ -5,6 +5,7 @@ Page({
     CustomBar: app.globalData.CustomBar,
     cardCur: 0,
     TabCur: 0,
+    loadType:'',
     scrollLeft: 0,
     page: 0,
     isLoad: false,
@@ -13,10 +14,12 @@ Page({
     content: [],
     tabs: [{
       id: 0,
-      name: '附近发现'
+      name: '附近发现',
+      type: 'jl'
     }, {
       id: 1,
-      name: '人气最高'
+      name: '人气最高',
+      type:'hot'
     }],
     tower: [{
       id: 0,
@@ -68,14 +71,33 @@ Page({
     wx.request({
       url: app.globalData.serverUrl + "/wx/business/" + app.globalData.appid + "/list",
       data: {
-        page: that.data.page,
+        sortStr: that.data.loadType,
+        page: that.data.page, 
         pageSize: that.data.pageSize
       },
       success: function(res) {
         if (res.statusCode == "200") {
+          for (var index in res.data.content) {
+            var jl='';
+            var distance = res.data.content[index].distance
+            if (distance < 1000)
+              jl = distance + "米"
+
+            else if (distance > 1000)
+              jl = (Math.round(distance / 100) / 10).toFixed(1) + "公里"
+            var addr = '';
+            var city = res.data.content[index].city
+            var address = res.data.content[index].address
+            addr = city.split('-')[1] + city.split('-')[2] +address;
+            addr = addr.replace("NaN","") 
+            res.data.content[index].jl = jl
+            res.data.content[index].addr = addr
+          }
+         
+         
           console.log(res.data.content)
           that.setData({
-            isLoad: res.data.empty,
+            isLoad: res.data.last,
             content: that.data.content.concat(res.data.content)
           })
         }
@@ -93,6 +115,24 @@ Page({
     wx.navigateTo({
       url: "/pages/business-details/index?id=" + e.currentTarget.dataset.id
     })
+  },
+  //打电话
+  callTel: function (e) {
+    console.log(e.target.dataset.tel)
+    wx.showModal({
+      title: '温馨提示',
+      content: '您将要拨打电话:' + e.target.dataset.tel,
+      confirmText: "确定",
+      cancelText: "取消",
+      success: function (res) {
+        console.log(res);
+        if (res.confirm) {
+          wx.makePhoneCall({
+            phoneNumber: e.target.dataset.tel //仅为示例，并非真实的电话号码
+          })
+        }
+      }
+    });
   },
   DotStyle(e) {
     this.setData({
@@ -163,10 +203,19 @@ Page({
     }
   },
   tabSelect(e) {
-    console.log(e);
-    this.setData({
-      TabCur: e.currentTarget.dataset.id,
-      scrollLeft: (e.currentTarget.dataset.id - 1) * 60
-    })
+    var that = this;
+    if (e.currentTarget.dataset.id != that.data.TabCur){
+      that.setData({
+        page: 0,
+        isLoad: false,
+        content: [],
+        loadType: e.currentTarget.dataset.type,
+        TabCur: e.currentTarget.dataset.id,
+        scrollLeft: (e.currentTarget.dataset.id - 1) * 60
+      })
+
+      that.getBusinessList();
+    }
+   
   }
 });

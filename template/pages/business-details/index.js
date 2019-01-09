@@ -31,6 +31,10 @@ Page({
    
   },
   getBusinessInfo:function(id){
+    wx.showLoading({
+      title: '加载中',
+    })
+
     var that = this;
     var token = wx.getStorageSync('token')
     wx.request({
@@ -41,6 +45,9 @@ Page({
       },
       data:{
         id: id
+      },
+      complete: function () {
+        wx.hideLoading()
       },
       success: function (res) {
         if (res.data.business && res.data.business.adImages) {
