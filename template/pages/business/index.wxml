@@ -1,5 +1,4 @@
 <card class="DhCard">
-
   <block wx:if="{{business}}">
     <item class="gradual-blue shadow-blur">
           <view class="padding">

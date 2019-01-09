@@ -6,13 +6,18 @@ Page({
     cardCur: 0,
     TabCur: 0,
     scrollLeft: 0,
-    tabs:[{
+    page: 0,
+    isLoad: false,
+    loadStatus: true,
+    pageSize: 5,
+    content: [],
+    tabs: [{
       id: 0,
       name: '附近发现'
-    },{
-        id: 1,
-        name: '人气最高'
-      }],
+    }, {
+      id: 1,
+      name: '人气最高'
+    }],
     tower: [{
       id: 0,
       url: 'https://image.weilanwl.com/img/4x3-1.jpg'
@@ -39,6 +44,48 @@ Page({
   onLoad() {
     this.towerSwiper('tower');
     // 初始化towerSwiper 传已有的数组名即可
+    var that = this;
+    that.getBusinessList();
+  },
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function() {
+    let that = this;
+    if (that.data.loadStatus && !that.data.isLoad) {
+      that.setData({
+        loadStatus: false
+      })
+      that.setData({
+        page: that.data.page + 1
+      })
+      // 上拉获取更多数据
+      this.getBusinessList()
+    }
+  },
+  getBusinessList: function() {
+    var that = this;
+    wx.request({
+      url: app.globalData.serverUrl + "/wx/business/" + app.globalData.appid + "/list",
+      data: {
+        page: that.data.page,
+        pageSize: that.data.pageSize
+      },
+      success: function(res) {
+        if (res.statusCode == "200") {
+          console.log(res.data.content)
+          that.setData({
+            isLoad: res.data.empty,
+            content: that.data.content.concat(res.data.content)
+          })
+        }
+      },
+      complete: function() {
+        that.setData({
+          loadStatus: true
+        })
+      }
+    })
   },
   DotStyle(e) {
     this.setData({
