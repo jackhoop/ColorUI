@@ -93,7 +93,7 @@
       </block>
     
 
-    <item bindtap="ckAdmin" data-target="DialogModal1">
+    <item bindtap="ckAdmin" data-target="DialogModal1" data-id="{{business.id}}">
       <icon class='icon-shopfill  text-orange'/>
       <text>查看店铺</text>
     </item>

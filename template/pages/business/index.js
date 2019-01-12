@@ -54,6 +54,9 @@ Page({
       })
       return;
     }
+    wx.navigateTo({
+      url: "/pages/business-details/index?id=" + e.currentTarget.dataset.id
+    })
   },
   //商品管理
   spAdmin:function(e){

@@ -33,6 +33,7 @@ Page({
   getBusinessInfo:function(id){
     wx.showLoading({
       title: '加载中',
+      mask: true,//是否显示透明蒙层，防止触摸穿透，默认：false  
     })
 
     var that = this;

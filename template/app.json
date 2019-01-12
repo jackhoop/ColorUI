@@ -1,11 +1,13 @@
 {
   "pages": [
+    "pages/goods/index",
     "pages/index/index",
     "pages/business-details/index",
     "pages/business/index",
     "pages/settledin/index",
-    "pages/authentication/index"
-   ],
+    "pages/authentication/index",
+    "pages/goods-add/index"
+  ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
