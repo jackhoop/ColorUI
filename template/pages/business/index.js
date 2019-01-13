@@ -78,6 +78,10 @@ Page({
       })
       return;
     }
+
+    wx.navigateTo({
+      url: "/pages/goods/index"
+    })
   },
   //店铺二维码
   qrAdmin:function(e){

@@ -1,0 +1,59 @@
+<custom style="height:{{CustomBar}}px;">
+  <bar class="fixed gradual-blue" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
+    <navigator class='action' open-type="navigateBack" delta="1" hover-class="none">
+      <icon class='icon-back' /> {{title}}
+    </navigator>
+  </bar>
+</custom>
+<form  bindsubmit='submitCheckInfo'>
+    <!-- 提示警告! -->
+    <view class='wran-tips' style='top:{{CustomBar}}px;{{displayWarn}};'>
+      <text>{{warnInfo}}</text>
+    </view>
+  <input name="id" hidden class="id" value='{{goods.id}}'/>
+  <input name="image" hidden class="图片" value='{{yyimg}}'/> 
+  <form-group class="margin-top-form">
+    <view class='title'>商品名称</view>
+    <input name="name" placeholder="商品名称" class='radius' value="{{goods.name}}"></input>
+  </form-group>
+   <form-group>
+    <view class='title'>商品价格</view>
+    <input name="price" type="number" placeholder="商品价格" value="{{goods.price}}" class='radius'></input>
+  </form-group>
+  <form-group>
+    <view class='title'>商品规格</view>
+    <input name ="specification" placeholder="商品规格" class='radius' value="{{goods.specification}}"></input>
+  </form-group>
+
+    <form-group>
+    <view class='title'>商品图片</view>
+    <view class="grid col-4 grid-square flex-sub">
+      <view ></view>
+      <view ></view>
+      <view ></view>
+      <block wx:if="{{yyimg}}">
+        <view  bindtap="yychooseImage" class="padding-xs bg-img" style="background-image:url({{yyimg}});"></view>
+       </block>
+       <block wx:else>
+          <view class=" solids" style='margin-right:-100rpx;'  bindtap="yychooseImage">
+            <icon class='icon-cameraadd'></icon>
+          </view>
+       </block>
+    </view>
+  </form-group>
+  <form-group>
+    <view class='title'>上下架</view>
+    <block wx:if="{{goods.goodsStatus=='下架'}}">
+        <switch name="goodsStatus" class='switch-sex'/>
+    </block>
+    <block wx:else>
+         <switch name="goodsStatus" class='switch-sex' checked/>
+    </block>
+    
+  </form-group>
+
+  <view class="padding flex flex-direction">
+    <button class='bg-green margin-tb-sm lg' form-type='submit'>保存</button>
+  </view>
+   
+</form>

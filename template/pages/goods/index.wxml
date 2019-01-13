@@ -1,0 +1,55 @@
+<custom style="height:{{CustomBar}}px;">
+  <bar class="fixed gradual-blue" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
+    <navigator class='action' open-type="navigateBack" delta="1" hover-class="none">
+      <icon class='icon-back' /> 商品管理
+    </navigator>
+  </bar>
+</custom>
+<bar class="search fixed " style="top:{{CustomBar}}px">
+  <view class='serach-form round'>
+    <icon class="icon-search" />
+    <input type="text" placeholder="商品搜索" confirm-type="search" value="{{search}}" bindconfirm ="search" bindinput="inputSearch"/>
+  </view>
+  <view class='action'>
+    <button class='bg-green shadow-blur round' bindtap="search">搜索</button>
+  </view>
+  <view class='action'>
+    <i  con class='icon-roundadd lg text-green line-green'style='font-size:80rpx;' bindtap="goodsAdd"/>
+  </view>
+</bar> 
+
+ <view style=' margin-top:120rpx;'>
+<block wx:for="{{content}}">
+<card class="article " data-id="{{item.id}}" >
+      <item class="shadow bg-white ">
+        <view class="content">
+          <image src="{{item.image}}" mode="aspectFill"></image>
+          <view class="desc">
+            <view>{{item.name}}</view>
+            <view class='text-gray'>
+               <text class='text-price text-red'>{{item.price}}</text>
+            </view>
+            <view class='text-gray text-sm'>
+              规格:{{item.specification}}
+            </view>
+          </view>
+          <view class='action' style='margin-top: 33rpx;'>
+            <block wx:if="{{item.goodsStatus =='下架'}}">
+              <switch bindchange="goodsStatus" class='switch-sex'/>
+            </block>
+            <block wx:else>
+               <switch  bindchange="goodsStatus" class='switch-sex' checked/>
+            </block>
+              
+          </view>
+        </view>
+         <view class='grid col-2 text-center nav solid-top' >
+           <view class='padding-sm' data-id="{{item.id}}" bindtap="edit"><icon class='icon-bianji1 lg' />编辑</view>
+           <!-- <view class='padding-sm'><icon class='icon-xiajia lg' />下架</view> -->
+           <view class='padding-sm' data-id="{{item.id}}" data-index="{{index}}" bindtap="del"><icon class='icon-deletefill lg' />删除</view>
+        </view>
+      </item>
+</card>
+</block>
+  <load class="{{!isLoad?'loading':'over'}}"></load>
+ </view>

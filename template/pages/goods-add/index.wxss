@@ -1,0 +1,114 @@
+form-group .title {
+  min-width: calc(4em + 15px);
+}
+form-group .picker_1 {
+  flex: 1;
+  padding-right: 40rpx;
+  overflow: hidden;
+  position: relative;
+}
+
+form-group .picker_1 .picker {
+  line-height: 100rpx;
+  font-size: 28rpx;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 100%;
+  text-align: right;
+}
+
+form-group .picker_1::after {
+  font-family: iconfont !important;
+  display: block;
+  content: "\e6a3";
+  position: absolute;
+  font-size: 34rpx;
+  color: #aaa;
+  line-height: 100rpx;
+  width: 60rpx;
+  text-align: center;
+  top: 0;
+  bottom: 0;
+  right: -20rpx;
+  margin: auto;
+}
+.form-group-img {
+  background: #fff;
+  padding: 0 30rpx;
+  display: flex;
+  align-items: center;
+  min-height: 200rpx;
+  justify-content: space-between;
+}
+.icon-img {
+    height: 150rpx;
+    width: 150rpx;
+    font-size:90rpx;
+    vertical-align: middle;
+    position: relative;
+}
+.footer-box{
+width: 100%;
+height: 100rpx;
+/* background-color: #fff; */
+position: fixed;
+bottom: 0;
+left: 0;
+display: flex;
+/* box-shadow:0 0 8rpx 0 ; */
+}
+.footer-box .now-buy{
+text-align: center;
+height: 100%;
+width: 100%;
+line-height: 100rpx;
+/* background-color: #4ecece; */
+/* color:#fff; */
+font-size: 34rpx;
+}
+.margin-top-form {
+  margin-top: 20rpx;
+}
+
+button.lg_1 {
+  padding:43rpx 40rpx 28rpx;
+  font-size: 32rpx;
+}
+
+.wran-tips {
+  text-align: center;
+  color: #fff;
+  padding: 3%;
+  width: 100%;
+  background-color: #ec4346;
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  z-index: 999;
+  top: 0;
+}
+
+form-group .grid-square {
+  margin: 15rpx 0 0 !important;
+}
+.form-group_1 {
+  border-top: 1rpx solid #fff !important;
+}
+.switch-sex::after {
+  content: "\e663";
+}
+
+.switch-sex::before {
+  content: "\e664";
+}
+
+.switch-sex .wx-switch-input {
+  background: #e54d42 !important;
+  border-color: #e54d42;
+}
+
+.switch-sex[checked] .wx-switch-input {
+  background: #0081ff !important;
+  border-color: #0081ff !important;
+}

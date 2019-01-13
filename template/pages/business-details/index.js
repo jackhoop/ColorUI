@@ -7,6 +7,12 @@ Page({
     CustomBar: app.globalData.CustomBar,
     cardCur: 0,
     TabCur: 0,
+    page: 0,
+    search: '',
+    isLoad: false,
+    loadStatus: true,
+    pageSize: 5,
+    content: [],
     scrollLeft: 0,
     tabs: [{
       id: 0,
@@ -28,7 +34,38 @@ Page({
 
     var that = this;
     that.getBusinessInfo(e.id)
+
+    that.getGoodsList()
    
+  },
+  getGoodsList: function () {
+    var that = this;
+    var token = wx.getStorageSync('token')
+    wx.request({
+      url: app.globalData.serverUrl + "/wx/goods/" + app.globalData.appid + "/list",
+      header: {
+        'Authorization': token
+      },
+      data: {
+        name: that.data.search,
+        page: that.data.page,
+        pageSize: that.data.pageSize
+      },
+      success: function (res) {
+        if (res.statusCode == "200") {
+          console.log(res.data.content)
+          that.setData({
+            isLoad: res.data.last,
+            content: that.data.content.concat(res.data.content)
+          })
+        }
+      },
+      complete: function () {
+        that.setData({
+          loadStatus: true
+        })
+      }
+    })
   },
   getBusinessInfo:function(id){
     wx.showLoading({

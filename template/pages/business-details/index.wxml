@@ -67,52 +67,32 @@
       </item>
     </view>
   </scroll-view>
-  <view class="weui-tab__content" style='background-color: #F8F8F8;padding-top:0px;'>
+  <view class="weui-tab__content" hidden="{{TabCur != 1}}">
+   
+  <view class='padding-xs flex align-center '>
+    <view class='flex-sub text-left bg-white'>
+      <view class='padding'>{{business.content}}</view>
+    </view>
+    
+  </view>
+  
+  </view>
+  <view class="weui-tab__content" hidden="{{TabCur != 0}}" style='background-color: #F8F8F8;padding-top:0px;'>
     <view class="goods-container">
-
-
-      <view class="goods-box radius shadow bg-white" bindtap="toDetailsTap" data-id="{{item.id}}">
+    <block wx:for="{{content}}">
+      <view class="goods-box radius shadow bg-white" data-id="{{item.id}}">
         <view class="img-box">
-          <image src="https://image.weilanwl.com/img/4x3-4.jpg" class="image" mode="aspectFill" lazy-load="true" />
-        </view>
-        <view class="weui-media-box__title" style='margin-left: 10rpx;font-size:32rpx;text-align:left'>十桌艰槈基材苦花木成畦手自栽 苦革</view>
-        <view class="weui-media-box__desc" style='margin-left: 10rpx;text-align:left'>规格:4.6L</view>
-        <view style='display:flex;'>
-          <view class="goods-price" style='margin-left: 10rpx;text-align:left'>¥ 23.00</view>
-        </view>
-      </view>
-
-
-      <view class="goods-box radius shadow bg-white" bindtap="toDetailsTap" data-id="{{item.id}}">
-        <view class="img-box">
-          <image src="https://image.weilanwl.com/img/4x3-2.jpg" class="image" mode="aspectFill" lazy-load="true" />
-        </view>
-        <view class="weui-media-box__title" style='margin-left: 10rpx;font-size:32rpx;text-align:left'>在二</view>
-        <view class="weui-media-box__desc" style='margin-left: 10rpx;text-align:left'>规格:4.6L</view>
-        <view style='display:flex;'>
-          <view class="goods-price" style='margin-left: 10rpx;text-align:left'>¥434.00</view>
-        </view>
-      </view>
-
-
-      <view class="goods-box" bindtap="toDetailsTap" data-id="{{item.id}}">
-        <view class="img-box">
-          <image src="{{item.pic}}_m" style='border-radius: 5px' class="image" mode="aspectFill" lazy-load="true" />
+          <image src="{{item.image}}" class="image" mode="aspectFill" lazy-load="true" />
         </view>
         <view class="weui-media-box__title" style='margin-left: 10rpx;font-size:32rpx;text-align:left'>{{item.name}}</view>
-        <view class="weui-media-box__desc" style='margin-left: 10rpx;text-align:left'>规格:4.6L</view>
+        <view class="weui-media-box__desc" style='margin-left: 10rpx;text-align:left'>规格:{{item.specification}}</view>
         <view style='display:flex;'>
-          <view class="goods-price" style='margin-left: 10rpx;text-align:left'>¥ {{item.minPrice}}.00</view>
+          <view class="goods-price" style='margin-left: 10rpx;text-align:left'>¥ {{item.price}}</view>
         </view>
       </view>
-
-
-
+    </block>
     </view>
-
-
-
-
+       <load class="{{!isLoad?'loading':'over'}}"></load>
   </view>
 
   <view class="weui-footer weui-footer_fixed-bottom">

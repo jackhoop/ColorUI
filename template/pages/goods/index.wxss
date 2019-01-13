@@ -1,0 +1,77 @@
+/* .screen-swiper {
+  min-height: 450rpx;
+} */
+card > item {
+  display: block;
+  background: #fff;
+  overflow: hidden;
+  border-radius: 10rpx;
+  margin: 10rpx;
+}
+card.article>item .content {
+  display: flex;
+  padding: 0 30rpx;
+  margin-top:30rpx;
+}
+card.article>item .content > image {
+  width: 150rpx;
+  height: 150rpx;
+  margin-right: 20rpx;
+  border-radius: 6rpx;
+}
+card.article>item .loacthon {
+  display: flex;
+  padding: 0 30rpx;
+  margin-top:20rpx;
+}
+card.article>item {
+  padding-bottom: 0rpx;
+}
+.nav{
+  width:100%;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content:space-between;
+  margin-top:25rpx;
+  /* margin-bottom: 20rpx; */
+}
+.nav_item{
+  width:750rpx;
+  height: 10rpx;
+  justify-content:space-around;
+}
+/* .item{
+  width:40rpx;
+  height: 30rpx;
+} */
+.addr{
+  width:550rpx;
+  margin-left:20rpx;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+  word-wrap:normal;
+  word-wrap:break-word;
+  word-break:break-all;
+  }
+.jl{
+  margin-right:15rpx;
+
+}
+.switch-sex::after {
+  content: "\e663";
+}
+
+.switch-sex::before {
+  content: "\e664";
+}
+
+.switch-sex .wx-switch-input {
+  background: #e54d42 !important;
+  border-color: #e54d42;
+}
+
+.switch-sex[checked] .wx-switch-input {
+  background: #0081ff !important;
+  border-color: #0081ff !important;
+}
