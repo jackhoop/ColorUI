@@ -128,7 +128,7 @@ Page({
             icon: 'success', //图标，支持"success"、"loading"  
             success: function () {
               wx.hideLoading()
-              wx.navigateTo({
+              wx.redirectTo({
                 url: "/pages/goods/index"
               })
              },//接口调用成功

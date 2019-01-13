@@ -21,9 +21,9 @@ form-group .picker_1 .picker {
 form-group .picker_1::after {
   font-family: iconfont !important;
   display: block;
-  content: "\e6a3";
+  content: "\e617;";
   position: absolute;
-  font-size: 34rpx;
+  font-size: 44rpx;
   color: #aaa;
   line-height: 100rpx;
   width: 60rpx;

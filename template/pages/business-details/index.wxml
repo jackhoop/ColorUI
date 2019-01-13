@@ -45,7 +45,7 @@
               </view>
             </view>
           </view>
-          <view class="weui-cells weui-cells_in-small-appmsg" bindtap="callTel">
+          <view class="weui-cells weui-cells_in-small-appmsg" data-tel='{{business.contactsTel}}' bindtap="callTel">
             <view class="weui-cell weui-cell_access" hover-class="weui-cell_active">
               <view class="weui-cell__bd weui-media-box__desc">
                 <icon class='icon-mobilefill lg text-gray' /> {{business.contactsTel}}
@@ -107,7 +107,7 @@
         <icon class='icon-favorfill' /> 已收藏
       </view>
 
-      <view class='bg-red submit' bindtap="callTel">电话联系</view>
+      <view class='bg-red submit' data-tel='{{business.contactsTel}}' bindtap="callTel">电话联系</view>
     </bar>
 
   </view>

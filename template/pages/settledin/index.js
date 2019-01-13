@@ -7,11 +7,14 @@ Page({
     StatusBar: app.globalData.StatusBar,
     CustomBar: app.globalData.CustomBar,
     index: null,
+    business:{},
+    title:'店铺入住',
     files: [],//轮播图片
     jcfiles: [],//介绍图片
     displayWarn: 'display:none'
   },
-  onLoad: function (options) {
+  onLoad: function (e) {
+    var that = this;
     // 校验规则 -rules
     this.initValidate();
 
@@ -19,6 +22,40 @@ Page({
     qqmapsdk = new QQMapWX({
       key: '6CXBZ-QNVRU-ITIVQ-4ALSI-WV7QQ-KHFNQ' // 必填
     });
+    if (e.id) {
+      that.setData({
+        title: '编辑店铺'
+      })
+      that.getBusiness();
+    }
+  },
+  getBusiness(){
+    wx.showLoading({
+      title: '加载中',
+      mask: true,//是否显示透明蒙层，防止触摸穿透，默认：false  
+    })
+    var that = this;
+    var token = wx.getStorageSync('token')
+    wx.request({
+      url: app.globalData.serverUrl + "/wx/business/" + app.globalData.appid + "/getBusiness",
+      method: 'get',
+      header: {
+        'Authorization': token
+      },
+      complete: function () {
+        wx.hideLoading()
+      },
+      success: function (res) {
+        if (res.data.business){
+          that.setData({
+            business: res.data.business,
+            files: JSON.parse(res.data.business.adImages),
+            jcfiles: JSON.parse(res.data.business.jcImages),
+          });
+        }
+     
+      }
+    })
   },
   /**
  * 表单-提交前的(校验)
@@ -63,6 +100,11 @@ Page({
    * 表单-提交(到后端)
    */
   submitForm(goods) {
+    wx.showLoading({
+      title: '保存中...',
+      mask: true,//是否显示透明蒙层，防止触摸穿透，默认：false  
+    })
+
     var that = this;
     goods.adImages = JSON.stringify(that.data.files);
     goods.jcImages = JSON.stringify(that.data.jcfiles);
@@ -75,16 +117,33 @@ Page({
         'Authorization': token
       },
       data: goods,
+      complete: function () {
+        // setTimeout(function () {
+        //   wx.hideLoading()
+        // }, 2000)
+      },
       success: (res) => {
         if (res.data.code=="0"){
-          wx.showModal({
-            title: '提示',
-            content: res.data.msg,
-            showCancel: false
-          })
-          wx.navigateTo({
-            url: "/pages/business/index"
-          })
+          wx.showToast({
+            title: res.data.msg,//提示文字
+            duration: 2000,//显示时长
+            mask: true,//是否显示透明蒙层，防止触摸穿透，默认：false  
+            icon: 'success', //图标，支持"success"、"loading"  
+            success: function () {
+              wx.hideLoading()
+              wx.switchTab({
+                url: '/pages/business/index',
+                success: function (e) {
+                  
+                  let page = getCurrentPages()[0];
+                  console.log(getCurrentPages());
+                  if (page == undefined || page == null) return;
+                  page.onLoad(e);
+                }
+              });
+            },//接口调用成功
+          }) 
+        
         }else{
           wx.showModal({
             title: '提示',
@@ -184,10 +243,10 @@ Page({
     app.getPermission(that);
     wx.chooseLocation({
       success: function (res) {
-
+        
         that.setData({
-          latitude: res.latitude,
-          longitude: res.longitude,
+          ["business.lat"]: res.latitude,
+          ["business.lon"]: res.longitude
         });
         // 调用接口
         qqmapsdk.reverseGeocoder({
@@ -196,12 +255,12 @@ Page({
             longitude: res.longitude
           },
           success: function (res) {
+            console.log(res.result.formatted_addresses)
             that.setData({
-              ad_info: res.result.ad_info,
-              pcd: res.result.address_component.province + res.result.address_component.city + res.result.address_component.district,
-              city: res.result.ad_info.province + "-" + res.result.ad_info.city + "-" + res.result.ad_info.district,
-              cityCode: res.result.ad_info.adcode,
-              address: res.result.address_component.street + res.result.address_component.street_number.replace(res.result.address_component.street, "")
+              ["business.city"]: res.result.ad_info.province + "-" + res.result.ad_info.city + "-" + res.result.ad_info.district,
+              ["business.ad_info"]: res.result.ad_info,
+              ["business.cityCode"]: res.result.ad_info.adcode,
+              ["business.address"]: res.result.formatted_addresses.recommend.replace(res.result.ad_info.district, "")
             });
           },
           fail: function (res) {
@@ -227,7 +286,7 @@ Page({
         }
         that.imgUpdate(res.tempFilePaths, formData, function (data) {
           that.setData({
-            mmimg: data.path
+            ["business.facadeImage"]: data.path
           });
         });
       }
@@ -248,7 +307,7 @@ Page({
         // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
         that.imgUpdate(res.tempFilePaths, formData, function (data) {
           that.setData({
-            yyimg: data.path
+            ["business.licenseImage"]: data.path,
           });
         });
       }
@@ -357,7 +416,7 @@ Page({
   bindTextAreaBlur: function (e) {
     var that = this;
     that.setData({
-      content: e.detail.value
+      ["business.content"]: e.detail.value,
     });
   }
 })

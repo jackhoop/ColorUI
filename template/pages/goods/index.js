@@ -153,7 +153,7 @@ Page({
   },
   //添加商品
   goodsAdd(e){
-    wx.navigateTo({
+    wx.redirectTo({
       url: "/pages/goods-add/index"
     })
   },

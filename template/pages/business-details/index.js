@@ -207,7 +207,7 @@ Page({
   //电话
   callTel: function (e) {
     wx.makePhoneCall({
-      phoneNumber: '18285053934' //仅为示例，并非真实的电话号码
+      phoneNumber: e.currentTarget.dataset.tel //仅为示例，并非真实的电话号码
     })
   },
   //距离计算

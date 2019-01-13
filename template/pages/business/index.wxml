@@ -80,8 +80,8 @@
 <view class="page {{skin?' invert ':' '}}" style='margin-top:20rpx'>
    <list class="grid col-3 card-menu_1">
      <block wx:if="{{business}}">
-        <item bindtap="businessAdmin" data-target="DialogModal1">
-          <icon class='icon-edit text-red'/>
+        <item bindtap="businessAdmin" data-target="DialogModal1" data-id="{{business.id}}">
+          <icon class='icon-bianji1 text-red'/>
           <text>编辑店铺</text>
         </item>
       </block>

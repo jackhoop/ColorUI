@@ -7,8 +7,7 @@ Page({
     modalTitle:"",
     modalMsg: "",
   },
-
-  onLoad: function () {
+  onPullDownRefresh: function () {
     var that = this;
     var token = wx.getStorageSync('token')
     wx.request({
@@ -16,6 +15,36 @@ Page({
       method: 'get',
       header: {
         'Authorization': token
+      },
+      complete: function () {
+        // 隐藏导航栏加载框
+        wx.hideNavigationBarLoading();
+        // 停止下拉动作
+        wx.stopPullDownRefresh();
+      },
+      success: function (res) {
+        that.setData({
+          business: res.data.business
+        });
+      }
+    })
+  
+  },
+  onLoad: function () {
+    wx.showLoading({
+      title: '加载中',
+      mask: true,//是否显示透明蒙层，防止触摸穿透，默认：false  
+    })
+    var that = this;
+    var token = wx.getStorageSync('token')
+    wx.request({
+      url: app.globalData.serverUrl + "/wx/business/" + app.globalData.appid + "/getBusiness",
+      method: 'get',
+      header: {
+        'Authorization': token
+      },
+      complete: function () {
+        wx.hideLoading()
       },
       success: function(res) {
         that.setData({
@@ -42,7 +71,11 @@ Page({
       })
       return ;
     }
+    wx.navigateTo({
+      url: "/pages/settledin/index?id=" + e.currentTarget.dataset.id
+    })
   },
+
   //查看店铺
   ckAdmin:function(e){
     var that = this;
