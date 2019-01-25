@@ -1,6 +1,6 @@
 <custom style="height:{{CustomBar}}px;">
   <bar class="fixed gradual-blue" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
-    <i class="icon iconfont icon-dizhi"style="margin-left:20rpx;font-size:25rpx;"> 23232323</i>
+    <i class="icon iconfont icon-zuobiao"style="margin-left:20rpx;font-size:25rpx;"> 23232323</i>
     <view class='content'>送水之家</view>
   </bar>
 </custom>

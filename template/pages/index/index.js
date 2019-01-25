@@ -8,6 +8,7 @@ Page({
     cardCur: 0,
     TabCur: 0,
     loadType:'',
+    district:'',
     scrollLeft: 0,
     page: 0,
     isLoad: false,
@@ -65,7 +66,9 @@ Page({
           longitude: data.longitude
         },
         success: function (res) {
-          console.log(res);
+          // that.setData({
+          //   district: res.
+          // }) 
         }
       });
 
