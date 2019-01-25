@@ -1,4 +1,6 @@
+var QQMapWX = require('../../utils/qqmap-wx-jssdk');
 const app = getApp();
+var qqmapsdk;
 Page({
   data: {
     StatusBar: app.globalData.StatusBar,
@@ -45,13 +47,31 @@ Page({
     }]
   },
   onLoad() {
+    qqmapsdk = new QQMapWX({
+      key: '6CXBZ-QNVRU-ITIVQ-4ALSI-WV7QQ-KHFNQ' // 必填
+    });
+
     this.towerSwiper('tower');
     // 初始化towerSwiper 传已有的数组名即可
     var that = this;
-    app.getPermissionLocation(function(){
+    app.getPermissionLocation(function(data){
+      console.log(data)
 
+
+      // 调用接口
+      qqmapsdk.reverseGeocoder({
+        location: {
+          latitude: data.latitude,
+          longitude: data.longitude
+        },
+        success: function (res) {
+          console.log(res);
+        }
+      });
+
+      that.getBusinessList(data)
     });
-    //that.getBusinessList()
+   
   },
   /**
    * 页面上拉触底事件的处理函数
@@ -70,14 +90,16 @@ Page({
     }
   },
   //获取商户列表
-  getBusinessList: function() {
+  getBusinessList: function (data) {
     var that = this;
     wx.request({
       url: app.globalData.serverUrl + "/wx/business/" + app.globalData.appid + "/list",
       data: {
         sortStr: that.data.loadType,
         page: that.data.page, 
-        pageSize: that.data.pageSize
+        pageSize: that.data.pageSize,
+        lat: data.latitude,
+        lon: data.longitude,
       },
       success: function(res) {
         if (res.statusCode == "200") {

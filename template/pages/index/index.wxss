@@ -58,3 +58,20 @@ card.article>item {
   margin-right:15rpx;
 
 }
+bar .content_1 {
+  position: absolute;
+  text-align: left;
+  width: 400rpx;
+  left: 0;
+  right: 0;
+  bottom: 8px;
+  margin: auto;
+  height: 30px;
+  font-size: 18px;
+  line-height: 30px;
+  cursor: none;
+  pointer-events: none;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
