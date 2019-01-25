@@ -24,7 +24,9 @@ Page({
           this.login();
       
           // 回到原来的地方放
-          wx.navigateBack();
+          wx.switchTab({
+            url: '/pages/index/index'　　// 首页
+          })
         }
       }
     })

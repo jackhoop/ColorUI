@@ -48,7 +48,10 @@ Page({
     this.towerSwiper('tower');
     // 初始化towerSwiper 传已有的数组名即可
     var that = this;
-    that.getBusinessList();
+    app.getPermissionLocation(function(){
+
+    });
+    //that.getBusinessList()
   },
   /**
    * 页面上拉触底事件的处理函数
@@ -66,6 +69,7 @@ Page({
       this.getBusinessList()
     }
   },
+  //获取商户列表
   getBusinessList: function() {
     var that = this;
     wx.request({
