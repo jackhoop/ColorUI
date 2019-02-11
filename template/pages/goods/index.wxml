@@ -34,14 +34,30 @@
             </view>
           </view>
           <view class='action' style='margin-top: 33rpx;'>
-            <block wx:if="{{item.goodsStatus =='下架'}}">
-              <switch bindchange="goodsStatus" class='switch-sex'/>
+          <block wx:if="{{item.goodsStatus =='下架'}}">
+               <capsule>
+                  <tag class='bg-red'>
+                    <icon class='icon-xiajia' />
+                  </tag>
+                  <tag class="line-red">
+                  下架
+                  </tag>
+                </capsule>
             </block>
             <block wx:else>
-               <switch  bindchange="goodsStatus" class='switch-sex' checked/>
+                 <capsule>
+                  <tag class='bg-blue'>
+                    <icon class='icon-shangjia' />
+                  </tag>
+                  <tag class="line-blue">
+                    上架
+                  </tag>
+                </capsule>
             </block>
               
+              
           </view>
+         
         </view>
          <view class='grid col-2 text-center nav solid-top' >
            <view class='padding-sm' data-id="{{item.id}}" bindtap="edit"><icon class='icon-bianji1 lg' />编辑</view>

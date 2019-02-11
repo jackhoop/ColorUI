@@ -49,6 +49,7 @@ Page({
       data: {
         name: that.data.search,
         page: that.data.page,
+        goodsStatus:"上架",
         pageSize: that.data.pageSize
       },
       success: function (res) {
