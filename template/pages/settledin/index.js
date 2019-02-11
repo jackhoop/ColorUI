@@ -108,10 +108,10 @@ Page({
     var that = this;
     goods.adImages = JSON.stringify(that.data.files);
     goods.jcImages = JSON.stringify(that.data.jcfiles);
-
+    console.log(goods)
     var token = wx.getStorageSync('token')
     wx.request({
-      url: app.globalData.serverUrl + "/wx/business/" + app.globalData.appid + "/register  ",
+      url: app.globalData.serverUrl + "/wx/business/" + app.globalData.appid + "/register",
       method: 'POST',
       header: {
         'Authorization': token
@@ -240,7 +240,7 @@ Page({
   //地址选择
   chooseLocation: function (e) {
     var that = this;
-    app.getPermission(that);
+    // app.getPermission(that);
     wx.chooseLocation({
       success: function (res) {
         

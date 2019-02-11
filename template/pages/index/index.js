@@ -57,8 +57,6 @@ Page({
     var that = this;
     app.getPermissionLocation(function(data){
       console.log(data)
-
-
       // 调用接口
       qqmapsdk.reverseGeocoder({
         location: {
@@ -66,13 +64,15 @@ Page({
           longitude: data.longitude
         },
         success: function (res) {
-          // that.setData({
-          //   district: res.
-          // }) 
+          console.log(res);
+          that.setData({
+            district: res.result
+          })
+          that.getBusinessList()
         }
       });
 
-      that.getBusinessList(data)
+    
     });
    
   },
@@ -89,20 +89,22 @@ Page({
         page: that.data.page + 1
       })
       // 上拉获取更多数据
-      this.getBusinessList()
+
+      that.getBusinessList()
     }
   },
   //获取商户列表
-  getBusinessList: function (data) {
+  getBusinessList: function () {
     var that = this;
+    console.log(that.data.district)
     wx.request({
       url: app.globalData.serverUrl + "/wx/business/" + app.globalData.appid + "/list",
       data: {
         sortStr: that.data.loadType,
         page: that.data.page, 
         pageSize: that.data.pageSize,
-        lat: data.latitude,
-        lon: data.longitude,
+        lat: that.data.district.location.lat,
+        lon: that.data.district.location.lng,
       },
       success: function(res) {
         if (res.statusCode == "200") {
@@ -234,6 +236,7 @@ Page({
   tabSelect(e) {
     var that = this;
     if (e.currentTarget.dataset.id != that.data.TabCur){
+      console.log(e.currentTarget.dataset.type)
       that.setData({
         page: 0,
         isLoad: false,
@@ -243,7 +246,7 @@ Page({
         scrollLeft: (e.currentTarget.dataset.id - 1) * 60
       })
 
-      that.getBusinessList();
+      that.getBusinessList()
     }
    
   }
