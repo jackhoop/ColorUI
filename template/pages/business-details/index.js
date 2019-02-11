@@ -98,7 +98,7 @@ Page({
           business: res.data.business
         });
 
-        app.getPermissionLocation(that, function (res) {
+        app.getPermissionLocation(function (res) {
           console.log(res);
           var from = {
             latitude: res.latitude,
@@ -112,8 +112,6 @@ Page({
 
           that.calculateDistance(from, to);
         });
-
-
         console.log(that.data.tower);
       }
     })

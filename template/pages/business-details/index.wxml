@@ -101,10 +101,10 @@
         <icon class='icon-forward lg text-gray' /> 分享
       </view>
       <view class="action" bindtap="toAddress">
-        <icon class='icon-favorfill' /> 导航
+        <icon class='icon-daohang' /> 导航
       </view>
       <view class="action text-orange">
-        <icon class='icon-favorfill' /> 已收藏
+        <icon class='icon-shoucang1' /> 已收藏
       </view>
 
       <view class='bg-red submit' data-tel='{{business.contactsTel}}' bindtap="callTel">电话联系</view>
