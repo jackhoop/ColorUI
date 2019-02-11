@@ -11,7 +11,6 @@
       <image src="{{url}}" mode='aspectFill' />
     </swiper-item>
   </swiper>
-
   <view class="goods-des-info">
     <view class="weui-panel">
       <view class="weui-panel__bd">
@@ -59,7 +58,6 @@
       </view>
     </view>
   </view>
-
   <scroll-view scroll-x class="bg-white nav " style='margin-top:10rpx;'>
     <view class='flex text-center'>
       <item class="flex-sub {{index==TabCur?'text-orange cur':''}}" wx:for="{{tabs}}" wx:key bindtap='tabSelect' data-id="{{index}}" wx:for-item="item">
@@ -68,46 +66,59 @@
     </view>
   </scroll-view>
   <view class="weui-tab__content" hidden="{{TabCur != 1}}">
-   
-  <view class='padding-xs flex align-center '>
-    <view class='flex-sub text-left bg-white'>
-      <view class='padding'>{{business.content}}</view>
+
+    <view class='padding-xs flex align-center '>
+      <view class='flex-sub text-left bg-white'>
+        <view class='padding'>{{business.content}}</view>
+      </view>
+
     </view>
-    
-  </view>
-  
+
   </view>
   <view class="weui-tab__content" hidden="{{TabCur != 0}}" style='background-color: #F8F8F8;padding-top:0px;'>
     <view class="goods-container">
-    <block wx:for="{{content}}">
-      <view class="goods-box radius shadow bg-white" data-id="{{item.id}}">
-        <view class="img-box">
-          <image src="{{item.image}}" class="image" mode="aspectFill" lazy-load="true" />
+      <block wx:for="{{content}}">
+        <view class="goods-box radius shadow bg-white" data-id="{{item.id}}">
+          <view class="img-box">
+            <image src="{{item.image}}" class="image" mode="aspectFill" lazy-load="true" />
+          </view>
+          <view class="weui-media-box__title" style='margin-left: 10rpx;font-size:32rpx;text-align:left'>{{item.name}}</view>
+          <view class="weui-media-box__desc" style='margin-left: 10rpx;text-align:left'>规格:{{item.specification}}</view>
+          <view style='display:flex;'>
+            <view class="goods-price" style='margin-left: 10rpx;text-align:left'>¥ {{item.price}}</view>
+          </view>
         </view>
-        <view class="weui-media-box__title" style='margin-left: 10rpx;font-size:32rpx;text-align:left'>{{item.name}}</view>
-        <view class="weui-media-box__desc" style='margin-left: 10rpx;text-align:left'>规格:{{item.specification}}</view>
-        <view style='display:flex;'>
-          <view class="goods-price" style='margin-left: 10rpx;text-align:left'>¥ {{item.price}}</view>
-        </view>
-      </view>
-    </block>
+      </block>
     </view>
-       <load class="{{!isLoad?'loading':'over'}}"></load>
+    <load class="{{!isLoad?'loading':'over'}}"></load>
   </view>
 
   <view class="weui-footer weui-footer_fixed-bottom">
     <bar class="shop">
-      <view class="action">
-        <icon class='icon-forward lg text-gray' /> 分享
-      </view>
+      <!-- <view class="action">
+       <button hidden='' open-type="share">分享</button> 
+        <icon class='icon-forward lg text-gray' open-type="share"/> 分享
+      </view> -->
+      <button class="share text-gray" open-type="share" plain='true'>  
+        <view class="action">
+          <icon class='icon-forward lg text-gray' open-type="share"/> 分享
+        </view>
+      </button> 
       <view class="action" bindtap="toAddress">
         <icon class='icon-daohang' /> 导航
       </view>
-      <view class="action text-orange">
-        <icon class='icon-shoucang1' /> 已收藏
-      </view>
-
+      <block wx:if="{{collection}}">
+        <view class="action text-orange" data-type="cancel" bindtap="collection">
+          <icon class='icon-shoucang1' /> 已收藏
+        </view>
+      </block>
+      <block wx:else>
+        <view class="action text-gray" data-type="collection" bindtap="collection">
+          <icon class='icon-shoucang3' /> 收藏
+        </view>
+      </block>
       <view class='bg-red submit' data-tel='{{business.contactsTel}}' bindtap="callTel">电话联系</view>
+    
     </bar>
 
   </view>

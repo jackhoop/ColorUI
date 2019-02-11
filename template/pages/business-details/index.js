@@ -38,6 +38,18 @@ Page({
     that.getGoodsList()
    
   },
+  onShareAppMessage(res) {
+    var that = this;
+    if (res.from === 'button') {
+      // 来自页面内转发按钮
+      console.log(res.target)
+    }
+
+    return {
+      title: that.data.business.name,
+      path: '/pages/business-details/index?id=' + that.data.business.id
+    }
+  },
   getGoodsList: function () {
     var that = this;
     var token = wx.getStorageSync('token')
@@ -65,6 +77,28 @@ Page({
         that.setData({
           loadStatus: true
         })
+      }
+    })
+  },
+  //收藏
+  collection:function(e){
+    var that = this;
+    var token = wx.getStorageSync('token')
+
+    wx.request({
+      url: app.globalData.serverUrl + "/wx/business/" + app.globalData.appid + "/collection",
+      method: 'get',
+      header: {
+        'Authorization': token
+      },
+      data: {
+        id: that.data.business.id,
+        type: e.currentTarget.dataset.type
+      },
+      success: function (res) {
+        that.setData({
+          collection: res.data.collection
+        });
       }
     })
   },
@@ -96,7 +130,8 @@ Page({
           });
         }
         that.setData({
-          business: res.data.business
+          business: res.data.business,
+          collection: res.data.collection
         });
 
         app.getPermissionLocation(function (res) {
@@ -241,5 +276,5 @@ Page({
                   console.log(res);
               }
         });
-  }
+  },
 });

@@ -64,4 +64,8 @@ box-shadow:0 0 8rpx 0 ;
   color:#e64340;
   margin-left: 10rpx;
 }
+.share{
+  padding:0px 0px 0px !important;
+}
+button[plain]{ border:0 }
 
