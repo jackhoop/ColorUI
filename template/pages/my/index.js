@@ -89,5 +89,12 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  //我的收藏
+  mysc:function(){
+    wx.navigateTo({
+      url: "/pages/my-sc/index"
+    })
   }
+
 })

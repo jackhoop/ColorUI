@@ -114,7 +114,7 @@ card.DhCard item.item_1{
   text-align: center!important;
   font-size: 18px;
 }
-list.menu>item .content {
+list.menu>item .content-1 {
   line-height: 1.6em;
   flex: 1;
   margin-left:80rpx;

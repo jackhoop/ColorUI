@@ -1,0 +1,32 @@
+<custom style="height:{{CustomBar}}px;">
+  <bar class="fixed gradual-blue" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
+    <navigator class='action' open-type="navigateBack" delta="1" hover-class="none">
+      <icon class='icon-back' /> 收藏的店
+    </navigator>
+  </bar>
+</custom>
+<view class="page">
+  <card class="case " data-id="{{item.id}}" >
+   <item class="shadow">
+     <list class="menu menu-avatar">
+        <item class="">
+          <avatar class="round lg" style="background-image:url(https://image.weilanwl.com/img/square-3.jpg);"></avatar>
+          <view class='content'>
+            <view>测试小店1</view>
+            <view class='text-gray text-sm'>
+              贵阳世纪金源大饭店东北</view>
+          </view>
+          <view class='action'>
+            <i class="icon iconfont icon-dianhua5" catchtap="callTel" data-tel="{{item.contactsTel}}" style="font-size:80rpx;color:#00e560"></i>
+          </view>
+        </item>
+      </list>
+              <view class='grid col-2 text-center nav solid-top' >
+           <view class='padding-sm text-gray' >1人收藏了此店|30m</view>
+           <view class='padding-sm text-right text-gray' data-id="{{item.id}}" data-index="{{index}}" bindtap="del"><icon class='icon-deletefill lg' />取消收藏</view>
+         
+      
+        </view>
+    </item>
+  </card>
+  </view>

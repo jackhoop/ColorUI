@@ -4,11 +4,10 @@
             <list class="menu menu-avatar no-padding avatar">
               <item>
                 <avatar class="xl round margin-left" style="background-image:url({{userInfo.avatarUrl}});"></avatar>
-                <view class='content'>
+                <view class='content-1'>
                   <view>{{userInfo.nickName}}</view>
                 </view>
                 <view class='action'>
-               
                 </view>
               </item>
             </list>
@@ -18,53 +17,33 @@
           </view>
         </item>
 </card>
-<view class="page {{skin?' invert ':' '}}" style='margin-top:20rpx'>
-   <list class="grid col-3 card-menu_1">
-     <block wx:if="{{business}}">
-        <item bindtap="businessAdmin" data-target="DialogModal1" data-id="{{business.id}}">
-          <icon class='icon-bianji1 text-red'/>
-          <text>编辑店铺</text>
-        </item>
-      </block>
-      <block wx:else>
-        <item bindtap="businessrz" data-target="DialogModal1">
-          <icon class='icon-dianputianjia text-red'/>
-          <text>店铺入驻</text>
-        </item>
-      </block>
-    
-
-    <item bindtap="ckAdmin" data-target="DialogModal1" data-id="{{business.id}}">
-      <icon class='icon-shopfill  text-orange'/>
-      <text>查看店铺</text>
+<view class="page" >
+    <list class="menu">
+    <item class="arrow">
+      <view class='content' bindtap="mysc">
+        <icon class='icon-shoucang5 text-orange'/>
+        <text class='text-grey'>收藏的店</text>
+      </view>
     </item>
-    <item bindtap="spAdmin" data-target="DialogModal1">
-      <icon class='icon-shangpin text-yellow'/>
-      <text>商品管理</text>
+    <item class="arrow">
+   <view class='content'>
+        <icon class='icon-dianhua5 text-blue'/>
+        <text class='text-grey'>拨号记录</text>
+      </view>
     </item>
-    <item bindtap="qrAdmin" data-target="DialogModal1">
-      <icon class='icon-qr_code text-olive'/>
-      <text>店铺二维码</text>
+  </list>
+    <list class="menu">
+    <item class="arrow">
+      <view class='content'>
+        <icon class='icon-yijianfankui1 text-red'/>
+        <text class='text-grey'>意见反馈</text>
+      </view>
+    </item>
+    <item class="arrow">
+      <view class='content'>
+        <icon class='icon-lianxiwomen4444 text-green'/>
+        <text class='text-grey'>联系我们</text>
+      </view>
     </item>
   </list>
 </view>
-<modal-box class="{{modalName=='DialogModal1'?'show':''}}">
-  <dialog>
-    <bar class="justify-end">
-      <view class='content'>{{modalTitle}}</view>
-      <view class='action' bindtap='hideModal'>
-        <icon class='icon-close text-red'></icon>
-      </view>
-    </bar>
-    <view class='padding-xl'>
-      {{modalMsg}}
-    </view>
-    <bar class="justify-end">
-      <view class='action'>
-        <button class='line-green text-green' bindtap='hideModal'>取消</button>
-        <button class='bg-green margin-left' bindtap='hideModal'>确定</button>
-
-      </view>
-    </bar>
-  </dialog>
-</modal-box>

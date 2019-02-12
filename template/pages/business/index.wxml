@@ -15,7 +15,7 @@
                     <tag class='bg-orange'>{{business.useStatus}}</tag>
                   </block>
                 <block wx:else>
-                  <icon class='icon-qr_code lg lg text-gray_1' style='font-size:80rpx;'/>
+                  <icon class='icon-ico lg lg text-gray_1' style='font-size:80rpx;'/>
                 </block> 
                 </view>
               </item>
@@ -102,7 +102,7 @@
       <text>商品管理</text>
     </item>
     <item bindtap="qrAdmin" data-target="DialogModal1">
-      <icon class='icon-qr_code text-olive'/>
+      <icon class='icon-ico text-olive'/>
       <text>店铺二维码</text>
     </item>
   </list>

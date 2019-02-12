@@ -1821,7 +1821,7 @@ load.loading::after {
 }
 
 load.over::before {
-  content: "\e64a";
+  content: "\e640";
 }
 
 load.over::after {
@@ -1953,7 +1953,7 @@ list.menu>item.arrow {
 list.menu>item.arrow::after {
   font-family: "iconfont" !important;
   display: block;
-  content: "\e6a3";
+  content: "\e60f";
   position: absolute;
   font-size: 17px;
   color: #aaa;

@@ -8,7 +8,8 @@
     "pages/settledin/index",
     "pages/goods-add/index",
     "pages/authlocation/index",
-    "pages/goods/index"
+    "pages/goods/index",
+    "pages/my-sc/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -19,7 +20,7 @@
   },
   "permission": {
     "scope.userLocation": {
-      "desc": "您的位置信息将用于查找附近水站"
+      "desc": "您的位置信息将用于推荐附近水站"
     }
   },
   "component": true,
