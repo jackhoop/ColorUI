@@ -4,7 +4,7 @@
           <view class="padding">
             <list class="menu menu-avatar no-padding avatar">
               <item>
-                <avatar class="xl round margin-left" style="background-image:url({{business.facadeImage}});"></avatar>
+                <avatar class="xl radius margin-left" style="background-image:url({{business.facadeImage}});"></avatar>
                 <view class='content'>
                   <view>{{business.name}}</view>
                   <view class='text-gray_1 text-sm' style='color:#a5cded'>

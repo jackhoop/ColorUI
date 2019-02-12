@@ -1,6 +1,6 @@
 {
   "pages": [
-    
+    "pages/my/index",
     "pages/authentication/index",
     "pages/index/index",
     "pages/business/index",
@@ -9,7 +9,6 @@
     "pages/goods-add/index",
     "pages/authlocation/index",
     "pages/goods/index"
-  
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -43,7 +42,7 @@
         "text": "商户入驻"
       },
       {
-        "pagePath": "pages/index/index",
+        "pagePath": "pages/my/index",
         "iconPath": "/images/tabbar/plugin.png",
         "selectedIconPath": "/images/tabbar/plugin_cur.png",
         "text": "个人中心"
