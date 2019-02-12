@@ -115,7 +115,16 @@ Page({
     })
 
     var that = this;
+    var time = wx.getStorageSync(id);
+    console.log("time:" + time);
+
+    console.log("timestamp:" + new Date().getTime());
+    wx.setStorageSync(id, new Date().getTime());
+
+
     var token = wx.getStorageSync('token')
+   
+  
     wx.request({
       url: app.globalData.serverUrl + "/wx/business/" + app.globalData.appid + "/getBusinessById",
       method: 'get',
@@ -123,7 +132,8 @@ Page({
         'Authorization': token
       },
       data:{
-        id: id
+        id: id,
+        t: time
       },
       complete: function () {
         wx.hideLoading()

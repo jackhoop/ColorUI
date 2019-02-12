@@ -74,7 +74,7 @@
          <block wx:for="{{jcImages}}" wx:for-index="index" wx:for-item="url">
           <view class="grid col-1 flex-sub padding-xs">
             <view class="bg-img only-img" bindtap="previewImage" data-src="{{url}}" style="background-image:url({{url}});" wx:for="{{isCard?9:1}}" wx:key>
-            </view>0
+            </view>
           </view>
         </block>
       </item>
