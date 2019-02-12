@@ -84,7 +84,10 @@ Page({
   collection:function(e){
     var that = this;
     var token = wx.getStorageSync('token')
-
+    wx.showLoading({
+      title: '请求中...',
+      mask: true,//是否显示透明蒙层，防止触摸穿透，默认：false  
+    })
     wx.request({
       url: app.globalData.serverUrl + "/wx/business/" + app.globalData.appid + "/collection",
       method: 'get',
@@ -99,7 +102,10 @@ Page({
         that.setData({
           collection: res.data.collection
         });
-      }
+      },
+       complete: function () {
+        wx.hideLoading()
+      },
     })
   },
   getBusinessInfo:function(id){
@@ -127,6 +133,12 @@ Page({
           var arr = JSON.parse(res.data.business.adImages)
           that.setData({
             tower: arr
+          });
+        }
+        if (res.data.business && res.data.business.jcImages) {
+          var arr = JSON.parse(res.data.business.jcImages)
+          that.setData({
+            jcImages: arr
           });
         }
         that.setData({
@@ -277,4 +289,26 @@ Page({
               }
         });
   },
+  /**   
+     * 预览图片  
+     */
+  previewImage: function (e) {
+    var that = this;
+   
+    if (e.target.dataset.src){
+      var current = e.target.dataset.src;
+      wx.previewImage({
+        current: current, // 当前显示图片的http链接  
+        urls: that.data.jcImages // 需要预览的图片http链接列表  
+      })
+    }
+    if (e.target.dataset.sp){
+      var current = e.target.dataset.sp;
+      wx.previewImage({
+        current: current, // 当前显示图片的http链接  
+        urls: [current] // 需要预览的图片http链接列表  
+      })
+    }
+  
+  }
 });

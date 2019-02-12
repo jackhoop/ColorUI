@@ -18,11 +18,6 @@ left:0;
 right:0;
 box-shadow:0 0 8rpx 0 ;
 }
-
-
-
-
-
 .goods-container{
   display: flex;
   justify-content: space-between;  
@@ -68,4 +63,10 @@ box-shadow:0 0 8rpx 0 ;
   padding:0px 0px 0px !important;
 }
 button[plain]{ border:0 }
-
+.item_1 {
+  display: block;
+  background: #fff;
+  overflow: hidden;
+  border-radius: 5px;
+  margin: 6px!important;
+}

@@ -66,13 +66,19 @@
     </view>
   </scroll-view>
   <view class="weui-tab__content" hidden="{{TabCur != 1}}">
-
-    <view class='padding-xs flex align-center '>
-      <view class='flex-sub text-left bg-white'>
-        <view class='padding'>{{business.content}}</view>
-      </view>
-
-    </view>
+    <card class="dynamic {{isCard?'no-card':''}}">
+      <item wx:for="1" wx:key class="shadow item_1">
+        <view class='text-content padding-xs'>
+          {{business.content}}
+        </view>
+         <block wx:for="{{jcImages}}" wx:for-index="index" wx:for-item="url">
+          <view class="grid col-1 flex-sub padding-xs">
+            <view class="bg-img only-img" bindtap="previewImage" data-src="{{url}}" style="background-image:url({{url}});" wx:for="{{isCard?9:1}}" wx:key>
+            </view>0
+          </view>
+        </block>
+      </item>
+  </card>
 
   </view>
   <view class="weui-tab__content" hidden="{{TabCur != 0}}" style='background-color: #F8F8F8;padding-top:0px;'>
@@ -80,7 +86,7 @@
       <block wx:for="{{content}}">
         <view class="goods-box radius shadow bg-white" data-id="{{item.id}}">
           <view class="img-box">
-            <image src="{{item.image}}" class="image" mode="aspectFill" lazy-load="true" />
+            <image src="{{item.image}}" bindtap="previewImage" data-sp="{{item.image}}" class="image" mode="aspectFill" lazy-load="true" />
           </view>
           <view class="weui-media-box__title" style='margin-left: 10rpx;font-size:32rpx;text-align:left'>{{item.name}}</view>
           <view class="weui-media-box__desc" style='margin-left: 10rpx;text-align:left'>规格:{{item.specification}}</view>

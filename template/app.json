@@ -7,6 +7,7 @@
     "pages/business-details/index",
     "pages/settledin/index",
     "pages/goods-add/index",
+    "pages/authlocation/index",
     "pages/goods/index"
   
   ],
