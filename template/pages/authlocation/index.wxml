@@ -1,0 +1,5 @@
+<image src='/images/BasicsBg.png' mode='widthFix' class='png' style='width:100%;height:486rpx'></image>
+  <view class='padding-sm'>
+   
+    <button class='block margin-tb-sm lg gradual-blue radius text-center shadow-blur'  open-type="openSetting" bindopensetting='handler'>开通权限</button>
+  </view>
