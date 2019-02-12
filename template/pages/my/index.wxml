@@ -1,0 +1,70 @@
+<card class="DhCard">
+    <item class="gradual-blue shadow-blur">
+          <view class="padding">
+            <list class="menu menu-avatar no-padding avatar">
+              <item>
+                <avatar class="xl round margin-left" style="background-image:url({{userInfo.avatarUrl}});"></avatar>
+                <view class='content'>
+                  <view>{{userInfo.nickName}}</view>
+                </view>
+                <view class='action'>
+               
+                </view>
+              </item>
+            </list>
+          </view>
+          <view class='animation-wave'>
+            <view class='wave'></view>
+          </view>
+        </item>
+</card>
+<view class="page {{skin?' invert ':' '}}" style='margin-top:20rpx'>
+   <list class="grid col-3 card-menu_1">
+     <block wx:if="{{business}}">
+        <item bindtap="businessAdmin" data-target="DialogModal1" data-id="{{business.id}}">
+          <icon class='icon-bianji1 text-red'/>
+          <text>编辑店铺</text>
+        </item>
+      </block>
+      <block wx:else>
+        <item bindtap="businessrz" data-target="DialogModal1">
+          <icon class='icon-dianputianjia text-red'/>
+          <text>店铺入驻</text>
+        </item>
+      </block>
+    
+
+    <item bindtap="ckAdmin" data-target="DialogModal1" data-id="{{business.id}}">
+      <icon class='icon-shopfill  text-orange'/>
+      <text>查看店铺</text>
+    </item>
+    <item bindtap="spAdmin" data-target="DialogModal1">
+      <icon class='icon-shangpin text-yellow'/>
+      <text>商品管理</text>
+    </item>
+    <item bindtap="qrAdmin" data-target="DialogModal1">
+      <icon class='icon-qr_code text-olive'/>
+      <text>店铺二维码</text>
+    </item>
+  </list>
+</view>
+<modal-box class="{{modalName=='DialogModal1'?'show':''}}">
+  <dialog>
+    <bar class="justify-end">
+      <view class='content'>{{modalTitle}}</view>
+      <view class='action' bindtap='hideModal'>
+        <icon class='icon-close text-red'></icon>
+      </view>
+    </bar>
+    <view class='padding-xl'>
+      {{modalMsg}}
+    </view>
+    <bar class="justify-end">
+      <view class='action'>
+        <button class='line-green text-green' bindtap='hideModal'>取消</button>
+        <button class='bg-green margin-left' bindtap='hideModal'>确定</button>
+
+      </view>
+    </bar>
+  </dialog>
+</modal-box>
