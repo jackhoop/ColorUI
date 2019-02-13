@@ -87,7 +87,7 @@
       <block wx:for="{{jcfiles}}" wx:key="*this">
         <view class="padding-xs bg-img" style="background-image:url({{item}});">
           <tag class="bg-red" data-index="{{index}}" data-imgType="jcImages"  catchtap="deleteImg">
-           <icon class='icon-close'></icon>
+           <icon class='icon-chuyidong'></icon>
           </tag>
        </view>
       </block>
@@ -104,7 +104,7 @@
       <block wx:for="{{files}}" wx:key="*this">
         <view class="padding-xs bg-img" style="background-image:url({{item}});" id="{{item}}">
            <tag class="bg-red"  data-imgType="adImages"  data-index="{{index}}" catchtap="deleteImg">
-             <icon class='icon-close'></icon>
+             <icon class='icon-chuyidong'></icon>
            </tag>
         </view>
       </block>

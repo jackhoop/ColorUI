@@ -1,38 +1,33 @@
 <card class="DhCard">
-    <item class="gradual-blue shadow-blur">
-          <view class="padding">
-            <list class="menu menu-avatar no-padding avatar">
-              <item>
-                <avatar class="xl round margin-left" style="background-image:url({{userInfo.avatarUrl}});"></avatar>
-                <view class='content-1'>
-                  <view>{{userInfo.nickName}}</view>
-                </view>
-                <view class='action'>
-                </view>
-              </item>
-            </list>
+  <item class="gradual-blue shadow-blur">
+    <view class="padding">
+      <list class="menu menu-avatar no-padding avatar">
+        <item>
+          <avatar class="xl round margin-left" style="background-image:url({{userInfo.avatarUrl}});"></avatar>
+          <view class='content-1'>
+            <view>{{userInfo.nickName}}</view>
           </view>
-          <view class='animation-wave'>
-            <view class='wave'></view>
+          <view class='action'>
           </view>
         </item>
+      </list>
+    </view>
+    <view class='animation-wave'>
+      <view class='wave'></view>
+    </view>
+  </item>
 </card>
-<view class="page" >
-    <list class="menu">
+<view class="page">
+  <list class="menu">
     <item class="arrow">
       <view class='content' bindtap="mysc">
-        <icon class='icon-shoucang5 text-orange'/>
+        <icon class='icon-shoucang5 text-orange' />
         <text class='text-grey'>收藏的店</text>
       </view>
     </item>
-     <item class="arrow">
-   <view class='content'>
-        <icon class='icon-dianhua5 text-blue'/>
-        <text class='text-grey'>联系我们</text>
-      </view>
-    </item> 
+    
   </list>
-    <list class="menu">
+  <list class="menu">
     <!-- <item class="arrow">
       <view class='content'>
         <icon class='icon-yijianfankui1 text-red'/>
@@ -40,12 +35,64 @@
       </view>
     </item> -->
     <item class="arrow">
-      <button class="share text-gray text-left" open-type="contact" plain='true'>  
-        <view class='content'>
-        <icon class='icon-lianxiwomen4444 text-green'/>
-        <text class='text-grey'>客服</text>
+      <view class='content' bindtap="showModal" data-target="Image">
+        <icon class='icon-dianhua5 text-blue' />
+        <text class='text-grey'>联系我们</text>
       </view>
-      </button> 
+    </item>
+    <item class="arrow">
+      <button class="share text-gray text-left" open-type="contact" plain='true'>
+        <view class='content'>
+          <icon class='icon-lianxiwomen4444 text-green' />
+          <text class='text-grey'>客服</text>
+        </view>
+      </button>
     </item>
   </list>
 </view>
+<modal-box class="{{modalName=='Image'?'show':''}}">
+  <dialog>
+    <view class="bg-img" style="background-image: url('http://xiaolong-web-oss.oss-cn-hangzhou.aliyuncs.com/water/bus/9d1fc36b-a434-4aee-9846-4c3127a9f27c?Expires');height:200px;">
+    <bar class="justify-end none-bg text-white">
+        <view class='action' bindtap='hideModal'>
+          <icon class='icon-chuyidong'></icon>
+        </view>
+      </bar>
+    </view>
+     <card class="case" data-id="{{item.id}}" >
+      <item class="shadow">
+          <list class="menu">
+                <item>
+                  <view class='content  text-left'>
+                    <icon class='icon-shouji2 text-grey'/>
+                    <text class='text-grey'>18285053934</text>
+                  </view>
+                   <view class='action'>
+                    <button class='round bg-green sm' data-tel="18285053934" bindtap="callTel" >拨号</button>
+                  </view>
+                </item>
+                <item>
+                  <view class='content  text-left'>
+                    <icon class='icon-weixin text-green'/>
+                    <text class='text-grey'>Qq745272308</text>
+                  </view>
+                   <view class='action'  data-text="Qq745272308" bindtap='copyText'>
+                    <text class='text-grey text-sm'>点我复制微信号</text>
+                  </view>
+                </item>
+                     <item>
+                  <view class='content  text-left'>
+                    <icon class='icon-qq text-blue'/>
+                    <text class='text-grey'>745272308</text>
+                  </view>
+                   <view class='action'  data-text="745272308" bindtap='copyText'>
+                    <text class='text-grey text-sm'>点我复制QQ号</text>
+                  </view>
+                </item>
+          </list>
+                
+        </item>
+  </card>
+ 
+  </dialog>
+</modal-box>

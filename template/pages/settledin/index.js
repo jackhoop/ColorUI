@@ -328,6 +328,7 @@ Page({
         name: 'img',
         formData: formData,
         success: function (res) {
+          console.log(res);
           var data = JSON.parse(res.data);
           callBack(data);
           wx.hideLoading();

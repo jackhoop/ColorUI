@@ -95,6 +95,42 @@ Page({
     wx.navigateTo({
       url: "/pages/my-sc/index"
     })
-  }
+  },
+  //联系我们
+  mycontact: function () {
+    wx.navigateTo({
+      url: "/pages/my-contact/index"
+    })
+  },
+  showModal(e) {
+    this.setData({
+      modalName: e.currentTarget.dataset.target
+    })
+  },
+  hideModal(e) {
+    this.setData({
+      modalName: null
+    })
+  },
+  copyText:function(e){
+    wx.setClipboardData({
+      data: e.currentTarget.dataset.text,
+      success: function (res) {
+        wx.getClipboardData({
+          success: function (res) {
+            wx.showToast({
+              title: '复制成功'
+            })
+          }
+        })
+      }
+    })
+  },
+   //打电话
+  callTel: function (e) {
+    wx.makePhoneCall({
+      phoneNumber: e.target.dataset.tel //仅为示例，并非真实的电话号码
+    })
+  },
 
 })

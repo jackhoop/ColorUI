@@ -9,7 +9,8 @@
     "pages/goods-add/index",
     "pages/authlocation/index",
     "pages/goods/index",
-    "pages/my-sc/index"
+    "pages/my-sc/index",
+    "pages/my-contact/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
