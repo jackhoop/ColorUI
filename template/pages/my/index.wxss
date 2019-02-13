@@ -130,3 +130,9 @@ list.menu>item .content-1 {
 .padding-xl {
   padding: 12px;
 }
+.share{
+  padding:0px 0px 0px !important;
+  width:100%;
+  font-size:16px;
+}
+button[plain]{ border:0 }

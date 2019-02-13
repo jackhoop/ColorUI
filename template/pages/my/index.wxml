@@ -25,25 +25,27 @@
         <text class='text-grey'>收藏的店</text>
       </view>
     </item>
-    <item class="arrow">
+     <item class="arrow">
    <view class='content'>
         <icon class='icon-dianhua5 text-blue'/>
-        <text class='text-grey'>拨号记录</text>
+        <text class='text-grey'>联系我们</text>
       </view>
-    </item>
+    </item> 
   </list>
     <list class="menu">
-    <item class="arrow">
+    <!-- <item class="arrow">
       <view class='content'>
         <icon class='icon-yijianfankui1 text-red'/>
         <text class='text-grey'>意见反馈</text>
       </view>
-    </item>
+    </item> -->
     <item class="arrow">
-      <view class='content'>
+      <button class="share text-gray text-left" open-type="contact" plain='true'>  
+        <view class='content'>
         <icon class='icon-lianxiwomen4444 text-green'/>
-        <text class='text-grey'>联系我们</text>
+        <text class='text-grey'>客服</text>
       </view>
+      </button> 
     </item>
   </list>
 </view>
