@@ -165,6 +165,7 @@ Page({
   },
   //取消动作
   collection: function (e){
+    console.log(e.target.dataset.id);
     var that = this;
     wx.showModal({
       title: '温馨提示',
@@ -198,7 +199,7 @@ Page({
       },
       success: function (res) {
         //在提示的成功函数中初始化当前加载订单页为第一页，清空订单列表数据
-        that.setData({ page: 1, content: [] });
+        that.setData({ page: 0, content: [] });
         //用onLoad周期方法重新加载，实现当前页面的刷新
         that.onLoad()
       
