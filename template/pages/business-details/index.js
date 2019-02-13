@@ -83,6 +83,14 @@ Page({
   //收藏
   collection:function(e){
     var that = this;
+    if (!that.data.business.id){
+      wx.showModal({
+        title: '温馨提示',
+        content: "确定取消收藏该店铺",
+        cancelText: "取消",
+      });
+      return;
+    }
     var token = wx.getStorageSync('token')
     wx.showLoading({
       title: '请求中...',
