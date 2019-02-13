@@ -107,7 +107,7 @@ Page({
         pageSize: that.data.pageSize,
         lat: that.data.district.location.lat,
         lon: that.data.district.location.lng,
-        //cityCode: that.data.page, 
+        cityCode: that.data.district.ad_info.adcode, 
       },
       success: function(res) {
         console.log(res);
