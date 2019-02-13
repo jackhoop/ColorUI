@@ -209,5 +209,12 @@ Page({
       },
     })
   },
+  //商家详细
+  toDetailsTap: function (e) {
+    console.log(e)
+    wx.navigateTo({
+      url: "/pages/business-details/index?id=" + e.currentTarget.dataset.id
+    })
+  },
 
 })

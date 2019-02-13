@@ -7,10 +7,10 @@
 <bar class="search fixed " style="top:{{CustomBar}}px;background-color:rgba(0,0,0,0.2);">
   <view class='serach-form round'>
     <icon class="icon-search" />
-    <input type="text" placeholder="搜索水站" confirm-type="search" />
+    <input type="text" placeholder="搜索水站" confirm-type="search" bindinput="inputSearch"/>
   </view>
   <view class='action'>
-    <button class='bg-green shadow-blur round'>搜索</button>
+    <button class='bg-green shadow-blur round' bindtap="search">搜索</button>
   </view>
 </bar>
 <swiper class="screen-swiper square-dot" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500">
@@ -25,7 +25,7 @@
     </item>
   </view>
 </scroll-view>
-<block wx:for="{{content}}">
+<block wx:for="{{content}}" wx:key>
   <card class="article" bindtap="toDetailsTap" data-id="{{item.id}}">
       <item class="shadow">
         <view class="content">
