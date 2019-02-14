@@ -27,26 +27,26 @@
   "component": true,
   "tabBar": {
     "color": "#aaa",
-    "selectedColor": "#39b54a",
+    "selectedColor": "#1296db",
     "borderStyle": "black",
     "backgroundColor": "#ffffff",
     "list": [
       {
         "pagePath": "pages/index/index",
-        "iconPath": "/images/tabbar/basics.png",
-        "selectedIconPath": "/images/tabbar/basics_cur.png",
+        "iconPath": "/images/tabbar/home.png",
+        "selectedIconPath": "/images/tabbar/home_cur.png",
         "text": "附近送水"
       },
       {
         "pagePath": "pages/business/index",
-        "iconPath": "/images/tabbar/component.png",
-        "selectedIconPath": "/images/tabbar/component_cur.png",
-        "text": "商户入驻"
+        "iconPath": "/images/tabbar/business.png",
+        "selectedIconPath": "/images/tabbar/business_cur.png",
+        "text": "水站入驻"
       },
       {
         "pagePath": "pages/my/index",
-        "iconPath": "/images/tabbar/plugin.png",
-        "selectedIconPath": "/images/tabbar/plugin_cur.png",
+        "iconPath": "/images/tabbar/user.png",
+        "selectedIconPath": "/images/tabbar/user_cur.png",
         "text": "个人中心"
       }
     ]

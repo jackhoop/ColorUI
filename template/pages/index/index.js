@@ -13,6 +13,7 @@ Page({
     scrollLeft: 0,
     page: 0,
     isLoad: false,
+    isLocation: false,
     loadStatus: true,
     pageSize: 5,
     content: [],
@@ -258,4 +259,38 @@ Page({
       search: e.detail.value
     });
   },
+  //重新定位
+  location:function(){
+    console.log("1111")
+    var that = this;
+    that.setData({
+      isLocation: true,
+    })
+    app.getPermissionLocation(function (data) {
+      // 调用接口
+      qqmapsdk.reverseGeocoder({
+        location: {
+          latitude: data.latitude,
+          longitude: data.longitude
+        },
+        success: function (res) {
+
+          that.setData({
+            content: [],
+            page: 0,
+            district: res.result
+          })
+
+          that.getBusinessList();
+          that.getAdInfoList();
+        },
+        complete: function (res) {
+          that.setData({
+            isLocation: false
+          })
+        }
+      });
+    });
+
+  }
 });

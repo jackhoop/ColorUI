@@ -1,6 +1,13 @@
 <custom style="height:{{CustomBar}}px;">
-  <bar class="fixed gradual-blue" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
-    <i class="icon iconfont icon-zuobiao"style="margin-left:20rpx;font-size:25rpx;"> {{district.ad_info.district}}</i>
+  <bar class="fixed gradual-blue"  catchtap='location' style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
+       <!-- <load class="load-icon loading"></load>
+    <i class="icon iconfont icon-zuobiao"style="margin-left:20rpx;font-size:25rpx;"> {{district.ad_info.district}}</i> -->
+   <view class='content_1' >
+    <i catchtap='location'  class="icon iconfont icon-zuobiao"style="margin-left:20rpx;font-size:25rpx;"> {{district.ad_info.district}}</i>
+     <block wx:if="{{isLocation}}">
+         <load class="load-icon loading load_1"></load>     
+      </block>
+   </view>
     <view class='content'>送水之家</view>
   </bar>
 </custom>

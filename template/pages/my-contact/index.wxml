@@ -1,0 +1,37 @@
+
+ <card class="case " data-id="{{item.id}}" >
+   <item class="shadow">
+     <list class="menu menu-avatar">
+        <item class="">
+          <avatar class="round lg" style="background-image:url({{item.facadeImage}});"></avatar>
+          <view class='content'>
+            <view>{{item.name}}</view>
+            <view class='text-gray text-sm'>
+              {{item.addr}}</view>
+          </view>
+          <view class='action'>
+            <i class="icon iconfont icon-dianhua5" catchtap="callTel" data-tel="{{item.contactsTel}}" style="font-size:80rpx;color:#00e560"></i>
+          </view>
+        </item>
+      </list>
+              <view class='grid col-2 text-center nav solid-top' >
+           <view class='padding-sm text-gray' >{{item.scTotal}}人收藏了此店|{{item.jl}}</view>
+           <view class='padding-sm text-right text-gray' data-id="{{item.id}}" data-index="{{index}}" bindtap="collection">取消收藏<icon class='icon-deletefill lg' /></view>
+        </view>
+    </item>
+  </card>
+  
+<modal-box class="{{modalName=='Image'?'show':''}}">
+  <dialog>
+    <view class="bg-img" style="background-image: url('https://albedo-theme.com/wp-content/uploads/2016/08/pexels-photo-26180.jpg');height:200px;">
+      <bar class="justify-end none-bg text-white">
+        <view class='action' bindtap='hideModal'>
+          <icon class='icon-close '></icon>
+        </view>
+      </bar>
+    </view>
+    <bar>
+      <view class='action margin-0 flex-sub  solid-left' bindtap='hideModal'>我知道了</view>
+    </bar>
+  </dialog>
+</modal-box>
