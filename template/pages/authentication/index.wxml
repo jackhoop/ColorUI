@@ -1,5 +1,5 @@
-<image src='/images/BasicsBg.png' mode='widthFix' class='png' style='width:100%;height:486rpx'></image>
+<image src='/images/water.png' mode='widthFix' class='png' style='width:100%;height:686rpx'></image>
   <view class='padding-sm'>
    
-    <button class='block margin-tb-sm lg gradual-blue radius text-center shadow-blur'  open-type="getUserInfo" bindgetuserinfo="getUserInfo">用户登录</button>
+    <button class='block margin-tb-sm lg gradual-blue radius text-center shadow-blur padding-top'  open-type="getUserInfo" bindgetuserinfo="getUserInfo"> <icon class='icon-weixin' /> 微信登录</button>
   </view>

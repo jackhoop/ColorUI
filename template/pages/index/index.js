@@ -9,6 +9,7 @@ Page({
     TabCur: 0,
     loadType:'',
     district:'',
+    search: '',
     scrollLeft: 0,
     page: 0,
     isLoad: false,
@@ -99,11 +100,14 @@ Page({
       data: {
         sortStr: that.data.loadType,
         page: that.data.page, 
+        name: that.data.search,
         pageSize: that.data.pageSize,
         lat: that.data.district.location.lat,
         lon: that.data.district.location.lng,
+        cityCode: that.data.district.ad_info.adcode, 
       },
       success: function(res) {
+        console.log(res);
         if (res.statusCode == "200") {
           for (var index in res.data.content) {
             var jl='';
@@ -240,5 +244,21 @@ Page({
       that.getBusinessList()
     }
    
-  }
+  },
+  //搜索
+  search(e) {
+    let that = this;
+    that.setData({
+      content: [],
+      page: 0,
+      isLoad: false,
+      loadStatus: true,
+    })
+    that.getBusinessList()
+  },
+  inputSearch: function (e) {
+    this.setData({
+      search: e.detail.value
+    });
+  },
 });

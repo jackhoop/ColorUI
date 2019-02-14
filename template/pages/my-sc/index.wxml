@@ -7,7 +7,7 @@
 </custom>
 <view class="page">
 <block wx:for="{{content}}" wx:key>
-  <card class="case" data-id="{{item.id}}" >
+  <card class="case" data-id="{{item.id}}" bindtap="toDetailsTap" >
    <item class="shadow">
      <list class="menu menu-avatar">
         <item class="">
