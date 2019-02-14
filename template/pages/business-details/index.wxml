@@ -7,7 +7,7 @@
 </custom>
 <view style='margin-bottom:110rpx;'>
   <swiper class="screen-swiper square-dot" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500">
-    <swiper-item wx:for="{{tower}}" wx:for-index="index" wx:for-item="url">
+    <swiper-item wx:for="{{tower}}" wx:for-index="index" wx:key wx:for-item="url">
       <image src="{{url}}" mode='aspectFill' />
     </swiper-item>
   </swiper>
@@ -71,7 +71,7 @@
         <view class='text-content padding-xs'>
           {{business.content}}
         </view>
-         <block wx:for="{{jcImages}}" wx:for-index="index" wx:for-item="url">
+         <block wx:for="{{jcImages}}" wx:key wx:for-index="index" wx:for-item="url">
           <view class="grid col-1 flex-sub padding-xs">
             <view class="bg-img only-img" bindtap="previewImage" data-src="{{url}}" style="background-image:url({{url}});" wx:for="{{isCard?9:1}}" wx:key>
             </view>
@@ -83,7 +83,7 @@
   </view>
   <view class="weui-tab__content" hidden="{{TabCur != 0}}" style='background-color: #F8F8F8;padding-top:0px;'>
     <view class="goods-container">
-      <block wx:for="{{content}}">
+      <block wx:for="{{content}}" wx:key>
         <view class="goods-box radius shadow bg-white" data-id="{{item.id}}">
           <view class="img-box">
             <image src="{{item.image}}" bindtap="previewImage" data-sp="{{item.image}}" class="image" mode="aspectFill" lazy-load="true" />

@@ -107,7 +107,6 @@ Page({
         cityCode: that.data.district.ad_info.adcode, 
       },
       success: function(res) {
-        console.log(res);
         if (res.statusCode == "200") {
           for (var index in res.data.content) {
             var jl='';

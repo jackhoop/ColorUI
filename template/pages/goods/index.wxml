@@ -19,7 +19,7 @@
 </bar> 
 
  <view style=' margin-top:120rpx;'>
-<block wx:for="{{content}}">
+<block wx:for="{{content}}" wx:key>
 <card class="article " data-id="{{item.id}}" >
       <item class="shadow bg-white ">
         <view class="content">
