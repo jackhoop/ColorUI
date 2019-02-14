@@ -161,6 +161,7 @@ Page({
         });
 
         app.getPermissionLocation(function (res) {
+      
           var from = {
             latitude: res.latitude,
             longitude: res.longitude

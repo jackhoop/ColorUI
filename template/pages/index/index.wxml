@@ -14,8 +14,8 @@
   </view>
 </bar>
 <swiper class="screen-swiper square-dot" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500">
-  <swiper-item wx:for="{{4}}" wx:key>
-    <image src="https://image.weilanwl.com/img/4x3-{{index+1}}.jpg" mode='aspectFill' />
+  <swiper-item wx:for="{{tower}}" wx:key>
+    <image src="{{item.image}}" mode='aspectFill' data-id="{{item.businessId}}" catchtap="toDetailsTap"/>
   </swiper-item>
 </swiper>
 <scroll-view scroll-x class="bg-white nav">

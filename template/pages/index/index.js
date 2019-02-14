@@ -25,28 +25,7 @@ Page({
       name: '人气最高',
       type:'hot'
     }],
-    tower: [{
-      id: 0,
-      url: 'https://image.weilanwl.com/img/4x3-1.jpg'
-    }, {
-      id: 1,
-      url: 'https://image.weilanwl.com/img/4x3-2.jpg'
-    }, {
-      id: 2,
-      url: 'https://image.weilanwl.com/img/4x3-3.jpg'
-    }, {
-      id: 3,
-      url: 'https://image.weilanwl.com/img/4x3-4.jpg'
-    }, {
-      id: 4,
-      url: 'https://image.weilanwl.com/img/4x3-2.jpg'
-    }, {
-      id: 5,
-      url: 'https://image.weilanwl.com/img/4x3-4.jpg'
-    }, {
-      id: 6,
-      url: 'https://image.weilanwl.com/img/4x3-2.jpg'
-    }]
+    tower: []
   },
   onLoad() {
     qqmapsdk = new QQMapWX({
@@ -67,13 +46,12 @@ Page({
           that.setData({
             district: res.result
           })
-          that.getBusinessList()
+          that.getBusinessList();
+          that.getAdInfoList();
         }
       });
-
-    
     });
-   
+ 
   },
   /**
    * 页面上拉触底事件的处理函数
@@ -91,6 +69,22 @@ Page({
 
       that.getBusinessList()
     }
+  },
+  getAdInfoList:function(){
+    var that = this;
+    wx.request({
+      url: app.globalData.serverUrl + "/wx/business/" + app.globalData.appid + "/adInfo",
+      data: {
+        cityCode: that.data.district.ad_info.adcode,
+      },
+      success: function (res) {
+        if (res.statusCode == "200") {
+          that.setData({
+            tower: res.data
+          })
+        }
+      }
+    })
   },
   //获取商户列表
   getBusinessList: function () {
@@ -140,6 +134,9 @@ Page({
   },
   //商家详细
   toDetailsTap: function (e) {
+    if (!e.currentTarget.dataset.id){
+      return
+    }
     wx.navigateTo({
       url: "/pages/business-details/index?id=" + e.currentTarget.dataset.id
     })
@@ -175,6 +172,7 @@ Page({
   // 初始化towerSwiper
   towerSwiper(name) {
     let list = this.data[name];
+  
     for (let i = 0; i < list.length; i++) {
       list[i].zIndex = parseInt(list.length / 2) + 1 - Math.abs(i - parseInt(list.length / 2))
       list[i].mLeft = i - parseInt(list.length / 2)
