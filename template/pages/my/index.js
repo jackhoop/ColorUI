@@ -19,7 +19,6 @@ Page({
       // 获取用户信息
       wx.getSetting({
         success: res => {
-          console.log("appsetting", res);
           if (!res.authSetting['scope.userInfo']) {
             wx.redirectTo({
               url: '/pages/authentication/index'
@@ -32,7 +31,6 @@ Page({
                 that.setData({
                   userInfo: res.userInfo
                 })
-                console.log(res.userInfo)
               }
             })
           }

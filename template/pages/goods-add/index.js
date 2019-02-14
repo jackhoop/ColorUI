@@ -80,7 +80,6 @@ Page({
    * 表单验证->(可自定义验证形式)
    */
   showWarnInfo(error) {
-    console.log(error)
     // 当前page是this对象
     let page = this;
     // 延时时间等待

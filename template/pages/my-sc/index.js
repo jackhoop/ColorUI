@@ -36,7 +36,6 @@ Page({
             longitude: data.longitude
           },
           success: function (res) {
-            console.log(res);
             that.setData({
               district: res.result
             })
@@ -114,7 +113,6 @@ Page({
         lon: that.data.district.location.lng,
       },
       success: function (res) {
-        console.log(res)
         if (res.statusCode == "200") {
           for (var index in res.data.content) {
             var jl = '';
@@ -147,14 +145,12 @@ Page({
   },
   //打电话
   callTel: function (e) {
-    console.log(e.target.dataset.tel)
     wx.showModal({
       title: '温馨提示',
       content: '您将要拨打电话:' + e.target.dataset.tel,
       confirmText: "确定",
       cancelText: "取消",
       success: function (res) {
-        console.log(res);
         if (res.confirm) {
           wx.makePhoneCall({
             phoneNumber: e.target.dataset.tel //仅为示例，并非真实的电话号码
@@ -165,7 +161,6 @@ Page({
   },
   //取消动作
   collection: function (e){
-    console.log(e.target.dataset.id);
     var that = this;
     wx.showModal({
       title: '温馨提示',
@@ -173,7 +168,6 @@ Page({
       confirmText: "确定",
       cancelText: "取消",
       success: function (res) {
-        console.log(res);
         if (res.confirm) {
           that.del(e.target.dataset.id)
         }

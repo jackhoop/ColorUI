@@ -50,7 +50,6 @@ Page({
         that.setData({
           business: res.data.business
         });
-        console.log(that.data.business);
       }
     })
   },

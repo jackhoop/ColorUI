@@ -56,7 +56,6 @@ Page({
     // 初始化towerSwiper 传已有的数组名即可
     var that = this;
     app.getPermissionLocation(function(data){
-      console.log(data)
       // 调用接口
       qqmapsdk.reverseGeocoder({
         location: {
@@ -64,7 +63,6 @@ Page({
           longitude: data.longitude
         },
         success: function (res) {
-          console.log(res);
           that.setData({
             district: res.result
           })
@@ -96,7 +94,6 @@ Page({
   //获取商户列表
   getBusinessList: function () {
     var that = this;
-    console.log(that.data.district)
     wx.request({
       url: app.globalData.serverUrl + "/wx/business/" + app.globalData.appid + "/list",
       data: {
@@ -124,9 +121,7 @@ Page({
             res.data.content[index].jl = jl
             res.data.content[index].addr = addr
           }
-         
-         
-          console.log(res.data.content)
+
           that.setData({
             isLoad: res.data.last,
             content: that.data.content.concat(res.data.content)
@@ -142,21 +137,18 @@ Page({
   },
   //商家详细
   toDetailsTap: function (e) {
-    console.log(e)
     wx.navigateTo({
       url: "/pages/business-details/index?id=" + e.currentTarget.dataset.id
     })
   },
   //打电话
   callTel: function (e) {
-    console.log(e.target.dataset.tel)
     wx.showModal({
       title: '温馨提示',
       content: '您将要拨打电话:' + e.target.dataset.tel,
       confirmText: "确定",
       cancelText: "取消",
       success: function (res) {
-        console.log(res);
         if (res.confirm) {
           wx.makePhoneCall({
             phoneNumber: e.target.dataset.tel //仅为示例，并非真实的电话号码
@@ -236,7 +228,6 @@ Page({
   tabSelect(e) {
     var that = this;
     if (e.currentTarget.dataset.id != that.data.TabCur){
-      console.log(e.currentTarget.dataset.type)
       that.setData({
         page: 0,
         isLoad: false,

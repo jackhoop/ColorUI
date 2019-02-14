@@ -84,7 +84,6 @@ Page({
    * 表单验证->(可自定义验证形式)
    */
   showWarnInfo(error) {
-    console.log(error)
     // 当前page是this对象
     let page = this;
     // 延时时间等待
@@ -108,7 +107,6 @@ Page({
     var that = this;
     goods.adImages = JSON.stringify(that.data.files);
     goods.jcImages = JSON.stringify(that.data.jcfiles);
-    console.log(goods)
     var token = wx.getStorageSync('token')
     wx.request({
       url: app.globalData.serverUrl + "/wx/business/" + app.globalData.appid + "/register",
@@ -136,7 +134,6 @@ Page({
                 success: function (e) {
                   
                   let page = getCurrentPages()[0];
-                  console.log(getCurrentPages());
                   if (page == undefined || page == null) return;
                   page.onLoad(e);
                 }
@@ -255,7 +252,6 @@ Page({
             longitude: res.longitude
           },
           success: function (res) {
-            console.log(res.result.formatted_addresses)
             that.setData({
               ["business.city"]: res.result.ad_info.province + "-" + res.result.ad_info.city + "-" + res.result.ad_info.district,
               ["business.ad_info"]: res.result.ad_info,
@@ -264,10 +260,8 @@ Page({
             });
           },
           fail: function (res) {
-            console.log(res);
           },
           complete: function (res) {
-            console.log(res);
           }
         });
       },
@@ -328,7 +322,6 @@ Page({
         name: 'img',
         formData: formData,
         success: function (res) {
-          console.log(res);
           var data = JSON.parse(res.data);
           callBack(data);
           wx.hideLoading();
@@ -393,7 +386,6 @@ Page({
     })
   },
     deleteImg: function (e){
-    console.log(e.currentTarget.dataset);
     var index = e.currentTarget.dataset.index;
    
     if (e.currentTarget.dataset.imgtype =="adImages"){

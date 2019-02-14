@@ -38,7 +38,6 @@ Page({
   login: function () {
     let that = this;
     let token = wx.getStorageSync('token');
-    console.log(token)
     if (token) {
       wx.request({
         url: app.globalData.serverUrl + "/wx/user/" + app.globalData.appid + "/check-token",
@@ -88,13 +87,9 @@ Page({
     let that = this;
     wx.login({
       success: function (res) {
-        console.log("login:");
-        console.log(res);
         let code = res.code; // 微信登录接口返回的 code 参数，下面注册接口需要用到
         wx.getUserInfo({
           success: function (res) {
-            console.log("UserInfo:");
-            console.log(res);
             let iv = res.iv;
             let encryptedData = res.encryptedData;
             let signature = res.signature;

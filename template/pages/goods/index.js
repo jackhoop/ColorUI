@@ -62,7 +62,6 @@ Page({
       },
       success: function (res) {
         if (res.statusCode == "200") {
-          console.log(res.data.content)
           that.setData({
             isLoad: res.data.last,
             content: that.data.content.concat(res.data.content)
@@ -77,7 +76,7 @@ Page({
     })
   },
   goodsStatus(e){
-    console.log('switch1 发生 change 事件，携带值为', e.detail.value)
+
 
   },
   search(e){
@@ -146,7 +145,6 @@ Page({
     })
   },
   edit(e){
-    console.log(e.currentTarget.dataset.id)
     wx.navigateTo({
       url: "/pages/goods-add/index?id=" + e.currentTarget.dataset.id
     })

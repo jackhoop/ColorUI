@@ -42,7 +42,6 @@ Page({
     var that = this;
     if (res.from === 'button') {
       // 来自页面内转发按钮
-      console.log(res.target)
     }
 
     return {
@@ -66,7 +65,6 @@ Page({
       },
       success: function (res) {
         if (res.statusCode == "200") {
-          console.log(res.data.content)
           that.setData({
             isLoad: res.data.last,
             content: that.data.content.concat(res.data.content)
@@ -124,9 +122,7 @@ Page({
 
     var that = this;
     var time = wx.getStorageSync(id);
-    console.log("time:" + time);
 
-    console.log("timestamp:" + new Date().getTime());
     wx.setStorageSync(id, new Date().getTime());
 
 
@@ -165,7 +161,6 @@ Page({
         });
 
         app.getPermissionLocation(function (res) {
-          console.log(res);
           var from = {
             latitude: res.latitude,
             longitude: res.longitude
@@ -174,11 +169,9 @@ Page({
             latitude: that.data.business.lat,
             longitude: that.data.business.lon
           }]
-          console.log(to)
 
           that.calculateDistance(from, to);
         });
-        console.log(that.data.tower);
       }
     })
   },
@@ -251,7 +244,6 @@ Page({
     }
   },
   tabSelect(e) {
-    console.log(e);
     this.setData({
       TabCur: e.currentTarget.dataset.id,
       scrollLeft: (e.currentTarget.dataset.id - 1) * 60
@@ -284,7 +276,6 @@ Page({
               from: fromd, //若起点有数据则采用起点坐标，若为空默认当前地址
               to: tod, //终点坐标
               success: function (res) {//成功后的回调
-                  console.log(res);
                   var res = res.result;
                   var distance = res.elements[0].distance;
                   var jl = '';
@@ -303,7 +294,7 @@ Page({
                   console.error(error);
               },
               complete: function (res) {
-                  console.log(res);
+               
               }
         });
   },
