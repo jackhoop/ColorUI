@@ -51,7 +51,7 @@ Page({
     var that = this;
     var token = wx.getStorageSync('token')
     wx.request({
-      url: app.globalData.serverUrl + "/wx/goods/" + app.globalData.appid + "/list",
+      url: app.globalData.serverUrl + "/wx/goods/" + app.globalData.appid + "/mylist",
       header: {
         'Authorization': token
       },

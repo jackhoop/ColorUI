@@ -9,7 +9,8 @@ Page({
     that.handler()
   },
   handler: function (data){
-    if (data.detail.authSetting["scope.userLocation"] === true){
+    console.log(data)
+    if (data&&data.detail.authSetting["scope.userLocation"] === true){
       wx.switchTab({
         url: '/pages/index/index'　　// 首页
       })

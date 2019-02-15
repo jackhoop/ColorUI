@@ -1,13 +1,13 @@
 {
   "pages": [
-    "pages/authentication/index",
     "pages/index/index",
+    "pages/authentication/index",
+    "pages/authlocation/index",
     "pages/my/index",
     "pages/business/index",
     "pages/business-details/index",
     "pages/settledin/index",
     "pages/goods-add/index",
-    "pages/authlocation/index",
     "pages/goods/index",
     "pages/my-sc/index",
     "pages/my-contact/index"

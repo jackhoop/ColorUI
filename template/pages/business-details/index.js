@@ -35,7 +35,7 @@ Page({
     var that = this;
     that.getBusinessInfo(e.id)
 
-    that.getGoodsList()
+    that.getGoodsList(e.id)
    
   },
   onShareAppMessage(res) {
@@ -49,17 +49,15 @@ Page({
       path: '/pages/business-details/index?id=' + that.data.business.id
     }
   },
-  getGoodsList: function () {
+  getGoodsList: function (id) {
     var that = this;
     var token = wx.getStorageSync('token')
     wx.request({
       url: app.globalData.serverUrl + "/wx/goods/" + app.globalData.appid + "/list",
-      header: {
-        'Authorization': token
-      },
       data: {
         name: that.data.search,
         page: that.data.page,
+        businessId:id,
         goodsStatus:"上架",
         pageSize: that.data.pageSize
       },

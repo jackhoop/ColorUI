@@ -87,6 +87,52 @@ Page({
       }
     })
   },
+  onPullDownRefresh: function () {
+    var that = this;
+    wx.request({
+      url: app.globalData.serverUrl + "/wx/business/" + app.globalData.appid + "/list",
+      data: {
+        sortStr: that.data.loadType,
+        page: that.data.page,
+        name: that.data.search,
+        pageSize: that.data.pageSize,
+        lat: that.data.district.location.lat,
+        lon: that.data.district.location.lng,
+        cityCode: that.data.district.ad_info.adcode,
+      },
+      success: function (res) {
+        if (res.statusCode == "200") {
+          for (var index in res.data.content) {
+            var jl = '';
+            var distance = res.data.content[index].distance
+            if (distance < 1000)
+              jl = distance + "米"
+
+            else if (distance > 1000)
+              jl = (Math.round(distance / 100) / 10).toFixed(1) + "公里"
+            var addr = '';
+            var city = res.data.content[index].city
+            var address = res.data.content[index].address
+            addr = city.split('-')[1] + city.split('-')[2] + address;
+            addr = addr.replace("NaN", "")
+            res.data.content[index].jl = jl
+            res.data.content[index].addr = addr
+          }
+
+          that.setData({
+            isLoad: res.data.last,
+            content: that.data.content.concat(res.data.content)
+          })
+        }
+      },
+      complete: function () {
+        // 隐藏导航栏加载框
+        wx.hideNavigationBarLoading();
+        // 停止下拉动作
+        wx.stopPullDownRefresh();
+      }
+    })
+  },
   //获取商户列表
   getBusinessList: function () {
     var that = this;
