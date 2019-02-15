@@ -130,7 +130,7 @@ App({
   },
   globalData: {
     userInfo: null,
-    serverUrl: "http://192.168.0.172:8080",
+    serverUrl: "https://weixin.bftudou.com",
     appid: "wx36b803b7c835dc44",
   },
   //获取用户地理位置权限

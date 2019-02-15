@@ -81,7 +81,7 @@ Page({
     if (!that.data.business) {
       that.setData({
         modalTitle: "提示",
-        modalMsg: "你还没有店铺！，请先入驻",
+        modalMsg: "你还没有店铺，请先入驻",
         modalName: e.currentTarget.dataset.target
       })
       return;
@@ -96,7 +96,7 @@ Page({
     if (!that.data.business) {
       that.setData({
         modalTitle: "提示",
-        modalMsg: "你还没有店铺！，请先入驻",
+        modalMsg: "你还没有店铺，请先入驻",
         modalName: e.currentTarget.dataset.target
       })
       return;
