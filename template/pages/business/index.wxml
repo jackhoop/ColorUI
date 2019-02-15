@@ -112,7 +112,7 @@
     <bar class="justify-end">
       <view class='content'>{{modalTitle}}</view>
       <view class='action' bindtap='hideModal'>
-        <icon class='icon-close text-red'></icon>
+        <icon class='icon-chuyidong text-red'></icon>
       </view>
     </bar>
     <view class='padding-xl'>
