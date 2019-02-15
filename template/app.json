@@ -1,8 +1,8 @@
 {
   "pages": [
+    "pages/authentication/index",
     "pages/index/index",
     "pages/my/index",
-    "pages/authentication/index",
     "pages/business/index",
     "pages/business-details/index",
     "pages/settledin/index",

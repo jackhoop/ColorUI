@@ -1,4 +1,7 @@
-<image src='/images/water.png' mode='widthFix' class='png' style='width:100%;height:686rpx'></image>
+ <view style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
+
+  </view>
+<image src='/images/water.png' mode='widthFix' class='png map' style='width:100%;height:686rpx;'></image>
   <view class='padding-sm'>
    
     <button class='block margin-tb-sm lg gradual-blue radius text-center shadow-blur padding-top'  open-type="getUserInfo" bindgetuserinfo="getUserInfo"> <icon class='icon-weixin' /> 微信登录</button>
