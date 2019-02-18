@@ -15,7 +15,7 @@
         <input name="city" hidden class="省市区" value='{{business.city}}'/>
         <input name="licenseImage" hidden class="营业执照图片" value='{{business.licenseImage}}'/> 
         <input name="facadeImage" hidden class="门面图片" value='{{business.facadeImage}}'/>
-        <input name="lon" hidden class="经度" value='{{business.lon}}'/>
+        <input name="lng" hidden class="经度" value='{{business.lng}}'/>
         <input name="lat" hidden class="纬度" value='{{business.lat}}'/>
         <input name="content" hidden class="介绍" value='{{business.content}}'/>
   <form-group class="margin-top-form">

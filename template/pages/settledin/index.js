@@ -243,7 +243,7 @@ Page({
         
         that.setData({
           ["business.lat"]: res.latitude,
-          ["business.lon"]: res.longitude
+          ["business.lng"]: res.longitude
         });
         // 调用接口
         qqmapsdk.reverseGeocoder({

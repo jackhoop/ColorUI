@@ -110,7 +110,7 @@ Page({
         page: that.data.page,
         pageSize: that.data.pageSize,
         lat: that.data.district.location.lat,
-        lon: that.data.district.location.lng,
+        lng: that.data.district.location.lng,
       },
       success: function (res) {
         if (res.statusCode == "200") {
