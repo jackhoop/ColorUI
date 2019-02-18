@@ -158,19 +158,24 @@ Page({
           collection: res.data.collection
         });
 
-        app.getPermissionLocation(function (res) {
+        // app.getPermissionLocation(function (res) {
       
-          var from = {
-            latitude: res.latitude,
-            longitude: res.longitude
-          }
-          var to = [{
-            latitude: that.data.business.lat,
-            longitude: that.data.business.lon
-          }]
+        //   var from = {
+        //     latitude: res.latitude,
+        //     longitude: res.longitude
+        //   }
+        //   var to = [{
+        //     latitude: that.data.business.lat,
+        //     longitude: that.data.business.lng
+        //   }]
 
-          that.calculateDistance(from, to);
-        });
+        //   that.calculateDistance(from, to);
+        // });
+        var to = [{
+            latitude: that.data.business.lat,
+            longitude: that.data.business.lng
+          }]
+        that.calculateDistance(null, to);
       }
     })
   },
@@ -253,7 +258,7 @@ Page({
     var that = this;
     wx.openLocation({
       latitude: that.data.business.lat,
-      longitude: that.data.business.lon,
+      longitude: that.data.business.lng,
       scale: 18,
       //name: '华乾大厦',
      // address: '金平区长平路93号'
@@ -272,9 +277,10 @@ Page({
               //mode: 'driving',//可选值：'driving'（驾车）、'walking'（步行），不填默认：'walking',可不填
               //from参数不填默认当前地址
               //获取表单提交的经纬度并设置from和to参数（示例为string格式）
-              from: fromd, //若起点有数据则采用起点坐标，若为空默认当前地址
+            //  from: fromd, //若起点有数据则采用起点坐标，若为空默认当前地址
               to: tod, //终点坐标
               success: function (res) {//成功后的回调
+                  console.log(res)
                   var res = res.result;
                   var distance = res.elements[0].distance;
                   var jl = '';
