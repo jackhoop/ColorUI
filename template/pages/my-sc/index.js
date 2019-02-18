@@ -114,26 +114,16 @@ Page({
       },
       success: function (res) {
         if (res.statusCode == "200") {
+          console.log(res)
+          var to = []
           for (var index in res.data.content) {
-            var jl = '';
-            var distance = res.data.content[index].distance
-            if (distance < 1000)
-              jl = distance + "米"
-
-            else if (distance > 1000)
-              jl = (Math.round(distance / 100) / 10).toFixed(1) + "公里"
-            var addr = '';
-            var city = res.data.content[index].city
-            var address = res.data.content[index].address
-            addr = city.split('-')[1] + city.split('-')[2] + address;
-            addr = addr.replace("NaN", "")
-            res.data.content[index].jl = jl
-            res.data.content[index].addr = addr
+            var item = {
+              latitude: res.data.content[index].lat,
+              longitude: res.data.content[index].lng
+            }
+            to.push(item);
           }
-          that.setData({
-            isLoad: res.data.last,
-            content: that.data.content.concat(res.data.content)
-          })
+          that.calculateDistance(res, to)
         }
       },
       complete: function () {
@@ -209,6 +199,55 @@ Page({
     wx.navigateTo({
       url: "/pages/business-details/index?id=" + e.currentTarget.dataset.id
     })
+  },
+  //距离计算
+  calculateDistance: function (res1, tod) {
+    var that = this;
+    if (tod.length == 0) {
+      that.setData({
+        isLoad: res1.data.last,
+        content: that.data.content.concat(res1.data.content)
+      })
+      return;
+    }
+    qqmapsdk.calculateDistance({
+      //mode: 'driving',//可选值：'driving'（驾车）、'walking'（步行），不填默认：'walking',可不填
+      //from参数不填默认当前地址
+      //获取表单提交的经纬度并设置from和to参数（示例为string格式）
+      //  from: fromd, //若起点有数据则采用起点坐标，若为空默认当前地址
+      to: tod, //终点坐标
+      success: function (res) {//成功后的回调
+        console.log(res)
+        var elements = res.result.elements;
+        for (var index in res1.data.content) {
+          console.log(elements[index])
+          var jl = '';
+          var distance = elements[index].distance
+          if (distance < 1000)
+            jl = distance + "米"
+
+          else if (distance > 1000)
+            jl = (Math.round(distance / 100) / 10).toFixed(1) + "公里"
+          var addr = '';
+          var city = res1.data.content[index].city
+          var address = res1.data.content[index].address
+          addr = city.split('-')[1] + city.split('-')[2] + address;
+          addr = addr.replace("NaN", "")
+          res1.data.content[index].jl = jl
+          res1.data.content[index].addr = addr
+        }
+        that.setData({
+          isLoad: res1.data.last,
+          content: that.data.content.concat(res1.data.content)
+        })
+      },
+      fail: function (error) {
+        console.error(error);
+      },
+      complete: function (res) {
+
+      }
+    });
   },
 
 })

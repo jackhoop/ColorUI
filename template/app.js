@@ -130,6 +130,7 @@ App({
   },
   globalData: {
     userInfo: null,
+   // serverUrl: "https://weixin.bftudou.com",
     serverUrl: "http://192.168.0.172:8080",
     appid: "wx36b803b7c835dc44",
   },

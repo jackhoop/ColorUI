@@ -331,6 +331,13 @@ Page({
   //距离计算
   calculateDistance: function (res1,tod) {
     var that = this;
+    if (tod.length==0){
+      that.setData({
+        isLoad: res1.data.last,
+        content: that.data.content.concat(res1.data.content)
+      })
+      return;
+    }
     qqmapsdk.calculateDistance({
       //mode: 'driving',//可选值：'driving'（驾车）、'walking'（步行），不填默认：'walking',可不填
       //from参数不填默认当前地址
