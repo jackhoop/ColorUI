@@ -105,6 +105,7 @@
        <button hidden='' open-type="share">分享</button> 
         <icon class='icon-forward lg text-gray' open-type="share"/> 分享
       </view> -->
+
       <button class="share text-gray" open-type="share" plain='true'>  
         <view class="action">
           <icon class='icon-forward lg text-gray' open-type="share"/> 分享
@@ -113,7 +114,8 @@
       <view class="action" bindtap="toAddress">
         <icon class='icon-daohang' /> 导航
       </view>
-      <block wx:if="{{collection}}">
+       <block wx:if="{{token}}">
+         <block wx:if="{{collection}}">
         <view class="action text-orange" data-type="cancel" bindtap="collection">
           <icon class='icon-shoucang1' /> 已收藏
         </view>
@@ -123,6 +125,8 @@
           <icon class='icon-shoucang3' /> 收藏
         </view>
       </block>
+      </block>
+     
       <view class='bg-red submit' data-tel='{{business.contactsTel}}' bindtap="callTel">电话联系</view>
     
     </bar>

@@ -14,6 +14,7 @@ Page({
     pageSize: 5,
     content: [],
     scrollLeft: 0,
+    token: wx.getStorageSync('token'),
     tabs: [{
       id: 0,
       name: '商品信息'
@@ -27,15 +28,18 @@ Page({
     this.towerSwiper('tower');
     // 初始化towerSwiper 传已有的数组名即可
 
+
     // 实例化API核心类
     qqmapsdk = new QQMapWX({
       key: '6CXBZ-QNVRU-ITIVQ-4ALSI-WV7QQ-KHFNQ' // 必填
     });
 
     var that = this;
-    that.getBusinessInfo(e.id)
+    var id = e.id;
+   // id ="2c9f6afe68ffc4e10168ffcfd89f0002";
+    that.getBusinessInfo(id)
 
-    that.getGoodsList(e.id)
+    that.getGoodsList(id)
    
   },
   onShareAppMessage(res) {
@@ -120,13 +124,9 @@ Page({
 
     var that = this;
     var time = wx.getStorageSync(id);
-
     wx.setStorageSync(id, new Date().getTime());
 
-
-    var token = wx.getStorageSync('token')
-   
-  
+    var token = wx.getStorageSync('token')  
     wx.request({
       url: app.globalData.serverUrl + "/wx/business/" + app.globalData.appid + "/getBusinessById",
       method: 'get',
@@ -157,7 +157,7 @@ Page({
           business: res.data.business,
           collection: res.data.collection
         });
-
+        app.openPermissionLocation();
         // app.getPermissionLocation(function (res) {
       
         //   var from = {

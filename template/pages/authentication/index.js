@@ -4,9 +4,10 @@ Page({
     StatusBar: app.globalData.StatusBar,
     CustomBar: app.globalData.CustomBar,
   },
-  onLoad() {
+  onLoad(e) {
     let that = this;
     that.getUserInfo()
+    
   },
   getUserInfo:function(){
     wx.getSetting({

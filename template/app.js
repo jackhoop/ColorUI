@@ -28,7 +28,6 @@ App({
             success: res => {
               // 可以将 res 发送给后台解码出 unionId
               this.globalData.userInfo = res.userInfo
-
               // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
               // 所以此处加入 callback 以防止这种情况
               if (this.userInfoReadyCallback) {
@@ -130,8 +129,8 @@ App({
   },
   globalData: {
     userInfo: null,
-   // serverUrl: "https://weixin.bftudou.com",
-    serverUrl: "http://192.168.0.172:8080",
+    //serverUrl: "https://weixin.bftudou.com",
+    serverUrl: "http://192.168.0.103:8080",
     appid: "wx36b803b7c835dc44",
   },
   //获取用户地理位置权限
@@ -193,6 +192,69 @@ App({
       }
     })
   },
+  openPermissionLocation: function () {
+
+    // 获取用户信息
+    wx.getSetting({
+      success: res => {
+        if (!res.authSetting['scope.userInfo']) {
+          wx.navigateTo({
+            url: '/pages/authentication/index'
+          })
+        }
+      }
+    })
+  },
+  //打开地址授权
+  openPermissionLocation:function(){
+    var url = this.getCurrentPageUrlWithArgs();
+    console.log(url);
+    wx.getLocation({
+      type: 'gcj02',//默认为 wgs84 返回 gps 坐标，gcj02 返回可用于wx.openLocation的坐标
+      fail: function () {
+        wx.getSetting({
+          success: function (res) {
+            var statu = res.authSetting;
+            if (!statu['scope.userLocation']) {
+              wx.redirectTo({
+                url: '/pages/authlocation/index?page=' + encodeURIComponent(url)// 地址授权
+              })
+            }
+          },
+          fail: function (res) {
+            wx.redirectTo({
+              url: '/pages/authlocation/index?page=' + encodeURIComponent(url)// 地址授权
+            })
+          }
+        })
+      }
+    })
+  },
+  /*获取当前页url*/
+   getCurrentPageUrl:function(){
+    var pages = getCurrentPages()    //获取加载的页面
+    var currentPage = pages[pages.length - 1]    //获取当前页面的对象
+    var url = currentPage.route    //当前页面url
+    return url
+  },
+  /*获取当前页带参数的url*/
+  getCurrentPageUrlWithArgs:function(){
+    var pages = getCurrentPages()    //获取加载的页面
+    var currentPage = pages[pages.length - 1]    //获取当前页面的对象
+    var url = currentPage.route    //当前页面url
+    var options = currentPage.options    //如果要获取url中所带的参数可以查看options
+
+    //拼接url的参数
+    var urlWithArgs = url + '?'
+    for(var key in options){
+  var value = options[key]
+  urlWithArgs += key + '=' + value + '&'
+}
+  urlWithArgs = urlWithArgs.substring(0, urlWithArgs.length - 1)
+
+   return urlWithArgs
+},
+
   //获取用户地理位置权限
   getPermissionLocation: function (back) {
     wx.getLocation({

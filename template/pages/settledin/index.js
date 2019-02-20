@@ -15,6 +15,8 @@ Page({
   },
   onLoad: function (e) {
     var that = this;
+
+
     // 校验规则 -rules
     this.initValidate();
 
