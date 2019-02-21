@@ -42,7 +42,6 @@
     <view class='title'>详细地址</view>
     <input name ="address" placeholder="详细地址" class='radius' value='{{business.address}}'></input>
   </form-group>
-
   <form-group class="margin-top">
     <view class='title'>门面头照</view>
     <view class="grid col-4 grid-square flex-sub">

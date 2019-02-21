@@ -127,3 +127,18 @@
     </bar>
   </dialog>
 </modal-box>
+
+<modal-box class="{{modalName=='Image'?'show':''}}">
+  <dialog>
+    <view class="bg-img" style="background-image: url('{{business.logoQrCode}}');height:730rpx;">
+      <bar class="justify-end none-bg text-white">
+        <view class='action' bindtap='hideModal'>
+          <icon class='icon-close '></icon>
+        </view>
+      </bar>
+    </view>
+    <bar>
+      <view class='action margin-0 flex-sub  solid-left' bindtap='hideModal'>我知道了</view>
+    </bar>
+  </dialog>
+</modal-box>

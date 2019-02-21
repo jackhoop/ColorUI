@@ -57,6 +57,7 @@ Page({
         wx.hideLoading()
       },
       success: function(res) {
+        console.log(res)
         that.setData({
           business: res.data.business
         });
@@ -145,6 +146,14 @@ Page({
       })
       return;
     }
+
+    // this.setData({
+    //   modalName:"Image"
+    // })
+    wx.previewImage({
+      current: that.data.business.logoQrCode, // 当前显示图片的http链接  
+      urls: [that.data.business.logoQrCode] // 需要预览的图片http链接列表  
+    })
   },
   hideModal(e) {
     this.setData({

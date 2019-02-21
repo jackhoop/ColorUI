@@ -1,4 +1,9 @@
 //app.js
+import GlobalConfig from './config/index'
+
+const globalConfig = new GlobalConfig()
+
+globalConfig.init()
 App({
   onLaunch: function() {
     // 展示本地存储能力
@@ -41,6 +46,8 @@ App({
     // 获取系统状态栏信息
     wx.getSystemInfo({
       success: e => {
+        console.log(e.windowWidth-10)
+        this.globalData.windowWidth = e.windowWidth - 10;
         this.globalData.StatusBar = e.statusBarHeight;
         this.globalData.CustomBar = e.platform == 'android' ? e.statusBarHeight + 50 : e.statusBarHeight + 45;
       }
@@ -132,6 +139,7 @@ App({
     //serverUrl: "https://weixin.bftudou.com",
     serverUrl: "http://192.168.0.103:8080",
     appid: "wx36b803b7c835dc44",
+    config: globalConfig
   },
   //获取用户地理位置权限
   getPermission: function (obj) {

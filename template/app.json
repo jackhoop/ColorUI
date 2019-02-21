@@ -1,16 +1,18 @@
 {
   "pages": [
+      "pages/index/index",
+    "pages/settledin/index",
+    "pages/business/index",
+    "pages/my/index",
     "pages/business-details/index",
-    "pages/index/index",
     "pages/authentication/index",
     "pages/authlocation/index",
-    "pages/my/index",
-    "pages/business/index",
-    "pages/settledin/index",
     "pages/goods-add/index",
     "pages/goods/index",
     "pages/my-sc/index",
-    "pages/my-contact/index"
+    "pages/my-contact/index",
+    "pages/avatarUpload/index"
+  
   ],
   "window": {
     "backgroundTextStyle": "light",
