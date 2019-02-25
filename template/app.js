@@ -1,9 +1,10 @@
-//app.js
 import GlobalConfig from './config/index'
 
 const globalConfig = new GlobalConfig()
 
 globalConfig.init()
+
+//app.js
 App({
   onLaunch: function() {
     // 展示本地存储能力
@@ -33,6 +34,7 @@ App({
             success: res => {
               // 可以将 res 发送给后台解码出 unionId
               this.globalData.userInfo = res.userInfo
+
               // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
               // 所以此处加入 callback 以防止这种情况
               if (this.userInfoReadyCallback) {
@@ -137,7 +139,7 @@ App({
   globalData: {
     userInfo: null,
     //serverUrl: "https://weixin.bftudou.com",
-    serverUrl: "http://192.168.0.103:8080",
+    serverUrl: "http://192.168.31.91:8080",
     appid: "wx36b803b7c835dc44",
     config: globalConfig
   },

@@ -5,7 +5,7 @@ const config = app.globalData.config
 
 const device = wx.getSystemInfoSync()
 const width = device.windowWidth
-const height = device.windowHeight -50
+const height = device.windowHeight +10
 
 Page({
   data: {
