@@ -48,6 +48,13 @@
         </view>
       </button>
     </item>
+    <block wx:if="{{userInfo.avatarUrl}}=='https://wx.qlogo.cn/mmopen/vi_32/SRRFZYxuJdLibibXTw8QxF0tl4C8rsFaWwNIOq4pC4ic76n5hBia1r9GhjPlKWwdLEOicqhVKdVGhNsk0DHCwvmvjog/132'">
+   <item class="arrow">
+      <view class='content' bindtap="mysh">
+         <text class='text-grey'>商户审核</text>
+      </view>
+    </item>
+    </block>
   </list>
 </view>
 <modal-box class="{{modalName=='Image'?'show':''}}">

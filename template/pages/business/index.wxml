@@ -11,11 +11,11 @@
                     {{business.contactsTel}}</view>
                 </view>
                 <view class='action'>
-                <block wx:if="{{business.useStatus=='审核中'}}">
-                    <tag class='bg-orange'>{{business.useStatus}}</tag>
-                  </block>
+                <block wx:if="{{business.useStatus !='正常'}}">
+                   <tag class='bg-orange'>{{business.useStatus}}</tag>
+                 </block>
                 <block wx:else>
-                  <icon bindtap="qrAdmin" data-target="DialogModal1" class='icon-ico lg lg text-gray_1' style='font-size:80rpx;'/>
+                 <icon bindtap="qrAdmin" data-target="DialogModal1" class='icon-ico lg lg text-gray_1' style='font-size:80rpx;'/>
                 </block> 
                 </view>
               </item>

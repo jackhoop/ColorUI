@@ -65,7 +65,8 @@ Page({
   submitCheckInfo(e) {
     var that = this;
     const params = e.detail.value
-    
+    params.formId = e.detail.formId
+
     // 传入表单数据，调用验证方法
     if (!that.WxValidate.checkForm(params)) {
       const error = this.WxValidate.errorList[0]
@@ -110,6 +111,7 @@ Page({
     goods.adImages = JSON.stringify(that.data.files);
     goods.jcImages = JSON.stringify(that.data.jcfiles);
     var token = wx.getStorageSync('token')
+  
     wx.request({
       url: app.globalData.serverUrl + "/wx/business/" + app.globalData.appid + "/register",
       method: 'POST',

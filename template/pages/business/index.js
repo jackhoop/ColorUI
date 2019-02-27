@@ -73,14 +73,23 @@ Page({
   //店铺管理
   businessAdmin:function(e){
     var that = this;
-    if (that.data.business.useStatus == "审核中"){
+    if (that.data.business.useStatus == "审核中" ){
       that.setData({
         modalTitle: "提示",
         modalMsg: "店铺审核中不能编辑！",
         modalName: e.currentTarget.dataset.target
       })
-      return ;
+      return;
     }
+    if (that.data.business.useStatus == "注销") {
+      that.setData({
+        modalTitle: "提示",
+        modalMsg: "店铺已注销不能编辑！",
+        modalName: e.currentTarget.dataset.target
+      })
+      return;
+    }
+    
     wx.navigateTo({
       url: "/pages/settledin/index?id=" + e.currentTarget.dataset.id
     })
@@ -121,6 +130,15 @@ Page({
       })
       return;
     }
+    if (that.data.business.useStatus == "未通过") {
+      that.setData({
+        modalTitle: "提示",
+        modalMsg: "店铺审核未通过不能编辑！",
+        modalName: e.currentTarget.dataset.target
+      })
+      return;
+    }
+
 
     wx.navigateTo({
       url: "/pages/goods/index"
@@ -142,6 +160,14 @@ Page({
       that.setData({
         modalTitle: "提示",
         modalMsg: "店铺审核中，不能查看二维码！",
+        modalName: e.currentTarget.dataset.target
+      })
+      return;
+    }
+    if (that.data.business.useStatus == "未通过") {
+      that.setData({
+        modalTitle: "提示",
+        modalMsg: "店铺审核未通过，不能查看二维码！",
         modalName: e.currentTarget.dataset.target
       })
       return;

@@ -5,7 +5,7 @@
     </navigator>
   </bar>
 </custom>
-<form  bindsubmit='submitCheckInfo'>
+<form  bindsubmit='submitCheckInfo' report-submit='true'>
     <!-- 提示警告! -->
     <view class='wran-tips' style='top:{{CustomBar}}px;{{displayWarn}};'>
       <text>{{warnInfo}}</text>

@@ -28,6 +28,7 @@ Page({
             // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
             wx.getUserInfo({
               success: res => {
+                console.log(res.userInfo);
                 that.setData({
                   userInfo: res.userInfo
                 })
@@ -92,6 +93,11 @@ Page({
   mysc:function(){
     wx.navigateTo({
       url: "/pages/my-sc/index"
+    })
+  },
+  mysh:function() {
+    wx.navigateTo({
+      url: "/pages/my-sh/index"
     })
   },
   //联系我们
