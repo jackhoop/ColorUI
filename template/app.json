@@ -2,6 +2,7 @@
   "pages": [
     "pages/index/index",
     "pages/my-sh/index",
+    "pages/my-sh-view/index",
     "pages/settledin/index",
     "pages/business/index",
     "pages/my/index",
@@ -12,8 +13,8 @@
     "pages/goods/index",
     "pages/my-sc/index",
     "pages/my-contact/index",
-    "pages/avatarUpload/index",
-    "pages/my-sh-view/index"
+    "pages/avatarUpload/index"
+    
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -635,7 +635,7 @@ switch[checked]::after {
 
 switch::before {
   font-family: "iconfont" !important;
-  content: "\e646";
+  content: "\e613";
   position: absolute;
   color: #fff;
   top: 50%;
