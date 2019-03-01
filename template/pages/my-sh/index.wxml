@@ -1,0 +1,27 @@
+<custom style="height:{{CustomBar}}px;">
+  <bar class="fixed gradual-blue" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
+    <navigator class='action' open-type="navigateBack" delta="1" hover-class="none">
+      <icon class='icon-back' /> 商户审核
+    </navigator>
+  </bar>
+</custom>
+<view class="page">
+<block wx:for="{{content}}" wx:key>
+  <card class="case" data-id="{{item.id}}" bindtap="toDetailsTap" >
+   <item class="shadow">
+     <list class="menu menu-avatar">
+        <item class="">
+          <avatar class="round lg" style="background-image:url({{item.facadeImage}});"></avatar>
+          <view class='content'>
+            <view>{{item.name}}</view>
+            <view class='text-gray text-sm'>
+              {{item.city}}-{{item.address}}</view>
+          </view>
+          </item>
+      </list>
+           
+    </item>
+  </card>
+  </block>
+  <load class="{{!isLoad?'loading':'over'}}"></load>
+  </view>

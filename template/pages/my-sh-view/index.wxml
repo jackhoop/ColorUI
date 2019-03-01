@@ -1,0 +1,121 @@
+<custom style="height:{{CustomBar}}px;">
+  <bar class="fixed gradual-blue" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
+    <navigator class='action' open-type="navigateBack" delta="1" hover-class="none">
+      <icon class='icon-back' />{{title}}
+    </navigator>
+  </bar>
+</custom>
+
+    <!-- 提示警告! -->
+    <view class='wran-tips' style='top:{{CustomBar}}px;{{displayWarn}};'>
+      <text>{{warnInfo}}</text>
+    </view>
+        <input name="id" hidden class="所在城市code" value='{{business.id}}'/>
+        <input name="cityCode" hidden class="所在城市code" value='{{business.cityCode}}'/>
+        <input name="city" hidden class="省市区" value='{{business.city}}'/>
+        <input name="licenseImage" hidden class="营业执照图片" value='{{business.licenseImage}}'/> 
+        <input name="facadeImage" hidden class="门面图片" value='{{business.facadeImage}}'/>
+        <input name="lng" hidden class="经度" value='{{business.lng}}'/>
+        <input name="lat" hidden class="纬度" value='{{business.lat}}'/>
+        <input name="content" hidden class="介绍" value='{{business.content}}'/>
+  <form-group class="margin-top-form">
+    <view class='title'>门店名称</view>
+    <input name="name" placeholder="门店名称" class='radius' value='{{business.name}}'></input>
+  </form-group>
+  <form-group>
+    <view class='title'>联系人</view>
+    <input name ="contacts" placeholder="联系人" class='radius' value='{{business.contacts}}'></input>
+  </form-group>
+  <form-group>
+    <view class='title'>联系电话</view>
+    <input name ="contactsTel" placeholder="联系电话" value='{{business.contactsTel}}' class='radius'></input>
+  </form-group>
+  <form-group>
+    <view class='title'>地址选择</view>
+    <view class='picker_1' bindtap="chooseLocation">
+        <view class="picker">
+          {{business.city}}<text decode="{{true}}">&nbsp;</text>
+        </view>
+    </view>
+  </form-group>
+  <form-group>
+    <view class='title'>详细地址</view>
+    <input name ="address" placeholder="详细地址" class='radius' value='{{business.address}}'></input>
+  </form-group>
+  <form-group class="margin-top">
+    <view class='title'>门面头照</view>
+    <view class="grid col-4 grid-square flex-sub">
+      <view ></view>
+      <view ></view>
+      <view ></view>
+      <block wx:if="{{business.facadeImage}}">
+        <view  bindtap="previewImage"  data-type='facadeImage' data-url='{{business.facadeImage}}' class="padding-xs bg-img" style="background-image:url({{business.facadeImage}});"></view>
+       </block>
+     
+    </view>
+  </form-group>
+
+    <form-group>
+    <view class='title'>营业执照</view>
+    <view class="grid col-4 grid-square flex-sub">
+      <view ></view>
+      <view ></view>
+      <view ></view>
+      <block wx:if="{{business.licenseImage}}">
+        <view  bindtap="previewImage" data-url='{{business.licenseImage}}' data-type='licenseImage' class="padding-xs bg-img" style="background-image:url({{business.licenseImage}});"></view>
+       </block>
+      
+    </view>
+  </form-group>
+
+  <form-group class="top">
+    <view class='title'>门店介绍</view>
+    <textarea placeholder="门店介绍 " bindblur="bindTextAreaBlur" maxlength="-1" value='{{business.content}}' placeholder-class='placeholder'></textarea>
+  </form-group>
+ <form-group style="border-top:1rpx solid #fff;">
+    <view class='title'></view>
+    <view class="grid col-3 grid-square flex-sub">
+      <block wx:for="{{jcfiles}}" wx:key="*this">
+        <view class="padding-xs bg-img"  bindtap="previewImage" data-type='jcfiles' data-url='{{item}}' style="background-image:url({{item}});">
+        </view>
+      </block>
+          </view>
+  </form-group>
+  <form-group>
+    <view class='title'>轮播图片</view>
+    <view class="grid col-3 grid-square flex-sub">
+      <block wx:for="{{files}}" wx:key="*this">
+        <view class="padding-xs bg-img" data-type='files' bindtap="previewImage" style="background-image:url({{item}});" id="{{item}}">
+        </view>
+      </block>
+    
+    </view>
+  </form-group>
+  <form  bindsubmit="formSubmit" report-submit='true'>
+        <form-group class="margin-top">
+          <view class='title'>是否通过</view>
+          <switch bindchange="switchChange" class='radius' checked/>
+        </form-group>
+        <block wx:if="{{business.sftg==false}}">
+              <form-group class="top">
+          <view class='title'>不通过原因</view>
+          <textarea placeholder="不通过原因 " bindblur="bindTextBtgBlur" maxlength="-1" value='{{business.btg}}' placeholder-class='placeholder'></textarea>
+        </form-group>   
+            </block>
+        
+      <form-group class="top">
+          <view class='title'>备注</view>
+          <textarea placeholder="备注 " bindblur="bindTextBzBlur" maxlength="-1" value='{{business.bz}}' placeholder-class='placeholder'></textarea>
+        </form-group>
+      
+      
+        <bar class="margin-top">
+      
+        </bar>
+      <view class="footer-box"> 
+        <view  class="now-buy">
+        <button class='block lg_1 bg-green shadow-blur' form-type='submit'>提交</button>
+        </view>
+
+</view>
+  </form>

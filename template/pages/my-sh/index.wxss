@@ -1,0 +1,7 @@
+card > item {
+  display: block;
+  background: #fff;
+  overflow: hidden;
+  border-radius: 10rpx;
+  margin: 15rpx;
+}
