@@ -5,96 +5,141 @@
     </navigator>
   </bar>
 </custom>
-<form  bindsubmit='submitCheckInfo' report-submit='true'>
-    <!-- 提示警告! -->
-    <view class='wran-tips' style='top:{{CustomBar}}px;{{displayWarn}};'>
-      <text>{{warnInfo}}</text>
-    </view>
-        <input name="id" hidden class="所在城市code" value='{{business.id}}'/>
-        <input name="cityCode" hidden class="所在城市code" value='{{business.cityCode}}'/>
-        <input name="city" hidden class="省市区" value='{{business.city}}'/>
-        <input name="licenseImage" hidden class="营业执照图片" value='{{business.licenseImage}}'/> 
-        <input name="facadeImage" hidden class="门面图片" value='{{business.facadeImage}}'/>
-        <input name="lng" hidden class="经度" value='{{business.lng}}'/>
-        <input name="lat" hidden class="纬度" value='{{business.lat}}'/>
-        <input name="content" hidden class="介绍" value='{{business.content}}'/>
+<form bindsubmit='submitCheckInfo' report-submit='true'>
+  <!-- 提示警告! -->
+  <view class='wran-tips' style='top:{{CustomBar}}px;{{displayWarn}};'>
+    <text>{{warnInfo}}</text>
+  </view>
+  <input name="id" hidden class="所在城市code" value='{{business.id}}' />
+  <input name="cityCode" hidden class="所在城市code" value='{{business.cityCode}}' />
+  <input name="city" hidden class="省市区" value='{{business.city}}' />
+  <input name="licenseImage" hidden class="营业执照图片" value='{{business.licenseImage}}' />
+  <input name="facadeImage" hidden class="门面图片" value='{{business.facadeImage}}' />
+  <input name="foodImage" hidden class="食品执照" value='{{business.foodImage}}' />
+  
+  <input name="lng" hidden class="经度" value='{{business.lng}}' />
+  <input name="lat" hidden class="纬度" value='{{business.lat}}' />
+  <input name="content" hidden class="介绍" value='{{business.content}}' />
   <form-group class="margin-top-form">
     <view class='title'>门店名称</view>
     <input name="name" placeholder="门店名称" class='radius' value='{{business.name}}'></input>
   </form-group>
   <form-group>
     <view class='title'>联系人</view>
-    <input name ="contacts" placeholder="联系人" class='radius' value='{{business.contacts}}'></input>
+    <input name="contacts" placeholder="联系人" class='radius' value='{{business.contacts}}'></input>
   </form-group>
   <form-group>
     <view class='title'>联系电话</view>
-    <input name ="contactsTel" placeholder="联系电话" value='{{business.contactsTel}}' class='radius'></input>
+    <input name="contactsTel" placeholder="联系电话" value='{{business.contactsTel}}' class='radius'></input>
   </form-group>
   <form-group>
-    <view class='title'>地址选择</view>
+    <view class='title'>地区选择</view>
     <view class='picker_1' bindtap="chooseLocation">
-        <view class="picker">
-          {{business.city}}<text decode="{{true}}">&nbsp;</text>
-        </view>
+      <view class="picker">
+        {{business.city}}
+        <text decode="{{true}}">&nbsp;</text>
+      </view>
     </view>
   </form-group>
   <form-group>
     <view class='title'>详细地址</view>
-    <input name ="address" placeholder="详细地址" class='radius' value='{{business.address}}'></input>
+    <input name="address" placeholder="详细地址" class='radius' value='{{business.address}}'></input>
   </form-group>
+  <form-group>
+    <view class='title'>送水时间</view>
+    <time>
+     <picker mode="time" value="{{business.start}}" start="00:00" end="23:59" bindchange="TimeChangeStart">
+      <view class="picker_time">
+        {{business.start}}
+      </view>
+    </picker>
+     <view style='margin-right:30rpx;'>至</view>
+      <picker mode="time" value="{{business.end}}" start="00:00" end="23:59" bindchange="TimeChangeEnd">
+      <view class="picker_time">
+        {{business.end}}
+      </view>
+    </picker>
+      </time>
+  </form-group>
+  <!-- <form-group>
+    <view class='title'>配送区域</view>
+   <picker mode="region" bindchange="RegionChange" value="{{region}}" custom-item="{{customItem}}">
+      <view class="picker">
+        {{region[0]}}，{{region[1]}}，{{region[2]}}
+      </view>
+    </picker>
+  </form-group> -->
+  <block wx:if="{{!business.id}}">
+    <form-group class="margin-top">
+      <view class='title'>工商执照</view>
+      <view class="grid col-4 grid-square flex-sub">
+        <view></view>
+        <view></view>
+        <view></view>
+        <block wx:if="{{business.licenseImage}}">
+          <view bindtap="yychooseImage" class="padding-xs bg-img" style="background-image:url({{business.licenseImage}});"></view>
+        </block>
+        <block wx:else>
+          <view class=" solids" style='margin-right:-100rpx;' bindtap="yychooseImage">
+            <icon class='icon-cameraadd'></icon>
+          </view>
+        </block>
+      </view>
+    </form-group>
+  </block>
+  <block wx:if="{{!business.id}}">
+    <form-group>
+      <view class='title'>食品执照</view>
+      <view class="grid col-4 grid-square flex-sub">
+        <view></view>
+        <view></view>
+        <view></view>
+        <block wx:if="{{business.foodImage}}">
+          <view bindtap="foodImage" class="padding-xs bg-img" style="background-image:url({{business.foodImage}});"></view>
+        </block>
+        <block wx:else>
+          <view class=" solids" style='margin-right:-100rpx;' bindtap="foodImage">
+            <icon class='icon-cameraadd'></icon>
+          </view>
+        </block>
+      </view>
+    </form-group>
+  </block>
   <form-group class="margin-top">
     <view class='title'>门面头照</view>
     <view class="grid col-4 grid-square flex-sub">
-      <view ></view>
-      <view ></view>
-      <view ></view>
+      <view></view>
+      <view></view>
+      <view></view>
       <block wx:if="{{business.facadeImage}}">
-        <view  bindtap="mmchooseImage" class="padding-xs bg-img" style="background-image:url({{business.facadeImage}});"></view>
-       </block>
-       <block wx:else>
-          <view class=" solids" style='margin-right:-100rpx;'  bindtap="mmchooseImage">
-            <icon class='icon-cameraadd'></icon>
-          </view>
-       </block>
+        <view bindtap="mmchooseImage" class="padding-xs bg-img" style="background-image:url({{business.facadeImage}});"></view>
+      </block>
+      <block wx:else>
+        <view class=" solids" style='margin-right:-100rpx;' bindtap="mmchooseImage">
+          <icon class='icon-cameraadd'></icon>
+        </view>
+      </block>
     </view>
   </form-group>
-<block wx:if="{{!business.id}}">
-    <form-group>
-    <view class='title'>营业执照</view>
-    <view class="grid col-4 grid-square flex-sub">
-      <view ></view>
-      <view ></view>
-      <view ></view>
-      <block wx:if="{{business.licenseImage}}">
-        <view  bindtap="yychooseImage" class="padding-xs bg-img" style="background-image:url({{business.licenseImage}});"></view>
-       </block>
-       <block wx:else>
-          <view class=" solids" style='margin-right:-100rpx;'  bindtap="yychooseImage">
-            <icon class='icon-cameraadd'></icon>
-          </view>
-       </block>
-    </view>
-  </form-group>
-  </block>
   <form-group class="top">
     <view class='title'>门店介绍</view>
     <textarea placeholder="门店介绍 " bindblur="bindTextAreaBlur" maxlength="-1" value='{{business.content}}' placeholder-class='placeholder'></textarea>
   </form-group>
- <form-group style="border-top:1rpx solid #fff;">
+  <form-group style="border-top:1rpx solid #fff;">
     <view class='title'></view>
     <view class="grid col-3 grid-square flex-sub">
       <block wx:for="{{jcfiles}}" wx:key="*this">
         <view class="padding-xs bg-img" style="background-image:url({{item}});">
-          <tag class="bg-red" data-index="{{index}}" data-imgType="jcImages"  catchtap="deleteImg">
-           <icon class='icon-chuyidong'></icon>
+          <tag class="bg-red" data-index="{{index}}" data-imgType="jcImages" catchtap="deleteImg">
+            <icon class='icon-chuyidong'></icon>
           </tag>
-       </view>
+        </view>
       </block>
-       <block wx:if="{{jcfiles.length!=3}}">
+      <block wx:if="{{jcfiles.length!=3}}">
         <view class="padding-xs solids" bindtap="jcchooseImage">
           <icon class='icon-cameraadd'></icon>
         </view>
-       </block>
+      </block>
     </view>
   </form-group>
   <form-group>
@@ -102,9 +147,9 @@
     <view class="grid col-3 grid-square flex-sub">
       <block wx:for="{{files}}" wx:key="*this">
         <view class="padding-xs bg-img" style="background-image:url({{item}});" id="{{item}}">
-           <tag class="bg-red"  data-imgType="adImages"  data-index="{{index}}" catchtap="deleteImg">
-             <icon class='icon-chuyidong'></icon>
-           </tag>
+          <tag class="bg-red" data-imgType="adImages" data-index="{{index}}" catchtap="deleteImg">
+            <icon class='icon-chuyidong'></icon>
+          </tag>
         </view>
       </block>
       <block wx:if="{{files.length!=3}}">
@@ -115,18 +160,18 @@
     </view>
   </form-group>
   <bar class="margin-top ">
-  <view class='action'>
-    <icon class='icon-title text-blue' />无效状态
-  </view>
-</bar>
-<view class="footer-box"> 
-  <view  class="now-buy">
-   <block wx:if="{{!business.id}}">
+    <view class='action'>
+      <icon class='icon-title text-blue' />无效状态
+    </view>
+  </bar>
+  <view class="footer-box">
+    <view class="now-buy">
+      <block wx:if="{{!business.id}}">
         <button class='block lg_1 bg-green shadow-blur' form-type='submit'>提交申请</button>
-  </block>
-  <block wx:else>
-    <button class='block lg_1 bg-green shadow-blur' form-type='submit'>保存</button>
-   </block>
+      </block>
+      <block wx:else>
+        <button class='block lg_1 bg-green shadow-blur' form-type='submit'>保存</button>
+      </block>
+    </view>
   </view>
-</view>
 </form>

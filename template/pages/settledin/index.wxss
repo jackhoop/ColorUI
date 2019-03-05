@@ -95,3 +95,71 @@ form-group .grid-square {
 .form-group_1 {
   border-top: 1rpx solid #fff !important;
 }
+
+form-group picker_time {
+  flex: 1;
+  padding-right: 20px;
+  overflow: hidden;
+  position: relative;
+}
+
+form-group picker_time .picker {
+  line-height: 50px;
+  font-size: 14px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 100%;
+  text-align: right;
+}
+
+form-group picker_time::after {
+  font-family: iconfont !important;
+  display: block;
+  position: absolute;
+  font-size: 17px;
+  color: #aaa;
+  line-height: 50px;
+  width: 30px;
+  text-align: center;
+  top: 0;
+  bottom: 0;
+  right: -10px;
+  margin: auto;
+}
+time{
+  display: inline-flex;
+  vertical-align: middle;
+}
+form-group picker {
+  flex: 1;
+  padding-right: 20px;
+  overflow: hidden;
+  position: relative;
+}
+
+form-group picker .picker {
+  line-height: 50px;
+  font-size: 14px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 100%;
+  text-align: right;
+}
+
+form-group picker::after {
+  font-family: iconfont !important;
+  display: block;
+  content: "\e621";
+  position: absolute;
+  font-size: 17px;
+  color: #aaa;
+  line-height: 50px;
+  width: 30px;
+  text-align: center;
+  top: 0;
+  bottom: 0;
+  right: -10px;
+  margin: auto;
+}

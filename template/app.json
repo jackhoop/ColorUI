@@ -1,9 +1,10 @@
 {
   "pages": [
+ 
     "pages/index/index",
     "pages/my-sh/index",
     "pages/my-sh-view/index",
-    "pages/settledin/index",
+      "pages/settledin/index",
     "pages/business/index",
     "pages/my/index",
     "pages/business-details/index",

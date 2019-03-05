@@ -11,11 +11,17 @@ Page({
     title:'店铺入住',
     files: [],//轮播图片
     jcfiles: [],//介绍图片
-    displayWarn: 'display:none'
+    // start: '00:00',
+    // end:'23:59',
+    displayWarn: 'display:none',
+    region: ['', '', ''],
   },
   onLoad: function (e) {
     var that = this;
-
+    that.setData({
+      ["business.start"]: "00:00",
+      ["business.end"]: "23:59",
+    })
 
     // 校验规则 -rules
     this.initValidate();
@@ -256,7 +262,13 @@ Page({
             longitude: res.longitude
           },
           success: function (res) {
+            var region =[];
+            region[0] = res.result.ad_info.province
+            region[1] = res.result.ad_info.city
+            region[2] = res.result.ad_info.district
+
             that.setData({
+              region: region,
               ["business.city"]: res.result.ad_info.province + "-" + res.result.ad_info.city + "-" + res.result.ad_info.district,
               ["business.ad_info"]: res.result.ad_info,
               ["business.cityCode"]: res.result.ad_info.adcode,
@@ -289,6 +301,59 @@ Page({
         
       }
     })
+  },
+  //食品执照
+  foodImage: function () {
+    var that = this;
+    wx.chooseImage({
+      count: 1,
+      sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+      sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+      success: function (res) {
+
+        var formData = {
+          "dataType": "bus"
+        }
+        // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
+        that.imgUpdate(res.tempFilePaths, formData, function (data) {
+          that.setData({
+            ["business.foodImage"]: data.path,
+          });
+        });
+      }
+    })
+  },
+  TimeChangeStart(e) {
+    this.setData({
+      ["business.start"]: e.detail.value,
+    })
+  },
+  TimeChangeEnd(e) {
+    this.setData({
+      ["business.end"]: e.detail.value,
+    })
+  },
+  //图片上传
+  imgUpdate(tempFilePaths, formData, callBack) {
+    var that = this;
+    wx.showLoading({
+      title: '上传中...',
+    })
+
+    for (var i = 0; i < tempFilePaths.length; i++) {
+      // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
+      wx.uploadFile({
+        url: app.globalData.serverUrl + "/wx/media/" + app.globalData.appid + "/uploadImg",
+        filePath: tempFilePaths[i],
+        name: 'img',
+        formData: formData,
+        success: function (res) {
+          var data = JSON.parse(res.data);
+          callBack(data);
+          wx.hideLoading();
+        }
+      })
+    }
   },
   //营业执照
   yychooseImage: function () {

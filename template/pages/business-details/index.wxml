@@ -6,11 +6,11 @@
   </bar>
 </custom>
 <view style='margin-bottom:110rpx;'>
-  <swiper class="screen-swiper square-dot" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500">
+  <!-- <swiper class="screen-swiper square-dot" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500">
     <swiper-item wx:for="{{tower}}" wx:for-index="index" wx:key wx:for-item="url">
       <image src="{{url}}" mode='aspectFill' />
     </swiper-item>
-  </swiper>
+  </swiper> -->
   <view class="goods-des-info">
     <view class="weui-panel">
       <view class="weui-panel__bd">
@@ -22,7 +22,7 @@
             <i class="icon iconfont icon-emizhifeiji"></i> 距离我 {{distance}}
           </view>
         </view>
-        <view class="weui-cells weui-cells_in-small-appmsg">
+        <!-- <view class="weui-cells weui-cells_in-small-appmsg">
           <view class="weui-cell weui-cell_access" hover-class="weui-cell_active">
             <view class="weui-cell__hd">
             </view>
@@ -31,7 +31,7 @@
             </view>
 
           </view>
-        </view>
+        </view> -->
         <view class="weui-media-box weui-media-box_small-appmsg">
           <view class="weui-cells weui-cells_in-small-appmsg" bindtap="toAddress">
             <view class="weui-cell weui-cell_access" hover-class="weui-cell_active">

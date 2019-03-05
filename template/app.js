@@ -139,12 +139,13 @@ App({
   globalData: {
     userInfo: null,
     //serverUrl: "https://weixin.bftudou.com",
-    serverUrl: "http://192.168.31.91:8080",
+    serverUrl: "http://192.168.10.107:8888",
     appid: "wx36b803b7c835dc44",
     config: globalConfig
   },
   //获取用户地理位置权限
   getPermission: function (obj) {
+
     wx.chooseLocation({
       success: function (res) {
         obj.setData({
