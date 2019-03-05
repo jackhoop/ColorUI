@@ -6,58 +6,27 @@
   </bar>
 </custom>
 <view style='margin-bottom:110rpx;'>
-  <!-- <swiper class="screen-swiper square-dot" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500">
-    <swiper-item wx:for="{{tower}}" wx:for-index="index" wx:key wx:for-item="url">
-      <image src="{{url}}" mode='aspectFill' />
-    </swiper-item>
-  </swiper> -->
-  <view class="goods-des-info">
-    <view class="weui-panel">
-      <view class="weui-panel__bd">
-        <view class="weui-media-box weui-media-box_small-appmsg">
-          <view class="page__title" style='margin-top: 10rpx;margin-left: 15rpx;font-size:35rpx;'>
-            <i class="icon-shopfill" style="font-size:43rpx;color:#00aae8;"></i> {{business.name}}
-          </view>
-          <view class="weui-cell__ft weui-media-box__desc" style='margin-right: 10rpx;'>
-            <i class="icon iconfont icon-emizhifeiji"></i> 距离我 {{distance}}
-          </view>
-        </view>
-        <!-- <view class="weui-cells weui-cells_in-small-appmsg">
-          <view class="weui-cell weui-cell_access" hover-class="weui-cell_active">
-            <view class="weui-cell__hd">
+ <card class="case no-card">
+  <item class="shadow">
+    <list class="menu menu-avatar">
+      <item>
+        <avatar class="radius lg" style="background-image:url({{business.facadeImage}});"></avatar>
+        <view class='content flex-sub'>
+          <view class='text-black'>{{business.name}}</view>
+           <view class='text-gray text-sm flex_1 justify-between'>
+            <view class="text-gray text-sm">
+             <icon class="text-blue text-xl icon-guanjiaowangtubiao17" />
+             <icon class="text-blue icon-shipinliutongxukezheng" style='font-size:20px;'/>
             </view>
-            <view class="weui-cell__bd weui-media-box__desc">
-              <icon class='icon-time lg text-gray' />营业时间: 00:00-12:00 12:00-23:59
-            </view>
-
-          </view>
-        </view> -->
-        <view class="weui-media-box weui-media-box_small-appmsg">
-          <view class="weui-cells weui-cells_in-small-appmsg" bindtap="toAddress">
-            <view class="weui-cell weui-cell_access" hover-class="weui-cell_active">
-              <view class="weui-cell__bd weui-media-box__desc">
-                <icon class='icon-locationfill lg text-gray' /> {{business.city}}-{{business.address}}
-
-              </view>
-              <view class="weui-cell__ft weui-cell__ft_in-access">
-                <text decode="{{true}}">&ensp;</text>
-              </view>
-            </view>
-          </view>
-          <view class="weui-cells weui-cells_in-small-appmsg" data-tel='{{business.contactsTel}}' bindtap="callTel">
-            <view class="weui-cell weui-cell_access" hover-class="weui-cell_active">
-              <view class="weui-cell__bd weui-media-box__desc">
-                <icon class='icon-mobilefill lg text-gray' /> {{business.contactsTel}}
-              </view>
-              <view class="weui-cell__ft weui-cell__ft_in-access">
-                <text decode="{{true}}">&ensp;</text>
-              </view>
+            <view class="action">
+              {{business.address}}
             </view>
           </view>
         </view>
-      </view>
-    </view>
-  </view>
+      </item>
+    </list>
+  </item>
+</card>
   <scroll-view scroll-x class="bg-white nav " style='margin-top:10rpx;'>
     <view class='flex text-center'>
       <item class="flex-sub {{index==TabCur?'text-orange cur':''}}" wx:for="{{tabs}}" wx:key bindtap='tabSelect' data-id="{{index}}" wx:for-item="item">
@@ -85,13 +54,21 @@
     <view class="goods-container">
       <block wx:for="{{content}}" wx:key>
         <view class="goods-box radius shadow bg-white" data-id="{{item.id}}">
+        
           <view class="img-box">
             <image src="{{item.image}}" bindtap="previewImage" data-sp="{{item.image}}" class="image" mode="aspectFill" lazy-load="true" />
+            <tag class="bg-blue">福利</tag>
           </view>
-          <view class="weui-media-box__title" style='margin-left: 10rpx;font-size:32rpx;text-align:left'>{{item.name}}</view>
-          <view class="weui-media-box__desc" style='margin-left: 10rpx;text-align:left'>规格:{{item.specification}}</view>
+           <view class="grid col-1">
+             <view class="weui-media-box__title" style='margin-left: 10rpx;font-size:32rpx;text-align:left'>{{item.name}}</view>
+             <view class="weui-media-box__desc" style='margin-left: 10rpx;text-align:left'>规格:{{item.specification}}</view>
+           </view>
+        
           <view style='display:flex;'>
-            <view class="goods-price" style='margin-left: 10rpx;text-align:left'>¥ {{item.price}}</view>
+            <view class="flex-sub goods-price radius" >¥ {{item.price}}</view>
+            <view class="flex-sub radius padding-right-sm padding-bottom-xl" style='text-align:right'>
+              <button class='bg-red sm'>订购</button>
+            </view>
           </view>
         </view>
       </block>

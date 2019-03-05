@@ -17,10 +17,10 @@ Page({
     token: wx.getStorageSync('token'),
     tabs: [{
       id: 0,
-      name: '商品信息'
+      name: '桶装水'
     }, {
       id: 1,
-      name: '店铺介绍'
+      name: '饮水机'
     }],
     tower: []
   },
