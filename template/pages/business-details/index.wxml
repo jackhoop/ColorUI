@@ -6,27 +6,27 @@
   </bar>
 </custom>
 <view style='margin-bottom:110rpx;'>
- <card class="case no-card">
-  <item class="shadow">
-    <list class="menu menu-avatar">
-      <item>
-        <avatar class="radius lg" style="background-image:url({{business.facadeImage}});"></avatar>
-        <view class='content flex-sub'>
-          <view class='text-black'>{{business.name}}</view>
-           <view class='text-gray text-sm flex_1 justify-between'>
-            <view class="text-gray text-sm">
-             <icon class="text-blue text-xl icon-guanjiaowangtubiao17" />
-             <icon class="text-blue icon-shipinliutongxukezheng" style='font-size:20px;'/>
-            </view>
-            <view class="action">
-              {{business.address}}
+  <card class="case no-card">
+    <item class="shadow">
+      <list class="menu menu-avatar">
+        <item>
+          <avatar class="radius lg" style="background-image:url({{business.facadeImage}});"></avatar>
+          <view class='content flex-sub'>
+            <view class='text-black'>{{business.name}}</view>
+            <view class='text-gray text-sm flex_1 justify-between'>
+              <view class="text-gray text-sm">
+                <icon class="text-blue text-xl icon-guanjiaowangtubiao17" />
+                <icon class="text-blue icon-shipinliutongxukezheng" style='font-size:20px;' />
+              </view>
+              <view class="action">
+                {{business.address}}
+              </view>
             </view>
           </view>
-        </view>
-      </item>
-    </list>
-  </item>
-</card>
+        </item>
+      </list>
+    </item>
+  </card>
   <scroll-view scroll-x class="bg-white nav " style='margin-top:10rpx;'>
     <view class='flex text-center'>
       <item class="flex-sub {{index==TabCur?'text-orange cur':''}}" wx:for="{{tabs}}" wx:key bindtap='tabSelect' data-id="{{index}}" wx:for-item="item">
@@ -40,34 +40,34 @@
         <view class='text-content padding-xs'>
           {{business.content}}
         </view>
-         <block wx:for="{{jcImages}}" wx:key wx:for-index="index" wx:for-item="url">
+        <block wx:for="{{jcImages}}" wx:key wx:for-index="index" wx:for-item="url">
           <view class="grid col-1 flex-sub padding-xs">
             <view class="bg-img only-img" bindtap="previewImage" data-src="{{url}}" style="background-image:url({{url}});" wx:for="{{isCard?9:1}}" wx:key>
             </view>
           </view>
         </block>
       </item>
-  </card>
+    </card>
 
   </view>
   <view class="weui-tab__content" hidden="{{TabCur != 0}}" style='background-color: #F8F8F8;padding-top:0px;'>
     <view class="goods-container">
-      <block wx:for="{{content}}" wx:key>
+      <block wx:for="{{content}}" wx:key wx:for-index="index">
         <view class="goods-box radius shadow bg-white" data-id="{{item.id}}">
-        
+
           <view class="img-box">
             <image src="{{item.image}}" bindtap="previewImage" data-sp="{{item.image}}" class="image" mode="aspectFill" lazy-load="true" />
             <tag class="bg-blue">福利</tag>
           </view>
-           <view class="grid col-1">
-             <view class="weui-media-box__title" style='margin-left: 10rpx;font-size:32rpx;text-align:left'>{{item.name}}</view>
-             <view class="weui-media-box__desc" style='margin-left: 10rpx;text-align:left'>规格:{{item.specification}}</view>
-           </view>
-        
+          <view class="grid col-1">
+            <view class="weui-media-box__title" style='margin-left: 10rpx;font-size:32rpx;text-align:left'>{{item.name}}</view>
+            <view class="weui-media-box__desc" style='margin-left: 10rpx;text-align:left'>规格:{{item.specification}}</view>
+          </view>
+
           <view style='display:flex;'>
-            <view class="flex-sub goods-price radius" >¥ {{item.price}}</view>
+            <view class="flex-sub goods-price radius">¥ {{item.price}}</view>
             <view class="flex-sub radius padding-right-sm padding-bottom-xl" style='text-align:right'>
-              <button class='bg-red sm'>订购</button>
+              <button class='bg-red sm' data-index="{{index}}" bindtap="showModal" data-target="bottomModal">订购</button>
             </view>
           </view>
         </view>
@@ -83,30 +83,153 @@
         <icon class='icon-forward lg text-gray' open-type="share"/> 分享
       </view> -->
 
-      <button class="share text-gray" open-type="share" plain='true'>  
+      <!-- <button class="share text-gray" open-type="share" plain='true'>
         <view class="action">
-          <icon class='icon-forward lg text-gray' open-type="share"/> 分享
+          <icon class='icon-forward lg text-gray' open-type="share" /> 分享
         </view>
-      </button> 
+      </button>
       <view class="action" bindtap="toAddress">
         <icon class='icon-daohang' /> 导航
       </view>
-       <block wx:if="{{token}}">
-         <block wx:if="{{collection}}">
-        <view class="action text-orange" data-type="cancel" bindtap="collection">
-          <icon class='icon-shoucang1' /> 已收藏
-        </view>
-      </block>
-      <block wx:else>
-        <view class="action text-gray" data-type="collection" bindtap="collection">
-          <icon class='icon-shoucang3' /> 收藏
-        </view>
-      </block>
-      </block>
-     
+      <block wx:if="{{token}}">
+        <block wx:if="{{collection}}">
+          <view class="action text-orange" data-type="cancel" bindtap="collection">
+            <icon class='icon-shoucang1' /> 已收藏
+          </view>
+        </block>
+        <block wx:else>
+          <view class="action text-gray" data-type="collection" bindtap="collection">
+            <icon class='icon-shoucang3' /> 收藏
+          </view>
+        </block>
+      </block> -->
+      <view class="action">
+        <icon class=' icon-shop' /> 店铺
+      </view>
+      <view class="action" bindtap="showGWZModal" data-target="gwzModal">
+        <icon class='icon-cart'>
+          <block wx:if="{{gwc.length !=0}}">
+            <tag class='badge'>{{gwc.length}}</tag>
+          </block>
+        </icon>
+        购物车
+      </view>
+
       <view class='bg-red submit' data-tel='{{business.contactsTel}}' bindtap="callTel">电话联系</view>
-    
+
     </bar>
 
   </view>
 </view>
+
+<modal-box class="bottom-modal {{modalName=='bottomModal'?'show':''}}">
+  <dialog>
+    <bar class="bar_1">
+      <view class='action text-green'></view>
+      <!-- <view class='action' bindtap='hideModal'><icon class='icon-guanbi2'/></view> -->
+    </bar>
+    <view class=''>
+      <view class="flex_1 p-xs  padding-top solid-bottom padding-left align-center">
+        <view class='margin-xs radius' style='margin-top:-25px;'>
+          <view class="padding-xs radius shadow bg-white">
+            <avatar class="xl radius shadow bg-white" style="background-image:url({{goods.image}});"></avatar>
+          </view>
+        </view>
+        <view class='flex-twice '>
+          <view class="flex_1 p-xs">
+            <view class="flex-twice" style='margin-top:-20px;'>
+              <view class="grid col-1">
+                <view class='padding-xs padding-top-xs text-left' style='margin-left: 10rpx'>{{goods.name}}</view>
+                <view class="goods-price  padding-xs radius text-left">¥{{goods.price}}</view>
+              </view>
+            </view>
+            <view style='margin-top:-55px;' bindtap='hideModal' class='text-right padding-top-xs'>
+              <icon class='icon-guanbi2 text-right text-xxl text-gray' />
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class=''>
+      <view class="buy-num-box">
+        <view class="num-label">购买数量</view>
+        <view class="num-box">
+          <view class="num-jian {{buyNumber == buyNumMin ? 'hui': ''}}" bindtap="numJianTap">-</view>
+          <view class="num-input">
+            <input type="number" value="{{buyNumber}}" disabled/>
+          </view>
+          <view class="num-jia {{buyNumber== buyNumMax ? 'hui': ''}}" bindtap="numJiaTap">+</view>
+        </view>
+      </view>
+    </view>
+    <bar class="shop">
+      <view class='bg-orange submit' bindtap="addGWC">加入购物车</view>
+      <view class='bg-red submit'>立即订购</view>
+    </bar>
+  </dialog>
+</modal-box>
+
+<modal-box class="bottom-modal {{modalName=='gwzModal'?'show':''}}">
+  <dialog>
+    <bar class="">
+      <view class='action' bindtap='hideModal'>取消</view>
+      <view class='action text-blue' data-type="{{editType}}" bindtap='gwcEdit'>{{editType}}</view>
+    </bar>
+    <view class=''>
+      <view class='padding-xs'>
+        <list class="menu menu-avatar inverts shadow" style="padding:0 7px">
+          <block wx:for="{{gwc}}" wx:key wx:for-index="index">
+            <item class="" style="padding-left: 0px;height: 90px;">
+              <view class=''>
+                <radio class="red margin-left-sm" checked />
+              </view>
+              <view class='padding-left'>
+                <avatar class="radius xxl" style="background-image:url({{item.image}});"> </avatar>
+              </view>
+              <view class='content padding-left-sm text-left'>
+                <view class='text-grey padding-xs'>{{item.name}}</view>
+                <!-- <view class='text-price text-red padding-xs'>23</view> -->
+                <view class="flex">
+                  <view class='flex-sub'>
+                    <view class='text-price text-red text-xl padding-xs'>{{item.price}}</view>
+                  </view>
+                  
+                  <block wx:if="{{editType=='完成'}}">
+                    <view class='flex-sub'>
+                      <view class="buy-num-box-gwc">
+                        <view class="num-box">
+                          <view class="num-jian {{item.number == buyNumMin ? 'hui': ''}}" bindtap="numJianTap">-</view>
+                          <view class="num-input">
+                            <input type="number" value="{{item.number}}" disabled/>
+                          </view>
+                          <view class="num-jia {{buyNumber== item.number ? 'hui': ''}}" bindtap="numJiaTap">+</view>
+                        </view>
+                      </view>
+                    </view>
+                  </block>
+                  <block wx:else>
+                    <view class='flex-sub text-gray padding-xs text-df text-right'>×{{item.number}}</view>
+                  </block>
+
+                </view>
+              </view>
+            </item>
+          </block>
+        </list>
+
+      </view>
+      <view class=''>
+        <bar class="margin-top shop">
+          <view class="action">
+           <radio class='red margin-left-sm' /> 全选
+          </view>
+          <view class="action">
+            合计：¥323
+          </view>
+          <view class='bg-red submit'>结算(2)</view>
+        </bar>
+      </view>
+
+    </view>
+  </dialog>
+</modal-box>

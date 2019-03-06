@@ -11,9 +11,14 @@ Page({
     search: '',
     isLoad: false,
     loadStatus: true,
+    editType:"编辑",
     pageSize: 5,
     content: [],
-    scrollLeft: 0,
+    gwc: [],
+    scrollLeft: 0, 
+    buyNumber: 1,
+    buyNumMin: 1,
+    buyNumMax: 1000,
     token: wx.getStorageSync('token'),
     tabs: [{
       id: 0,
@@ -324,5 +329,94 @@ Page({
       })
     }
   
+  },
+  showModal(e) {
+    var that = this;
+    var item = that.data.content[e.currentTarget.dataset.index];
+    console.log(item)
+    this.setData({
+      modalName: e.currentTarget.dataset.target,
+      goods: item,
+    })
+  },
+  showGWZModal(e) {
+    var that = this;
+    this.setData({
+      modalName: e.currentTarget.dataset.target,
+      gwc: that.data.gwc
+    })
+    console.log(that.data.gwc)
+  },
+  hideModal(e) {
+    this.setData({
+      modalName: null,
+    })
+  },
+  numJianTap: function () {
+    if (this.data.buyNumber > this.data.buyNumMin) {
+      var currentNum = this.data.buyNumber;
+      currentNum--;
+      this.setData({
+        buyNumber: currentNum
+      })
+    }
+  },
+  numJiaTap: function () {
+    console.log(this.data.buyNumber);
+    if (this.data.buyNumber < this.data.buyNumMax) {
+      var currentNum = this.data.buyNumber;
+      currentNum++;
+      this.setData({
+        buyNumber: currentNum
+      })
+    }
+  },
+  //购物车
+  addGWC:function(){
+    var that = this;
+    var item = that.data.goods;
+    item.number = that.data.buyNumber;
+    item.active = true;
+    var flag = false;
+    for (var i = 0; i < that.data.gwc.length; i++) {
+      var goods = that.data.gwc[i];
+      if (item.id == goods.id) {
+        goods.number = goods.number + that.data.buyNumber;
+        var key = "gwc[" + i + "]"
+        that.setData({
+          key: goods,
+          modalName: null,
+          buyNumber: 1,
+          goods:{}
+        })
+        console.log(that.data.gwc)
+        flag = true;
+        break;
+      }
+    }
+    if (flag==true){
+      return;
+    }
+    that.setData({
+      gwc: that.data.gwc.concat(item),
+      modalName: null,
+      buyNumber:1,
+      goods:{}
+    })
+    console.log(that.data.gwc)
+  },
+  gwcEdit:function(e){
+    var that = this;
+    var type = e.currentTarget.dataset.type;
+    if (type =="编辑"){
+      that.setData({
+        editType: "完成",
+      })
+    }else{
+      that.setData({
+        editType: "编辑",
+      })
+    }
+
   }
 });

@@ -1,20 +1,20 @@
 <custom style="height:{{CustomBar}}px;">
-  <bar class="fixed gradual-blue"  catchtap='location' style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
-       <!-- <load class="load-icon loading"></load>
+  <bar class="fixed gradual-blue" catchtap='location' style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
+    <!-- <load class="load-icon loading"></load>
     <i class="icon iconfont icon-zuobiao"style="margin-left:20rpx;font-size:25rpx;"> {{district.ad_info.district}}</i> -->
-   <view class='content_1' >
-    <i catchtap='location'  class="icon iconfont icon-zuobiao"style="margin-left:20rpx;font-size:25rpx;"> {{district.ad_info.district}}</i>
-     <block wx:if="{{isLocation}}">
-         <load class="load-icon loading load_1"></load>     
+    <view class='content_1'>
+      <i catchtap='location' class="icon iconfont icon-zuobiao" style="margin-left:20rpx;font-size:25rpx;"> {{district.ad_info.district}}</i>
+      <block wx:if="{{isLocation}}">
+        <load class="load-icon loading load_1"></load>
       </block>
-   </view>
+    </view>
     <view class='content'>送水之家</view>
   </bar>
 </custom>
 <bar class="search fixed " style="top:{{CustomBar}}px;background-color:rgba(0,0,0,0.2);">
   <view class='serach-form round'>
     <icon class="icon-search" />
-    <input type="text" placeholder="搜索水站" confirm-type="search" bindinput="inputSearch"/>
+    <input type="text" placeholder="搜索水站" confirm-type="search" bindinput="inputSearch" />
   </view>
   <view class='action'>
     <button class='bg-green shadow-blur round' bindtap="search">搜索</button>
@@ -22,50 +22,98 @@
 </bar>
 <swiper class="screen-swiper square-dot" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500">
   <swiper-item wx:for="{{tower}}" wx:key>
-    <image src="{{item.image}}" mode='aspectFill' data-id="{{item.businessId}}" catchtap="toDetailsTap"/>
+    <image src="{{item.image}}" mode='aspectFill' data-id="{{item.businessId}}" catchtap="toDetailsTap" />
   </swiper-item>
 </swiper>
 <scroll-view scroll-x class="bg-white nav">
   <view class='flex text-center'>
-    <item class="flex-sub {{index==TabCur?'text-orange cur':''}}" wx:for="{{tabs}}" wx:key bindtap='tabSelect' data-type="{{item.type}}"   data-id="{{index}}" wx:for-item="item">
+    <item class="flex-sub {{index==TabCur?'text-orange cur':''}}" wx:for="{{tabs}}" wx:key bindtap='tabSelect' data-type="{{item.type}}" data-id="{{index}}" wx:for-item="item">
       {{item.name}}
     </item>
   </view>
 </scroll-view>
 <block wx:for="{{content}}" wx:key>
   <card class="article" bindtap="toDetailsTap" data-id="{{item.id}}">
-      <item class="shadow">
-        <view class="content">
-          <image src="{{item.facadeImage}}" mode="aspectFill"></image>
-          <view class="desc">
-            <view>{{item.name}}</view>
-            <view class='text-gray text-sm'>
-              <icon class='icon-mobilefill lg text-gray' /> {{item.contactsTel}}</view>
-            <view class='text-gray text-sm'>
-              <icon class='icon-attention lg text-gray' />{{item.clickTotal}}</view>
-          </view>
-          <view class='action' style='margin-top: 10rpx;'>
-            <i class="icon iconfont icon-dianhua5" catchtap="callTel" data-tel="{{item.contactsTel}}" style="font-size:90rpx;margin-left:80rpx;color:#00e560"></i>
-          </view>
+    <item class="shadow">
+      <view class="content">
+        <image src="{{item.facadeImage}}" mode="aspectFill"></image>
+        <view class="desc">
+          <view>{{item.name}}</view>
+          <view class='text-gray text-sm'>
+            <icon class='icon-mobilefill lg text-gray' /> {{item.contactsTel}}</view>
+          <view class='text-gray text-sm'>
+            <icon class='icon-attention lg text-gray' />{{item.clickTotal}}</view>
         </view>
-        <view class='nav'>
-          <view class='item'>
-            <view class="weui-media-box__desc " >
+        <view class='action' style='margin-top: 10rpx;'>
+          <i class="icon iconfont icon-dianhua5" catchtap="callTel" data-tel="{{item.contactsTel}}" style="font-size:90rpx;margin-left:80rpx;color:#00e560"></i>
+        </view>
+      </view>
+      <view class='nav'>
+        <view class='item'>
+          <view class="weui-media-box__desc ">
             <view class='text-gray text-sm addr'>
-                <i class="icon iconfont icon-dizhi" style="font-size:25rpx;"></i>{{item.addr}}
-            </view>
-            </view>
-          </view>
-          <view class='item'>
-            <view style='text-align:right;'>
-              <view class='text-gray text-sm jl'>
-                <i class="icon iconfont icon-emizhifeiji" style="font-size:20rpx;"></i> {{item.jl}}</view>
+              <i class="icon iconfont icon-dizhi" style="font-size:25rpx;"></i>{{item.addr}}
             </view>
           </view>
         </view>
-      </item>
-    </card>
+        <view class='item'>
+          <view style='text-align:right;'>
+            <view class='text-gray text-sm jl'>
+              <i class="icon iconfont icon-emizhifeiji" style="font-size:20rpx;"></i> {{item.jl}}</view>
+          </view>
+        </view>
+      </view>
+    </item>
+  </card>
 </block>
 <load class="{{!isLoad?'loading':'over'}}"></load>
 
+<modal-box class="bottom-modal">
+  <dialog>
+    <bar class="">
+      <view class='action text-green'>确定</view>
+      <view class='action text-blue' bindtap='hideModal'>取消</view>
+    </bar>
+    <view class=''>
+      <view class='padding-xs'>
+        <list class="menu menu-avatar inverts">
+          <item>
+            <view class=''>
+              <radio checked />
+            </view>
+            <view class='padding-left'>
+              <avatar class="radius xxl" style="background-image:url(https://image.weilanwl.com/img/square-2.jpg);"> </avatar>
+            </view>
+            <view class='content padding-left-sm text-left'>
+              <view class='text-black padding-xs'>文晓港地方士大夫地方的方式爱的色放撒地方发</view>
+              <!-- <view class='text-price text-red padding-xs'>23</view> -->
+              <view class="flex">
+                <view class='flex-sub'>
+                 <view class='text-price text-red text-xl padding-xs'>23</view>
+                </view>
+                <view class='flex-sub text-gray padding-xs text-right'>×12</view>
+              </view>
+            </view>
 
+          </item>
+          <item>
+            <avatar class="round lg" style="background-image:url(https://image.weilanwl.com/img/square-2.jpg);">
+              <tag class="badge">99+</tag>
+            </avatar>
+            <view class='content'>
+              <view class='text-grey'>文晓港
+                <tag class="round bg-orange sm">SVIP</tag>
+              </view>
+              <view class='text-gray text-sm'>
+                <icon class='icon-redpacket_fill text-red' /> 收到红包</view>
+            </view>
+            <view class='action'>
+              <view class='text-grey text-xs'>22:20</view>
+              <icon class='icon-notice_forbid_fill text-gray' />
+            </view>
+          </item>
+        </list>
+      </view>
+    </view>
+  </dialog>
+</modal-box>
