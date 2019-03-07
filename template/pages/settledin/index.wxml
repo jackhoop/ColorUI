@@ -159,11 +159,11 @@
       </block>
     </view>
   </form-group>
-  <bar class="margin-top ">
+  <!-- <bar class="margin-top ">
     <view class='action'>
       <icon class='icon-title text-blue' />无效状态
     </view>
-  </bar>
+  </bar> -->
   <view class="footer-box">
     <view class="now-buy">
       <block wx:if="{{!business.id}}">

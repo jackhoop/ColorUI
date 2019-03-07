@@ -1,5 +1,8 @@
 {
   "pages": [
+    "pages/address-add/index",
+    "pages/select-address/index",
+    
     "pages/oder-confirm/index",
     "pages/index/index",
     "pages/my-sh/index",
@@ -15,6 +18,7 @@
     "pages/my-sc/index",
     "pages/my-contact/index",
     "pages/avatarUpload/index"
+ 
   ],
   "window": {
     "backgroundTextStyle": "light",

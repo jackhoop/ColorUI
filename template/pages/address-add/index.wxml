@@ -1,0 +1,47 @@
+<custom style="height:{{CustomBar}}px;">
+  <bar class="fixed gradual-blue" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
+    <navigator class='action' open-type="navigateBack" delta="1" hover-class="none">
+      <icon class='icon-back' />新增地址
+    </navigator>
+  </bar>
+</custom>
+<form bindsubmit='submitCheckInfo' report-submit='true'>
+  <!-- 提示警告! -->
+  <view class='wran-tips' style='top:{{CustomBar}}px;{{displayWarn}};'>
+    <text>{{warnInfo}}</text>
+  </view>
+  <input name="adcode" hidden value='{{address.adcode}}' />
+  <input name="lat" hidden value='{{address.lat}}' />
+  <input name="lng" hidden  value='{{address.lng}}' />
+  <input name="province" hidden  value='{{address.province}}' />
+  <input name="city" hidden  value='{{address.city}}' />
+  <input name="district" hidden  value='{{address.district}}' />
+  <form-group>
+    <view class='title'>姓名</view>
+    <input placeholder="请输入姓名" class='radius' name='userName'></input>
+  </form-group>
+  <form-group>
+    <view class='title'>电话</view>
+    <input placeholder="请输入手机号码" class='radius' name='phone'></input>
+  </form-group>
+  <form-group>
+    <view class='title'>省市区</view>
+    <view class='picker_1' bindtap="chooseLocation">
+      <view class="picker">
+        {{address.ssq}}
+        <text decode="{{true}}">&nbsp;</text>
+      </view>
+    </view>
+  </form-group>
+   <form-group>
+    <view class='title'>详细地址</view>
+    <input placeholder="" class='radius' value='{{address.address}}' name='address'></input>
+  </form-group>
+   <form-group class="margin-top">
+       
+     <view class='title text-gray'> <checkbox class='round sm' />设为默认地址</view>
+    </form-group>
+    <bar class="margin-top btn-group">
+  <button class='bg-green shadow-blur round' form-type='submit' >保存</button>
+</bar>
+</form>

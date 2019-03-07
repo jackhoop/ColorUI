@@ -1,0 +1,39 @@
+<custom style="height:{{CustomBar}}px;">
+  <bar class="fixed gradual-blue" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
+    <navigator class='action' open-type="navigateBack" delta="1" hover-class="none">
+      <icon class='icon-back' />地址
+    </navigator>
+  </bar>
+</custom>
+
+<card class="case" data-id="{{item.id}}" bindtap="toDetailsTap">
+  <item class="shadow">
+    <list class="menu menu-avatar">
+      <item style='padding-left: 0px;'>
+
+        <view class='content'>
+         <text class='text-lg'>龙波</text> <text class='padding-left text-lg'>18987898765</text>
+          <view class='text-gray text-df'>在在仍仍仍遥遥仍仍仍㐱爱你的㐱㐱㐱人仍we</view>
+        </view>
+
+      </item>
+    </list>
+    <view class="flex padding-sm solid-top">
+      <view class='flex-sub text-gray'>
+       <radio class="sm red" checked /> <text>设为默认地址</text>
+      </view>
+      <view class='flex-sub text-gray ' style='padding-left:150rpx'>
+        <view class="grid col-2">
+         <view class='text-right'>  <icon class='icon-bianji1 lg ' />编辑</view>
+         <view class='text-center'>  <icon class='icon-deletefill lg ' />删除</view>
+        </view>
+      </view>
+    </view>
+     </item>
+</card>
+
+<view class="weui-footer weui-footer_fixed-bottom">
+  <bar class="btn-group">
+    <button class='bg-red shadow-blur' bindtap='addAddress'>新增地址</button>
+  </bar>
+</view>

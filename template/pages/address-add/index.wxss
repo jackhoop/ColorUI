@@ -1,0 +1,45 @@
+form-group .picker_1 {
+  flex: 1;
+  padding-right: 40rpx;
+  overflow: hidden;
+  position: relative;
+}
+
+form-group .picker_1 .picker {
+  line-height: 100rpx;
+  font-size: 28rpx;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 100%;
+  text-align: right;
+}
+
+form-group .picker_1::after {
+  font-family: iconfont !important;
+  display: block;
+  content: "\e615;";
+  position: absolute;
+  font-size: 44rpx;
+  color: rgb(243, 18, 18);
+  line-height: 100rpx;
+  width: 60rpx;
+  text-align: center;
+  top: 0;
+  bottom: 0;
+  right: -16rpx;
+  margin: auto;
+}
+
+.wran-tips {
+  text-align: center;
+  color: #fff;
+  padding: 3%;
+  width: 100%;
+  background-color: #ec4346;
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  z-index: 999;
+  top: 0;
+}

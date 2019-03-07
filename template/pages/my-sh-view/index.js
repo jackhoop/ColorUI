@@ -50,7 +50,7 @@ Page({
       title: '保存中...',
       mask: true,//是否显示透明蒙层，防止触摸穿透，默认：false  
     })
-
+    console.log(that.data.business)
     var token = wx.getStorageSync('token')
     wx.request({
       url: app.globalData.serverUrl + "/wx/business/" + app.globalData.appid + "/sh",
@@ -59,7 +59,9 @@ Page({
         'Authorization': token
       },
       data: that.data.business,
-   
+      complete: function () {
+        wx.hideLoading();
+      },
       success: (res) => {
         if (res.data.code == "0") {
           wx.showToast({

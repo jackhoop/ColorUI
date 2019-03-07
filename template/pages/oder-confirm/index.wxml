@@ -1,7 +1,92 @@
 <custom style="height:{{CustomBar}}px;">
   <bar class="fixed gradual-blue" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
     <navigator class='action' open-type="navigateBack" delta="1" hover-class="none">
-      <icon class='icon-back' />确认商品
+      <icon class='icon-back' />确认订单
     </navigator>
   </bar>
 </custom>
+<view class="container">
+     <form bindsubmit="createOrder" report-submit="true">
+     <view class="address-box" >
+         <view class="add-address" hidden="{{curAddressData}}">
+            <view class="title" bindtap="addAddress">新增收货地址</view>
+        </view>
+        <!-- <view class="show-address" bindtap="selectAddress">
+            <view class="name-tel">123  123</view>
+            <view class="addr-text">123123</view>
+        </view> -->
+     </view>
+     <view class="goods-list">
+        <view class="list-title">商品列表</view>
+        <view class="a-goods" >
+            <view class="img-box">
+                <image src="{{item.pic}}" class="img" />
+            </view>
+            <view class="text-box">
+                <view class="arow arow01">
+                    <view class="goods-name">2141234</view>
+            
+                </view>
+                <view class="arow">
+                    <view class="goods-label">1232</view>
+                    <view class="goods-num">x 34</view>
+                </view>
+            </view>
+        </view>
+         <view class="a-goods" >
+            <view class="img-box">
+                <image src="{{item.pic}}" class="img" />
+            </view>
+            <view class="text-box">
+                <view class="arow arow01">
+                    <view class="goods-name">2141234</view>
+            
+                </view>
+                <view class="arow">
+                    <view class="goods-label">1232</view>
+                    <view class="goods-num">x 34</view>
+                </view>
+            </view>
+        </view>
+     </view>
+    
+      <view class="peisong-way">
+       
+        <view class="row-box">
+            <view class="row-label">买家留言</view>
+            <view class="right-text">
+                <input name="remark" type="text" class="liuyan" placeholder="如需留言请输入" />
+            </view>
+        </view>
+     </view>
+
+     <list class="menu">
+    <item>
+      <view class='content'>
+  
+        <!-- <text style='font-size:28rpx'>商品金额</text> -->
+      </view>
+      <view class='action'>
+        <text class='text-sm' style='font-size:26rpx'>共9件商品  小计：</text><text  class='text-price text-red'>2323</text>
+      </view>
+    </item>
+    
+  </list>
+  
+    </form>
+ 
+</view>
+<view class="weui-footer weui-footer_fixed-bottom">
+  <bar class="shop">
+  <view class="action">
+    
+  </view>
+ 
+  <view class="action" style='flex: 3;'>
+     <text style='font-size:30rpx'>共9件，总金额：</text><text style='font-size:35rpx' class='text-price text-red'>2323</text>
+  </view>
+  <view class='bg-red submit' style='flex: 2;'>提交订单</view>
+</bar>
+  </view>
+
+
