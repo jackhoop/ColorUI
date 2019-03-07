@@ -11,6 +11,7 @@ Page({
     search: '',
     isLoad: false,
     loadStatus: true,
+    selectAll:true,
     editType:"编辑",
     pageSize: 5,
     content: [],
@@ -29,6 +30,14 @@ Page({
     }],
     tower: []
   },
+  onUnload(e){
+    var that = this;
+    if (that.data.business.id){
+      wx.setStorageSync(that.data.business.id+"gwc", that.data.gwc)
+      var countDown = Date.parse(new Date())
+      wx.setStorageSync(that.data.business.id + "time", countDown)
+    }
+  },
   onLoad(e) {
     this.towerSwiper('tower');
     // 初始化towerSwiper 传已有的数组名即可
@@ -45,6 +54,8 @@ Page({
     that.getBusinessInfo(id)
 
     that.getGoodsList(id)
+
+    
    
   },
   onShareAppMessage(res) {
@@ -76,6 +87,7 @@ Page({
             isLoad: res.data.last,
             content: that.data.content.concat(res.data.content)
           })
+          
         }
       },
       complete: function () {
@@ -158,24 +170,23 @@ Page({
             jcImages: arr
           });
         }
+        var gwc = wx.getStorageSync(res.data.business.id+"gwc");
+        gwc = gwc ? gwc:[];
+        var time = wx.getStorageSync(res.data.business.id + "time");
+        time = time ? time:0;
+        var countDown = Date.parse(new Date())
+        var diff = countDown - time;
+        var day = diff / (24 * 60 * 60 * 1000);
+        if (day ==1){
+          wx.setStorageSync(res.data.business.id + "gwc", [])
+          wx.setStorageSync(res.data.business.id + "time",0)
+        }
         that.setData({
           business: res.data.business,
-          collection: res.data.collection
+          collection: res.data.collection,
+          gwc: gwc
         });
         app.openPermissionLocation();
-        // app.getPermissionLocation(function (res) {
-      
-        //   var from = {
-        //     latitude: res.latitude,
-        //     longitude: res.longitude
-        //   }
-        //   var to = [{
-        //     latitude: that.data.business.lat,
-        //     longitude: that.data.business.lng
-        //   }]
-
-        //   that.calculateDistance(from, to);
-        // });
         var to = [{
             latitude: that.data.business.lat,
             longitude: that.data.business.lng
@@ -341,11 +352,23 @@ Page({
   },
   showGWZModal(e) {
     var that = this;
+    var total = 0;
+    var totalMoney = 0;
+    for (var i = 0; i < that.data.gwc.length; i++) {
+      var goods = that.data.gwc[i];
+      if (goods.active){
+        total++
+        totalMoney += goods.price * goods.number
+      }
+    }
+    var selectAll = total == that.data.gwc.length ? true : false
     this.setData({
       modalName: e.currentTarget.dataset.target,
-      gwc: that.data.gwc
+      gwc: that.data.gwc,
+      total: total,
+      totalMoney: totalMoney.toFixed(2),
+      selectAll: selectAll
     })
-    console.log(that.data.gwc)
   },
   hideModal(e) {
     this.setData({
@@ -368,6 +391,33 @@ Page({
       currentNum++;
       this.setData({
         buyNumber: currentNum
+      })
+    }
+  },
+  numJianTapGwc: function (e) {
+    var that = this;
+    var item = that.data.gwc[e.currentTarget.dataset.index];
+    console.log(item);
+    if (item.number > this.data.buyNumMin) {
+      item.number = item.number-1;
+      var key = "gwc[" + e.currentTarget.dataset.index + "]"
+      this.setData({
+        key: item,
+        gwc: that.data.gwc
+      })
+    }
+  
+  },
+  numJiaTapGwc: function (e) {
+    var that = this;
+    var item = that.data.gwc[e.currentTarget.dataset.index];
+    console.log(item)
+    if (item.number < this.data.buyNumMax) {
+      item.number = item.number + 1;
+      var key = "gwc[" + e.currentTarget.dataset.index + "]"
+      this.setData({
+        key: item,
+        gwc: that.data.gwc
       })
     }
   },
@@ -405,6 +455,7 @@ Page({
     })
     console.log(that.data.gwc)
   },
+  //购物车编辑
   gwcEdit:function(e){
     var that = this;
     var type = e.currentTarget.dataset.type;
@@ -417,6 +468,81 @@ Page({
         editType: "编辑",
       })
     }
+   
+    var total = 0;
+    var totalMoney = 0;
+    for (var i = 0; i < that.data.gwc.length; i++) {
+      var goods = that.data.gwc[i];
+      if (goods.active) {
+        total++
+        totalMoney += goods.price * goods.number
+      }
+    }
+    var selectAll = total == that.data.gwc.length ? true : false
+    this.setData({
+      gwc: that.data.gwc,
+      total: total,
+      totalMoney: totalMoney.toFixed(2),
+      selectAll: selectAll
+    })
 
+
+
+  },
+  //点击商品
+  selectGoods:function(e){
+    var that = this;
+    var total = 0;
+    var totalMoney = 0;
+    var index = e.currentTarget.dataset.index
+    var goods1 = that.data.gwc[index];
+    that.data.gwc[index].active = goods1.active ? false : true;
+    for (var i = 0; i < that.data.gwc.length; i++) {
+      var goods = that.data.gwc[i];
+      if (goods.active) {
+        total++
+        totalMoney += goods.price * goods.number
+      }
+    }
+    var selectAll = total == that.data.gwc.length?true:false
+  
+    this.setData({
+      gwc: that.data.gwc,
+      total: total,
+      totalMoney: totalMoney.toFixed(2),
+      selectAll: selectAll
+    })
+  },
+  selectAll:function(){
+    var that = this;
+    var select = that.data.selectAll?false:true;
+    var total = 0;
+    var totalMoney=0;
+    for (var i = 0; i < that.data.gwc.length; i++) {
+       that.data.gwc[i].active = select;
+      if (select){
+        total++
+        totalMoney += that.data.gwc[i].price * that.data.gwc[i].number
+      }
+    }
+    that.setData({
+      gwc: that.data.gwc,
+      selectAll: select,
+      total:total,
+      totalMoney: totalMoney.toFixed(2)
+    })
+  },
+  //删除购物车商品
+  delGoods:function(){
+    var that = this;
+    for (var i = 0; i < that.data.gwc.length; i++) {
+      var goods = that.data.gwc[i];
+      if (goods.active) {
+        that.data.gwc.splice(i, 1);
+      }
+    }
+    that.setData({
+      gwc: that.data.gwc
+    })
   }
 });

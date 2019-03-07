@@ -179,9 +179,9 @@
       <view class='padding-xs'>
         <list class="menu menu-avatar inverts shadow" style="padding:0 7px">
           <block wx:for="{{gwc}}" wx:key wx:for-index="index">
-            <item class="" style="padding-left: 0px;height: 90px;">
+            <item class="" style="padding-left: 0px;height: 90px;" data-index="{{index}}"  bindtap="selectGoods">
               <view class=''>
-                <radio class="red margin-left-sm" checked />
+                <radio class="red margin-left-sm"  checked="{{item.active?'true':''}}" />
               </view>
               <view class='padding-left'>
                 <avatar class="radius xxl" style="background-image:url({{item.image}});"> </avatar>
@@ -198,11 +198,11 @@
                     <view class='flex-sub'>
                       <view class="buy-num-box-gwc">
                         <view class="num-box">
-                          <view class="num-jian {{item.number == buyNumMin ? 'hui': ''}}" bindtap="numJianTap">-</view>
+                          <view class="num-jian {{item.number == buyNumMin ? 'hui': ''}}" data-index="{{index}}" catchtap="numJianTapGwc">-</view>
                           <view class="num-input">
                             <input type="number" value="{{item.number}}" disabled/>
                           </view>
-                          <view class="num-jia {{buyNumber== item.number ? 'hui': ''}}" bindtap="numJiaTap">+</view>
+                          <view class="num-jia {{buyNumber== item.number ? 'hui': ''}}" data-index="{{index}}" catchtap="numJiaTapGwc">+</view>
                         </view>
                       </view>
                     </view>
@@ -220,16 +220,24 @@
       </view>
       <view class=''>
         <bar class="margin-top shop">
-          <view class="action">
-           <radio class='red margin-left-sm' /> 全选
+          <view class="action" style='text-align:left' bindtap="selectAll">
+           <radio class='red margin-left-sm'  checked="{{selectAll?'true':''}}"/>
           </view>
-          <view class="action">
-            合计：¥323
+          <view class="action" style='flex: 3;'>
+            <block wx:if="{{editType=='编辑'}}">
+              <view class='solid-bottom text-xl padding'>
+               <text> 合计：</text><text class='text-price text-red'>{{totalMoney}}</text>
+              </view>
+            </block>
           </view>
-          <view class='bg-red submit'>结算(2)</view>
+           <block wx:if="{{editType=='完成'}}">
+            <view class='bg-red submit' bindtap="delGoods" style='flex: 2;'>删除</view>
+            </block>
+            <block wx:else>
+              <view class='bg-red submit' style='flex: 2;'>结算({{total}})</view>
+            </block>
         </bar>
       </view>
-
     </view>
   </dialog>
 </modal-box>
