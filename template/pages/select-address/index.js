@@ -8,13 +8,47 @@ Page({
   data: {
     StatusBar: app.globalData.StatusBar,
     CustomBar: app.globalData.CustomBar,
+    isLoad: false,
+    loadStatus: true,
+    page: 0,
+    pageSize: 5,
+    content: [],
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var that = this;
+    that.getAddressList()
+  },
 
+  getAddressList: function () {
+    var that = this;
+    var token = wx.getStorageSync('token')
+    wx.request({
+      url: app.globalData.serverUrl + "/wx/account/" + app.globalData.appid + "/list",
+      header: {
+        'Authorization': token
+      },
+      data: {
+        page: that.data.page,
+        pageSize: that.data.pageSize
+      },
+      success: function (res) {
+        if (res.statusCode == "200") {
+          that.setData({
+            isLoad: res.data.last,
+            content: that.data.content.concat(res.data.content)
+          })
+        }
+      },
+      complete: function () {
+        that.setData({
+          loadStatus: true
+        })
+      }
+    })
   },
 
   /**
@@ -66,6 +100,8 @@ Page({
 
   },
   addAddress: function () {
-
+    wx.navigateTo({
+      url: "/pages/address-add/index"
+    })
   },
 })

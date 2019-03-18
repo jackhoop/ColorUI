@@ -82,15 +82,14 @@ Page({
    */
   submitForm(address) {
     console.log(address)
-    return;
+    //return
     wx.showLoading({
       title: '保存中...',
       mask: true,//是否显示透明蒙层，防止触摸穿透，默认：false  
     })
 
     var that = this;
-    goods.adImages = JSON.stringify(that.data.files);
-    goods.jcImages = JSON.stringify(that.data.jcfiles);
+ 
     var token = wx.getStorageSync('token')
 
     wx.request({
@@ -99,11 +98,11 @@ Page({
       header: {
         'Authorization': token
       },
-      data: goods,
+      data: address,
       complete: function () {
-        // setTimeout(function () {
-        //   wx.hideLoading()
-        // }, 2000)
+        setTimeout(function () {
+          wx.hideLoading()
+        }, 2000)
       },
       success: (res) => {
         if (res.data.code == "0") {
@@ -114,10 +113,9 @@ Page({
             icon: 'success', //图标，支持"success"、"loading"  
             success: function () {
               wx.hideLoading()
-              wx.switchTab({
-                url: '/pages/business/index',
+              wx.redirectTo({
+                url: '/pages/select-address/index',
                 success: function (e) {
-
                   let page = getCurrentPages()[0];
                   if (page == undefined || page == null) return;
                   page.onLoad(e);
@@ -136,6 +134,9 @@ Page({
 
       }
     })
+  },
+  checkboxChange: function (e) {
+    console.log(e.target)
   },
   //地址选择
   chooseLocation: function (e) {
@@ -257,8 +258,7 @@ Page({
     let delayMillsecond = 1000;
     // 调用显示警告函数
     showWran(page, error, delayTime, delayMillsecond);
-  },
-  
+  }
 })
 /**
  * 可加入工具集-减少代码量

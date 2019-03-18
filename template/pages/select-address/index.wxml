@@ -5,22 +5,27 @@
     </navigator>
   </bar>
 </custom>
-
-<card class="case" data-id="{{item.id}}" bindtap="toDetailsTap">
+<block wx:for="{{content}}" wx:key>
+<card class="case"  data-id="{{item.id}}" bindtap="toDetailsTap">
   <item class="shadow">
     <list class="menu menu-avatar">
       <item style='padding-left: 0px;'>
 
         <view class='content'>
-         <text class='text-lg'>龙波</text> <text class='padding-left text-lg'>18987898765</text>
-          <view class='text-gray text-df'>在在仍仍仍遥遥仍仍仍㐱爱你的㐱㐱㐱人仍we</view>
+         <text class='text-lg'>{{item.userName}}</text> <text class='padding-left text-lg'>{{item.phone}}</text>
+          <view class='text-gray text-df'>{{item.province}}{{item.city}}{{item.district}}{{item.address}}</view>
         </view>
 
       </item>
     </list>
     <view class="flex padding-sm solid-top">
       <view class='flex-sub text-gray'>
-       <radio class="sm red" checked /> <text>设为默认地址</text>
+       <block wx:if="{{item.mz}}">
+        <radio class="sm red" checked /> <text>设为默认地址</text>
+       </block>
+         <block wx:else>
+              <radio class="sm red"  /> <text>设为默认地址</text>
+            </block>
       </view>
       <view class='flex-sub text-gray ' style='padding-left:150rpx'>
         <view class="grid col-2">
@@ -31,7 +36,8 @@
     </view>
      </item>
 </card>
-
+</block>
+ <load class="{{!isLoad?'loading':'over'}}"></load>
 <view class="weui-footer weui-footer_fixed-bottom">
   <bar class="btn-group">
     <button class='bg-red shadow-blur' bindtap='addAddress'>新增地址</button>
