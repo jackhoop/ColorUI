@@ -1,7 +1,7 @@
 <custom style="height:{{CustomBar}}px;">
   <bar class="fixed gradual-blue" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
     <navigator class='action' open-type="navigateBack" delta="1" hover-class="none">
-      <icon class='icon-back' />新增地址
+      <icon class='icon-back' />{{title}}
     </navigator>
   </bar>
 </custom>
@@ -10,6 +10,7 @@
   <view class='wran-tips' style='top:{{CustomBar}}px;{{displayWarn}};'>
     <text>{{warnInfo}}</text>
   </view>
+   <input name="id" hidden class="id" value='{{address.id}}'/>
   <input name="adcode" hidden value='{{address.adcode}}' />
   <input name="lat" hidden value='{{address.lat}}' />
   <input name="lng" hidden  value='{{address.lng}}' />
@@ -18,11 +19,11 @@
   <input name="district" hidden  value='{{address.district}}' />
   <form-group>
     <view class='title'>姓名</view>
-    <input placeholder="请输入姓名" class='radius' name='userName'></input>
+    <input placeholder="请输入姓名" class='radius' value='{{address.userName}}' name='userName'></input>
   </form-group>
   <form-group>
     <view class='title'>电话</view>
-    <input placeholder="请输入手机号码" class='radius' name='phone'></input>
+    <input placeholder="请输入手机号码" class='radius' value='{{address.phone}}' name='phone'></input>
   </form-group>
   <form-group>
     <view class='title'>省市区</view>
@@ -39,7 +40,7 @@
   </form-group>
    <form-group class="margin-top">
        
-     <view class='title text-gray'> <switch name='mz' class='sm'></switch>设为默认地址</view>
+     <view class='title text-gray'> <switch name='mz' checked="{{address.mz == true ?'true':''}}" class='sm'></switch>设为默认地址</view>
     </form-group>
     <bar class="margin-top btn-group">
   <button class='bg-green shadow-blur round' form-type='submit' >保存</button>

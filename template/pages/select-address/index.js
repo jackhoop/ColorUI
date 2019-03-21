@@ -22,7 +22,132 @@ Page({
     var that = this;
     that.getAddressList()
   },
-
+ 
+  delAddress: function (e) {
+    var that = this;
+    wx.showModal({
+      title: '温馨提示',
+      content: '确认删除数据',
+      confirmText: "确定",
+      cancelText: "取消",
+      success: function (res) {
+        if (res.confirm) {
+          that.del(e);
+        }
+      }
+    });
+  },
+  del(e) {
+    var id = e.currentTarget.dataset.id;
+    var that = this;
+    wx.showLoading({
+      title: '删除中...',
+      mask: true,//是否显示透明蒙层，防止触摸穿透，默认：false  
+    })
+    var token = wx.getStorageSync('token')
+    wx.request({
+      url: app.globalData.serverUrl + "/wx/account/" + app.globalData.appid + "/del",
+      method: 'get',
+      header: {
+        'Authorization': token
+      },
+      data: {
+        id: id
+      },
+      complete: function () {
+        setTimeout(function () {
+          wx.hideLoading()
+        }, 2000)
+      },
+      success: (res) => {
+        if (res.data.code == "0") {
+          wx.showToast({
+            title: res.data.msg,//提示文字
+            duration: 2000,//显示时长
+            mask: true,//是否显示透明蒙层，防止触摸穿透，默认：false  
+            icon: 'success', //图标，支持"success"、"loading"  
+            success: function () {
+              wx.hideLoading()
+              that.setData({
+                content: [],
+                page: 0,
+                isLoad: false,
+                loadStatus: true,
+              })
+              that.getAddressList()
+            },//接口调用成功
+          })
+        } else {
+          wx.showModal({
+            title: '提示',
+            content: res.data.msg,
+            showCancel: false
+          })
+        }
+      }
+    })
+  },
+  mz(id) {
+    console.log(id)
+    var that = this;
+    wx.showLoading({
+      title: '设置中...',
+      mask: true,//是否显示透明蒙层，防止触摸穿透，默认：false  
+    })
+    var token = wx.getStorageSync('token')
+    wx.request({
+      url: app.globalData.serverUrl + "/wx/account/" + app.globalData.appid + "/mz",
+      method: 'post',
+      header: {
+        'Authorization': token,
+        'content-type': 'application/x-www-form-urlencoded' // 默认值
+      },
+      data: {
+        id: id
+      },
+      complete: function () {
+        setTimeout(function () {
+          wx.hideLoading()
+        }, 2000)
+      },
+      success: (res) => {
+        if (res.data.code == "0") {
+          wx.showToast({
+            title: res.data.msg,//提示文字
+            duration: 2000,//显示时长
+            mask: true,//是否显示透明蒙层，防止触摸穿透，默认：false  
+            icon: 'success', //图标，支持"success"、"loading"  
+            success: function () {
+              wx.hideLoading()
+              that.setData({
+                content: [],
+                page: 0,
+                isLoad: false,
+                loadStatus: true,
+              })
+              that.getAddressList()
+            },//接口调用成功
+          })
+        } else {
+          wx.showModal({
+            title: '提示',
+            content: res.data.msg,
+            showCancel: false
+          })
+        }
+      }
+    })
+  },
+  edit(e) {
+    wx.navigateTo({
+      url: "/pages/address-add/index?id=" + e.currentTarget.dataset.id
+    })
+  },
+  radiochange: function (e) {
+    var that = this;
+    that.mz(e.detail.value)
+    console.log('radio发生change事件，携带的value值为：', e.detail.value)
+  },
   getAddressList: function () {
     var that = this;
     var token = wx.getStorageSync('token')

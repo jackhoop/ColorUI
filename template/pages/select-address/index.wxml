@@ -5,8 +5,9 @@
     </navigator>
   </bar>
 </custom>
+<radio-group bindchange="radiochange">
 <block wx:for="{{content}}" wx:key>
-<card class="case"  data-id="{{item.id}}" bindtap="toDetailsTap">
+<card class="case"  data-id="{{item.id}}">
   <item class="shadow">
     <list class="menu menu-avatar">
       <item style='padding-left: 0px;'>
@@ -20,23 +21,19 @@
     </list>
     <view class="flex padding-sm solid-top">
       <view class='flex-sub text-gray'>
-       <block wx:if="{{item.mz}}">
-        <radio class="sm red" checked /> <text>设为默认地址</text>
-       </block>
-         <block wx:else>
-              <radio class="sm red"  /> <text>设为默认地址</text>
-            </block>
+       <radio class="sm red" value='{{item.id}}' checked="{{item.mz == true ?'true':''}}" /> <text>设为默认地址</text>
       </view>
       <view class='flex-sub text-gray ' style='padding-left:150rpx'>
         <view class="grid col-2">
-         <view class='text-right'>  <icon class='icon-bianji1 lg ' />编辑</view>
-         <view class='text-center'>  <icon class='icon-deletefill lg ' />删除</view>
+         <view class='text-right' data-id="{{item.id}}" bindtap="edit" >  <icon class='icon-bianji1 lg ' />编辑</view>
+         <view class='text-center'  data-id="{{item.id}}" bindtap="delAddress">  <icon class='icon-deletefill lg ' />删除</view>
         </view>
       </view>
     </view>
      </item>
 </card>
 </block>
+</radio-group>
  <load class="{{!isLoad?'loading':'over'}}"></load>
 <view class="weui-footer weui-footer_fixed-bottom">
   <bar class="btn-group">

@@ -12,13 +12,14 @@ Page({
     StatusBar: app.globalData.StatusBar,
     CustomBar: app.globalData.CustomBar,
     address: {},
+    title: '新增地址',
     displayWarn: 'display:none',
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function (e) {
     var that = this;
     // 实例化API核心类
     qqmapsdk = new QQMapWX({
@@ -27,6 +28,46 @@ Page({
     // 校验规则 -rules
     that.initValidate();
 
+    if (e.id) {
+      that.setData({
+        title: '编辑地址'
+      })
+      that.getAddressInfo(e.id)
+    }
+
+  },
+  getAddressInfo: function (id) {
+    wx.showLoading({
+      title: '加载中',
+      mask: true,//是否显示透明蒙层，防止触摸穿透，默认：false  
+    })
+
+    var that = this;
+    var token = wx.getStorageSync('token')
+    wx.request({
+      url: app.globalData.serverUrl + "/wx/account/" + app.globalData.appid + "/getAddress",
+      method: 'get',
+      header: {
+        'Authorization': token
+      },
+      data: {
+        id: id
+      },
+      complete: function () {
+        wx.hideLoading()
+      },
+      success: function (res) {
+        if (res.data.address) {
+          var address = res.data.address;
+          address.ssq = address.province + '-' + address.city + '-' + address.district;
+          console.log(address)
+          that.setData({
+            address: address,
+          });
+        }
+
+      }
+    })
   },
 
   /**
@@ -115,11 +156,11 @@ Page({
               wx.hideLoading()
               wx.redirectTo({
                 url: '/pages/select-address/index',
-                success: function (e) {
-                  let page = getCurrentPages()[0];
-                  if (page == undefined || page == null) return;
-                  page.onLoad(e);
-                }
+                // success: function (e) {
+                //   let page = getCurrentPages()[0];
+                //   if (page == undefined || page == null) return;
+                //   page.onLoad(e);
+                // }
               });
             },//接口调用成功
           })

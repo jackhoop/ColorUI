@@ -373,6 +373,7 @@ Page({
   hideModal(e) {
     this.setData({
       modalName: null,
+      editType: "编辑"
     })
   },
   numJianTap: function () {
@@ -532,17 +533,23 @@ Page({
       totalMoney: totalMoney.toFixed(2)
     })
   },
+  
+  jsm: function (e) {
+    console.log(e)
+  },
   //删除购物车商品
   delGoods:function(){
     var that = this;
+      var arr = [];
     for (var i = 0; i < that.data.gwc.length; i++) {
       var goods = that.data.gwc[i];
-      if (goods.active) {
-        that.data.gwc.splice(i, 1);
+      if (!goods.active) {
+        arr.push(goods)
       }
     }
+
     that.setData({
-      gwc: that.data.gwc
+      gwc: arr
     })
   }
 });

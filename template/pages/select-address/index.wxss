@@ -5,3 +5,11 @@ left:0;
 right:0;
 box-shadow:0 0 8rpx 0 ;
 }
+
+radio-group {
+  display: inline !important;
+}
+card {
+  display:inline;
+  overflow: hidden;
+}

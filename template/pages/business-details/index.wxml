@@ -172,7 +172,7 @@
 <modal-box class="bottom-modal {{modalName=='gwzModal'?'show':''}}">
   <dialog>
     <bar class="">
-      <view class='action' bindtap='hideModal'>取消</view>
+      <view class='action' bindtap='hideModal'>关闭</view>
       <view class='action text-blue' data-type="{{editType}}" bindtap='gwcEdit'>{{editType}}</view>
     </bar>
     <view class=''>
@@ -234,7 +234,7 @@
             <view class='bg-red submit' bindtap="delGoods" style='flex: 2;'>删除</view>
             </block>
             <block wx:else>
-              <view class='bg-red submit' style='flex: 2;'>结算({{total}})</view>
+              <view class='bg-red submit' bindtap="jsm" style='flex: 2;'>结算({{total}})</view>
             </block>
         </bar>
       </view>
