@@ -1,14 +1,14 @@
 <custom style="height:{{CustomBar}}px;">
   <bar class="fixed gradual-blue" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
     <navigator class='action' open-type="navigateBack" delta="1" hover-class="none">
-      <icon class='icon-back' />地址
+      <icon class='icon-back' />{{title}}
     </navigator>
   </bar>
 </custom>
-<radio-group bindchange="radiochange">
-<block wx:for="{{content}}" wx:key>
-<card class="case"  data-id="{{item.id}}">
-  <item class="shadow">
+<radio-group catchtapchange="radiochange">
+<block wx:for="{{content}}" wx:key wx:for-index="index">
+<card class="case">
+  <item class="shadow"  bindtap="select" data-index="{{index}}" data-id="{{item.id}}">
     <list class="menu menu-avatar">
       <item style='padding-left: 0px;'>
 
@@ -25,8 +25,8 @@
       </view>
       <view class='flex-sub text-gray ' style='padding-left:150rpx'>
         <view class="grid col-2">
-         <view class='text-right' data-id="{{item.id}}" bindtap="edit" >  <icon class='icon-bianji1 lg ' />编辑</view>
-         <view class='text-center'  data-id="{{item.id}}" bindtap="delAddress">  <icon class='icon-deletefill lg ' />删除</view>
+         <view class='text-right' data-id="{{item.id}}" catchtap="edit" >  <icon class='icon-bianji1 lg ' />编辑</view>
+         <view class='text-center'  data-id="{{item.id}}" catchtap="delAddress">  <icon class='icon-deletefill lg ' />删除</view>
         </view>
       </view>
     </view>

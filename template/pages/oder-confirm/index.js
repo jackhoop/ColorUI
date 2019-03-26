@@ -8,13 +8,23 @@ Page({
   data: {
     StatusBar: app.globalData.StatusBar,
     CustomBar: app.globalData.CustomBar,
+    goods: []
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    var that = this;
+    var orderconfirm = wx.getStorageSync('orderconfirm')
+    var address = wx.getStorageSync('address')
+    that.setData({
+      goods: orderconfirm.goods,
+      totalMoney: orderconfirm.totalMoney,
+      totalNumber: orderconfirm.totalNumber,
+      business: orderconfirm.business,
+      address: address,
+    })
   },
 
   /**
@@ -64,5 +74,11 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  selectAddress: function () {
+    wx.navigateTo({
+      url: "/pages/select-address/index?type=select"
+    })
   }
+  
 })

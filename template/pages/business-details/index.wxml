@@ -234,7 +234,7 @@
             <view class='bg-red submit' bindtap="delGoods" style='flex: 2;'>删除</view>
             </block>
             <block wx:else>
-              <view class='bg-red submit' bindtap="jsm" style='flex: 2;'>结算({{total}})</view>
+              <view class="bg-red  {{total==0?'bg-grey':''}} submit" bindtap="jsm" disabled="true" tyle='flex: 2;'>结算({{total}})</view>
             </block>
         </bar>
       </view>

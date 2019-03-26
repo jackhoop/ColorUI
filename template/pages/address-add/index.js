@@ -27,15 +27,19 @@ Page({
     });
     // 校验规则 -rules
     that.initValidate();
+    
+    that.setData({
+      type: e.type
+    })
 
     if (e.id) {
       that.setData({
-        title: '编辑地址'
+        title: '编辑地址',
+        type: e.type
       })
       that.getAddressInfo(e.id)
     }
-
-  },
+   },
   getAddressInfo: function (id) {
     wx.showLoading({
       title: '加载中',
@@ -155,7 +159,7 @@ Page({
             success: function () {
               wx.hideLoading()
               wx.redirectTo({
-                url: '/pages/select-address/index',
+                url: '/pages/select-address/index?type=' + that.data.type,
                 // success: function (e) {
                 //   let page = getCurrentPages()[0];
                 //   if (page == undefined || page == null) return;

@@ -535,12 +535,38 @@ Page({
   },
   
   jsm: function (e) {
-    console.log(e)
+    var that = this;
+    if (that.data.gwc.length == 0 || that.data.total==0) { 
+      return;
+    }
+    var arr = [];
+    var totalNumber=0;
+    for (var i = 0; i < that.data.gwc.length; i++) {
+      var goods = that.data.gwc[i];
+      if (goods.active) {
+          arr.push(goods)
+          totalNumber += goods.number
+      }
+    }
+
+    var orderconfirm = {
+      goods: arr,
+      totalMoney: that.data.totalMoney,
+      totalNumber: totalNumber,
+      business: that.data.business
+     }
+    console.log(orderconfirm)
+
+    wx.setStorageSync('orderconfirm', orderconfirm)
+    wx.setStorageSync('address', '')
+    wx.navigateTo({
+      url: "/pages/oder-confirm/index"
+    })
   },
   //删除购物车商品
   delGoods:function(){
     var that = this;
-      var arr = [];
+    var arr = [];
     for (var i = 0; i < that.data.gwc.length; i++) {
       var goods = that.data.gwc[i];
       if (!goods.active) {

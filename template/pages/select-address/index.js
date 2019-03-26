@@ -12,17 +12,35 @@ Page({
     loadStatus: true,
     page: 0,
     pageSize: 5,
+    title: '地址',
     content: [],
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function (e) {
     var that = this;
     that.getAddressList()
+   
+    if (e.type) {
+      that .setData({
+        title: '选择地址',
+        type: e.type
+      })
+    }
+    console.log(e) 
   },
- 
+  select: function (e) { 
+    var that = this;
+    if (that.data.type =='select') { 
+      var address = that.data.content[e.currentTarget.dataset.index] 
+      wx.setStorageSync('address', address)
+      wx.redirectTo({
+        url: "/pages/oder-confirm/index"
+      })
+    }
+  },
   delAddress: function (e) {
     var that = this;
     wx.showModal({
@@ -87,6 +105,7 @@ Page({
       }
     })
   },
+  
   mz(id) {
     console.log(id)
     var that = this;
@@ -225,8 +244,9 @@ Page({
 
   },
   addAddress: function () {
+    var that = this;
     wx.navigateTo({
-      url: "/pages/address-add/index"
+      url: "/pages/address-add/index?type=" + that.data.type
     })
   },
 })

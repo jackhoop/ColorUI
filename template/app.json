@@ -1,9 +1,11 @@
 {
   "pages": [
         "pages/index/index",
+      "pages/oder-confirm/index",
+    
     "pages/select-address/index",
     "pages/address-add/index",
-    "pages/oder-confirm/index",
+  
 
     "pages/my-sh/index",
     "pages/my-sh-view/index",
